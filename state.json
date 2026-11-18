@@ -571,18 +571,360 @@
   },
   "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8": {
    "attempts": 0,
-   "claim": {
-    "at": "2026-11-18T14:27:23Z",
-    "run": "44323416385"
-   },
+   "cam": [
+    1931,
+    0,
+    628,
+    314
+   ],
+   "contest_ok": true,
    "created_at": "2026-11-18T14:04:37Z",
+   "criteria": null,
    "duration": 60.0,
+   "evaluated_at": "2026-11-18T14:30:17Z",
    "first_seen": "2026-11-18T14:27:10Z",
+   "frames_sheet": "work/pipeline/BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8/frames.jpg",
    "game_id": "1867279146",
    "id": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
+   "language": "ru",
+   "moment_type": "other",
+   "reason": "Отбор по метаданным: рост просмотров 92-й перцентиль, 6 клипа одного момента, возраст 0.4 ч",
+   "score": 97,
+   "score_mode": "meta",
    "slug": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-   "status": "new",
-   "title": "сюжетку проходим",
+   "status": "scored",
+   "timer_box": [
+    2131,
+    254,
+    240,
+    50
+   ],
+   "title": null,
+   "title_accent": null,
+   "transcript": {
+    "language": "ru",
+    "probability": 0.978,
+    "segments": [
+     {
+      "end": 0.32,
+      "start": 0.0,
+      "text": "че ты как?",
+      "words": [
+       {
+        "end": 0.14,
+        "start": 0.0,
+        "word": " че"
+       },
+       {
+        "end": 0.16,
+        "start": 0.14,
+        "word": " ты"
+       },
+       {
+        "end": 0.32,
+        "start": 0.16,
+        "word": " как?"
+       }
+      ]
+     },
+     {
+      "end": 2.36,
+      "start": 1.5,
+      "text": "700 долларов?",
+      "words": [
+       {
+        "end": 1.92,
+        "start": 1.5,
+        "word": " 700"
+       },
+       {
+        "end": 2.36,
+        "start": 1.92,
+        "word": " долларов?"
+       }
+      ]
+     },
+     {
+      "end": 4.02,
+      "start": 2.56,
+      "text": "у меня было 3000 блять",
+      "words": [
+       {
+        "end": 2.58,
+        "start": 2.56,
+        "word": " у"
+       },
+       {
+        "end": 2.66,
+        "start": 2.58,
+        "word": " меня"
+       },
+       {
+        "end": 3.06,
+        "start": 2.66,
+        "word": " было"
+       },
+       {
+        "end": 3.52,
+        "start": 3.06,
+        "word": " 3000"
+       },
+       {
+        "end": 4.02,
+        "start": 3.52,
+        "word": " блять"
+       }
+      ]
+     },
+     {
+      "end": 6.02,
+      "start": 4.02,
+      "text": "пока я сюда не зашел на оху джулье-то",
+      "words": [
+       {
+        "end": 4.2,
+        "start": 4.02,
+        "word": " пока"
+       },
+       {
+        "end": 4.32,
+        "start": 4.2,
+        "word": " я"
+       },
+       {
+        "end": 4.42,
+        "start": 4.32,
+        "word": " сюда"
+       },
+       {
+        "end": 4.8,
+        "start": 4.42,
+        "word": " не"
+       },
+       {
+        "end": 5.16,
+        "start": 4.8,
+        "word": " зашел"
+       },
+       {
+        "end": 5.32,
+        "start": 5.16,
+        "word": " на"
+       },
+       {
+        "end": 5.48,
+        "start": 5.32,
+        "word": " оху"
+       },
+       {
+        "end": 5.88,
+        "start": 5.48,
+        "word": " джулье"
+       },
+       {
+        "end": 6.02,
+        "start": 5.88,
+        "word": "-то"
+       }
+      ]
+     },
+     {
+      "end": 21.3,
+      "start": 6.02,
+      "text": "и тюхайся на резко",
+      "words": [
+       {
+        "end": 6.98,
+        "start": 6.02,
+        "word": " и"
+       },
+       {
+        "end": 20.84,
+        "start": 20.36,
+        "word": " тюхайся"
+       },
+       {
+        "end": 20.96,
+        "start": 20.84,
+        "word": " на"
+       },
+       {
+        "end": 21.3,
+        "start": 20.96,
+        "word": " резко"
+       }
+      ]
+     },
+     {
+      "end": 22.74,
+      "start": 21.3,
+      "text": "слышно без предупреждения",
+      "words": [
+       {
+        "end": 21.66,
+        "start": 21.3,
+        "word": " слышно"
+       },
+       {
+        "end": 21.8,
+        "start": 21.66,
+        "word": " без"
+       },
+       {
+        "end": 22.74,
+        "start": 21.8,
+        "word": " предупреждения"
+       }
+      ]
+     },
+     {
+      "end": 41.37,
+      "start": 22.74,
+      "text": "ну я думал что-то еще другое будет",
+      "words": [
+       {
+        "end": 23.98,
+        "start": 22.74,
+        "word": " ну"
+       },
+       {
+        "end": 39.81,
+        "start": 38.47,
+        "word": " я"
+       },
+       {
+        "end": 40.05,
+        "start": 39.81,
+        "word": " думал"
+       },
+       {
+        "end": 40.17,
+        "start": 40.05,
+        "word": " что"
+       },
+       {
+        "end": 40.53,
+        "start": 40.17,
+        "word": "-то"
+       },
+       {
+        "end": 40.53,
+        "start": 40.53,
+        "word": " еще"
+       },
+       {
+        "end": 41.15,
+        "start": 40.53,
+        "word": " другое"
+       },
+       {
+        "end": 41.37,
+        "start": 41.15,
+        "word": " будет"
+       }
+      ]
+     },
+     {
+      "end": 48.91,
+      "start": 41.37,
+      "text": "ты на шумахере стой",
+      "words": [
+       {
+        "end": 42.35,
+        "start": 41.37,
+        "word": " ты"
+       },
+       {
+        "end": 47.67,
+        "start": 47.41,
+        "word": " на"
+       },
+       {
+        "end": 48.27,
+        "start": 47.67,
+        "word": " шумахере"
+       },
+       {
+        "end": 48.91,
+        "start": 48.27,
+        "word": " стой"
+       }
+      ]
+     },
+     {
+      "end": 50.25,
+      "start": 48.91,
+      "text": "потом вот",
+      "words": [
+       {
+        "end": 49.83,
+        "start": 48.91,
+        "word": " потом"
+       },
+       {
+        "end": 50.25,
+        "start": 49.83,
+        "word": " вот"
+       }
+      ]
+     },
+     {
+      "end": 51.43,
+      "start": 50.25,
+      "text": "дошли заходят так сразу",
+      "words": [
+       {
+        "end": 50.83,
+        "start": 50.25,
+        "word": " дошли"
+       },
+       {
+        "end": 51.11,
+        "start": 50.83,
+        "word": " заходят"
+       },
+       {
+        "end": 51.21,
+        "start": 51.11,
+        "word": " так"
+       },
+       {
+        "end": 51.43,
+        "start": 51.21,
+        "word": " сразу"
+       }
+      ]
+     },
+     {
+      "end": 57.21,
+      "start": 55.65,
+      "text": "мы все жадко проходим",
+      "words": [
+       {
+        "end": 56.01,
+        "start": 55.65,
+        "word": " мы"
+       },
+       {
+        "end": 56.45,
+        "start": 56.01,
+        "word": " все"
+       },
+       {
+        "end": 56.71,
+        "start": 56.45,
+        "word": " жадко"
+       },
+       {
+        "end": 57.21,
+        "start": 56.71,
+        "word": " проходим"
+       }
+      ]
+     }
+    ],
+    "text": "че ты как? 700 долларов? у меня было 3000 блять пока я сюда не зашел на оху джулье-то и тюхайся на резко слышно без предупреждения ну я думал что-то еще другое будет ты на шумахере стой потом вот дошли заходят так сразу мы все жадко проходим"
+   },
    "url": "https://www.twitch.tv/strogo/clip/BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
    "video_id": "2931685068",
    "views": 177,
@@ -592,7 +934,12 @@
      177
     ]
    ],
-   "vod_offset": 63332
+   "views_points": 9,
+   "vod_offset": 63332,
+   "window": [
+    18.0,
+    53.0
+   ]
   },
   "BovineScrumptiousQuailBIRB-AlW5CoNVlxgohjKx": {
    "attempts": 0,
@@ -5071,7 +5418,7 @@
  },
  "days": {
   "2026-11-18": {
-   "evaluated": 1,
+   "evaluated": 2,
    "finalized": false,
    "rendered": [
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
