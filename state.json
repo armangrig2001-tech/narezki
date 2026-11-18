@@ -9738,10 +9738,6 @@
   }
  },
  "game_id": "1867279146",
- "manual": {
-  "force": false,
-  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
- },
  "runs": [
   {
    "at": "2026-11-18T14:06:38Z",
@@ -9830,6 +9826,16 @@
    "phase": "work",
    "rendered": [],
    "run": "44326161265"
+  },
+  {
+   "at": "2026-11-18T14:27:21Z",
+   "phase": "work",
+   "rendered": [
+    "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
+    "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
+    "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ"
+   ],
+   "run": "44323416385"
   }
  ],
  "same_event": [
