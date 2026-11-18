@@ -10390,6 +10390,7 @@
    "excluded": null,
    "final_title": "STROGO ДРАКА ГТА 6",
    "first_seen": "2026-11-18T14:06:38Z",
+   "force_run": "44402323142",
    "frames_sheet": "work/pipeline/strogo/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
@@ -21488,6 +21489,11 @@
     "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
+  },
+  "2026-11-19": {
+   "evaluated": 0,
+   "finalized": false,
+   "rendered": []
   }
  },
  "game_id": "1867279146",
