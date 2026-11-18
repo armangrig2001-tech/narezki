@@ -4587,6 +4587,7 @@
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "language": "ru",
    "leads": null,
+   "manual": true,
    "moment_type": "other",
    "output": {
     "checks": {
@@ -4613,7 +4614,7 @@
     "speech": 0.267
    },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "scored",
+   "status": "render_queued",
    "timer_box": [
     2131,
     254,
