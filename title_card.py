@@ -41,7 +41,7 @@ def split_lines(words, font, max_w, draw):
     return best[1]
 
 
-def render_title(text, accent, out, max_w=960, size=90, min_size=64, pad=(30, 16), radius=18):
+def render_title(text, accent, out, max_w=960, size=100, min_size=64, pad=(30, 16), radius=18):
     text = text.strip().rstrip(".").upper()
     accent_set = {w.strip().upper() for w in (accent or "").split(",") if w.strip()}
     words = text.split()
