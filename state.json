@@ -4598,18 +4598,287 @@
   },
   "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d": {
    "attempts": 0,
-   "claim": {
-    "at": "2026-11-18T14:30:19Z",
-    "run": "44323416385"
-   },
+   "cam": [
+    1931,
+    0,
+    628,
+    314
+   ],
+   "contest_ok": false,
    "created_at": "2026-11-18T11:29:51Z",
+   "criteria": null,
    "duration": 60.0,
+   "evaluated_at": "2026-11-18T14:32:33Z",
    "first_seen": "2026-11-18T14:27:10Z",
+   "frames_sheet": "work/pipeline/SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d/frames.jpg",
    "game_id": "1867279146",
    "id": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
+   "language": "ru",
+   "moment_type": "other",
+   "reason": "Отбор по метаданным: рост просмотров 99-й перцентиль, 7 клипа одного момента, возраст 3.0 ч",
+   "score": 99,
+   "score_mode": "meta",
    "slug": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
-   "status": "new",
-   "title": "ваня",
+   "status": "scored",
+   "timer_box": null,
+   "title": null,
+   "title_accent": null,
+   "transcript": {
+    "language": "ru",
+    "probability": 0.984,
+    "segments": [
+     {
+      "end": 2.36,
+      "start": 0.0,
+      "text": "А как его включить? Как этот безопасный режим включить?",
+      "words": [
+       {
+        "end": 0.14,
+        "start": 0.0,
+        "word": " А"
+       },
+       {
+        "end": 0.26,
+        "start": 0.14,
+        "word": " как"
+       },
+       {
+        "end": 0.38,
+        "start": 0.26,
+        "word": " его"
+       },
+       {
+        "end": 0.8,
+        "start": 0.38,
+        "word": " включить?"
+       },
+       {
+        "end": 0.96,
+        "start": 0.9,
+        "word": " Как"
+       },
+       {
+        "end": 1.16,
+        "start": 0.96,
+        "word": " этот"
+       },
+       {
+        "end": 1.7,
+        "start": 1.16,
+        "word": " безопасный"
+       },
+       {
+        "end": 1.9,
+        "start": 1.7,
+        "word": " режим"
+       },
+       {
+        "end": 2.36,
+        "start": 1.9,
+        "word": " включить?"
+       }
+      ]
+     },
+     {
+      "end": 5.47,
+      "start": 4.75,
+      "text": "1-1-1",
+      "words": [
+       {
+        "end": 4.99,
+        "start": 4.75,
+        "word": " 1"
+       },
+       {
+        "end": 5.19,
+        "start": 4.99,
+        "word": "-1"
+       },
+       {
+        "end": 5.47,
+        "start": 5.19,
+        "word": "-1"
+       }
+      ]
+     },
+     {
+      "end": 9.94,
+      "start": 7.74,
+      "text": "А в нижней какой чё нужно встулять?",
+      "words": [
+       {
+        "end": 8.24,
+        "start": 7.74,
+        "word": " А"
+       },
+       {
+        "end": 8.5,
+        "start": 8.24,
+        "word": " в"
+       },
+       {
+        "end": 8.8,
+        "start": 8.5,
+        "word": " нижней"
+       },
+       {
+        "end": 9.02,
+        "start": 8.8,
+        "word": " какой"
+       },
+       {
+        "end": 9.24,
+        "start": 9.02,
+        "word": " чё"
+       },
+       {
+        "end": 9.38,
+        "start": 9.24,
+        "word": " нужно"
+       },
+       {
+        "end": 9.94,
+        "start": 9.38,
+        "word": " встулять?"
+       }
+      ]
+     },
+     {
+      "end": 14.23,
+      "start": 13.73,
+      "text": "Какой?",
+      "words": [
+       {
+        "end": 14.23,
+        "start": 13.73,
+        "word": " Какой?"
+       }
+      ]
+     },
+     {
+      "end": 20.34,
+      "start": 17.86,
+      "text": "1-1-0-0",
+      "words": [
+       {
+        "end": 18.36,
+        "start": 17.86,
+        "word": " 1"
+       },
+       {
+        "end": 18.86,
+        "start": 18.36,
+        "word": "-1"
+       },
+       {
+        "end": 18.98,
+        "start": 18.86,
+        "word": "-0"
+       },
+       {
+        "end": 20.34,
+        "start": 18.98,
+        "word": "-0"
+       }
+      ]
+     },
+     {
+      "end": 46.32,
+      "start": 20.34,
+      "text": "У меня ещё она даже, оно не то, что она не хочешь просто даже заходить",
+      "words": [
+       {
+        "end": 20.34,
+        "start": 20.34,
+        "word": " У"
+       },
+       {
+        "end": 43.06,
+        "start": 42.58,
+        "word": " меня"
+       },
+       {
+        "end": 43.16,
+        "start": 43.06,
+        "word": " ещё"
+       },
+       {
+        "end": 43.4,
+        "start": 43.16,
+        "word": " она"
+       },
+       {
+        "end": 43.68,
+        "start": 43.4,
+        "word": " даже,"
+       },
+       {
+        "end": 44.22,
+        "start": 44.08,
+        "word": " оно"
+       },
+       {
+        "end": 44.36,
+        "start": 44.22,
+        "word": " не"
+       },
+       {
+        "end": 44.46,
+        "start": 44.36,
+        "word": " то,"
+       },
+       {
+        "end": 44.62,
+        "start": 44.5,
+        "word": " что"
+       },
+       {
+        "end": 44.72,
+        "start": 44.62,
+        "word": " она"
+       },
+       {
+        "end": 44.84,
+        "start": 44.72,
+        "word": " не"
+       },
+       {
+        "end": 45.0,
+        "start": 44.84,
+        "word": " хочешь"
+       },
+       {
+        "end": 45.32,
+        "start": 45.0,
+        "word": " просто"
+       },
+       {
+        "end": 45.7,
+        "start": 45.32,
+        "word": " даже"
+       },
+       {
+        "end": 46.32,
+        "start": 45.7,
+        "word": " заходить"
+       }
+      ]
+     },
+     {
+      "end": 49.08,
+      "start": 48.83,
+      "text": "О!",
+      "words": [
+       {
+        "end": 49.08,
+        "start": 48.83,
+        "word": " О!"
+       }
+      ]
+     }
+    ],
+    "text": "А как его включить? Как этот безопасный режим включить? 1-1-1 А в нижней какой чё нужно встулять? Какой? 1-1-0-0 У меня ещё она даже, оно не то, что она не хочешь просто даже заходить О!"
+   },
    "url": "https://www.twitch.tv/strogo/clip/SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
    "video_id": "2931685068",
    "views": 77,
@@ -4619,7 +4888,12 @@
      77
     ]
    ],
-   "vod_offset": 54075
+   "views_points": 10,
+   "vod_offset": 54075,
+   "window": [
+    0.0,
+    30.0
+   ]
   },
   "SpinelessZealousPlumberHeyGirl-e2irX3om_kQwq5jH": {
    "attempts": 0,
@@ -5422,7 +5696,7 @@
  },
  "days": {
   "2026-11-18": {
-   "evaluated": 2,
+   "evaluated": 3,
    "finalized": false,
    "rendered": [
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
