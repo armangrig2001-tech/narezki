@@ -1,0 +1,14 @@
+{
+  "name": "narezki",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "publish:tiktok": "node scripts/publish_tiktok.mjs",
+    "publish:tiktok:queue": "node scripts/publish_tiktok_queue.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.65.1"
+  }
+}

@@ -15,3 +15,12 @@ else
   [[ -f work/test_source.mp4 ]] || ./make_test_source.sh work/test_source.mp4
   python3 narezchik.py work/test_source.mp4 -o "$OUT"
 fi
+
+if [[ "${PUBLISH_TIKTOK:-0}" == "1" ]]; then
+  echo ">>> Подготовка публикации в TikTok"
+  publish_args=("$OUT")
+  if [[ -n "${TIKTOK_CAPTION:-}" ]]; then
+    publish_args+=(--caption "$TIKTOK_CAPTION")
+  fi
+  node scripts/publish_tiktok.mjs "${publish_args[@]}"
+fi
