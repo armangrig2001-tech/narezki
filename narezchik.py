@@ -314,6 +314,60 @@ def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
     finish(src, out, start, end, fc, srt, margin_v=60)
 
 
+def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None):
+    """Раскладка TikTok/Shorts: вебка 1080x760 сверху, игра 1080x1160 снизу, заголовок на стыке.
+
+    * вебка: вся высота найденной рамки (оверлеи стримера внутри вебки, например
+      таймер, сохраняются), ширина под 1080:760 по центру лиц — лишний фон срезается;
+    * игра: кроп на всю высоту исходника под 1080:1160, окно плавно следует за
+      действием и не заходит на вебку и левый HUD (донаты/плашки, миникарта);
+    * заголовок (PNG с плашкой) — по центру, верх на стыке камеры и игры, весь ролик;
+    * звук: громкость -14 LUFS (finish), фейд 3 кадра на входе и выходе.
+    """
+    W, CAM_H, GAME_H = 1080, 760, 1160
+    cx, cy, cw, ch = cam
+    want = W / CAM_H
+    if cw / ch > want:                       # шире нужного -> режем по ширине вокруг лиц
+        nw = int(ch * want) // 2 * 2
+        fx = face[0] if face else cx + cw / 2
+        nx = int(max(cx, min(cx + cw - nw, fx - nw / 2))) // 2 * 2
+        cx, cw = nx, nw
+    else:                                    # выше нужного -> режем по высоте вокруг лиц
+        nh = int(cw / want) // 2 * 2
+        fy = face[1] if face else cy + ch / 2
+        ny = int(max(cy, min(cy + ch - nh, fy - nh * 0.45))) // 2 * 2
+        cy, ch = ny, nh
+    gw = min(src_w, int(round(src_h * W / GAME_H))) // 2 * 2
+    lo, hi = float(int(src_w * 0.16)), float(src_w - gw)
+    if cam[0] + cam[2] / 2 > src_w / 2:
+        hi = min(hi, float(cam[0] - gw))
+    else:
+        lo = max(lo, float(cam[0] + cam[2]))
+    if lo > hi:                              # не помещается — просто центр без вебки
+        lo = hi = float(max(0, min(src_w - gw, (src_w - gw) // 2)))
+    ts, cen = action_track(src, start, end, src_w, src_h, cam)
+    xs = [max(lo, min(hi, c * src_w - gw / 2)) for c in cen]
+    xexpr = pan_expr(ts, xs)
+    title_y = CAM_H - 14
+    fc = (
+        f"[0:v]split=2[a][b];"
+        f"[a]crop={cw}:{ch}:{cx}:{cy},scale={W}:{CAM_H}:flags=lanczos,setsar=1[cam];"
+        f"[b]crop={gw}:{src_h}:'{xexpr}':0,scale={W}:{GAME_H}:flags=lanczos,setsar=1[game];"
+        f"[cam][game]vstack=inputs=2[st]"
+    )
+    inputs = []
+    if title_png:
+        inputs = ["-loop", "1", "-i", title_png]
+        fc += f";[st][1:v]overlay=x=(W-w)/2:y={title_y}:shortest=1[v0]"
+    else:
+        fc += ";[st]null[v0]"
+    print(f"      вебка: crop {cw}x{ch}+{cx}+{cy} -> {W}x{CAM_H}; игра: crop {gw}x{src_h}, "
+          f"панорама x {min(xs):.0f}..{max(xs):.0f} -> {W}x{GAME_H}; заголовок y={title_y}")
+    d = end - start
+    fade = f"afade=t=in:d=0.1,afade=t=out:st={max(0, d - 0.1):.3f}:d=0.1,"
+    finish(src, out, start, end, fc, None, margin_v=60, extra_inputs=inputs, afilter_pre=fade)
+
+
 def render_full(src, out, start, end, timer, srt, src_w, src_h):
     """Компоновка «весь кадр + крупный план» для исходника с неизвестной раскладкой.
 
@@ -355,7 +409,23 @@ def render_full(src, out, start, end, timer, srt, src_w, src_h):
     finish(src, out, start, end, fc, srt, margin_v=90)
 
 
-def finish(src, out, start, end, fc, srt, margin_v):
+def loudnorm_2pass(src, start, end, pre=""):
+    """Двухпроходная нормализация громкости до -14 LUFS (пик -1.5 dBTP)."""
+    target = "I=-14:TP=-1.5:LRA=11"
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-ss", f"{start:.3f}", "-t",
+                        f"{end - start:.3f}", "-i", src, "-vn", "-af",
+                        pre + f"loudnorm={target}:print_format=json", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    try:
+        m = json.loads(r.stderr[r.stderr.rindex("{"): r.stderr.rindex("}") + 1])
+        return (f"loudnorm={target}:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
+                f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
+                f"offset={m['target_offset']}:linear=true")
+    except (ValueError, KeyError):
+        return f"loudnorm={target}"
+
+
+def finish(src, out, start, end, fc, srt, margin_v, extra_inputs=(), afilter_pre=""):
     W, H = 1080, 1920
     last = "v0"
     if srt:
@@ -367,12 +437,12 @@ def finish(src, out, start, end, fc, srt, margin_v):
         last = "v1"
 
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
-           "-ss", f"{start:.3f}", "-t", f"{end - start:.3f}", "-i", src,
+           "-ss", f"{start:.3f}", "-t", f"{end - start:.3f}", "-i", src, *extra_inputs,
            "-filter_complex", fc, "-map", f"[{last}]", "-map", "0:a:0",
            "-c:v", "libx264", "-preset", "medium", "-crf", "21", "-maxrate", "8M", "-bufsize", "16M",
            "-pix_fmt", "yuv420p", "-r", "30", "-movflags", "+faststart",
            "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
-           "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", out]
+           "-af", afilter_pre + loudnorm_2pass(src, start, end, afilter_pre), "-t", f"{end - start:.3f}", out]
     subprocess.run(cmd, check=True)
 
 
@@ -381,11 +451,15 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("src")
     ap.add_argument("-o", "--out", default="output/clip.mp4")
-    ap.add_argument("--layout", choices=["stack", "full", "auto"], default="stack",
+    ap.add_argument("--layout", choices=["stack", "full", "auto", "tiktok"], default="stack",
                     help="stack: вебка сверху + геймплей (регионы вручную); "
                          "auto: вебка находится автоматически; full: весь кадр + крупный план")
     ap.add_argument("--cam", default=None, help="x:y:w:h вебки в исходнике (stack)")
     ap.add_argument("--timer", default=None, help="x:y:w:h таймера в исходнике")
+    ap.add_argument("--start", type=float, help="начало фрагмента в исходнике, с")
+    ap.add_argument("--end", type=float, help="конец фрагмента в исходнике, с")
+    ap.add_argument("--title", help="заголовок ролика (layout tiktok)")
+    ap.add_argument("--title-accent", default="", help="слово(а) заголовка жёлтым, через запятую")
     ap.add_argument("--subs", action="store_true",
                     help="расшифровать речь Whisper и прожечь субтитры (по умолчанию нет)")
     ap.add_argument("--keep-all", action="store_true",
@@ -408,7 +482,13 @@ def main():
 
     rms = audio_rms_per_sec(a.src, dur)
     mot = motion_per_sec(a.src, dur)
-    if a.keep_all:
+    if a.start is not None or a.end is not None:
+        start = max(0.0, a.start or 0.0)
+        end = min(dur, a.end if a.end is not None else dur)
+        _, _, score = pick_window(rms, mot, 1, 1)
+        s, e = int(start), max(int(start) + 1, int(np.ceil(end)))
+        a.keep_all = True
+    elif a.keep_all:
         start, end = trim_dead_ends(rms, mot, dur)
         _, _, score = pick_window(rms, mot, 1, 1)
         s, e = int(start), max(int(start) + 1, int(np.ceil(end)))
@@ -436,6 +516,26 @@ def main():
         print("[3/4] Субтитры: расшифровки нет (whisper не установлен, SRT не найден) — без субтитров")
 
     cam_info = None
+    if a.layout == "tiktok":
+        import cam_detect
+        if a.cam:
+            cam, cam_info = parse_box(a.cam), {"method": "manual"}
+        else:
+            cam, cam_info = cam_detect.detect(a.src)
+            print(f"      автопоиск вебки: {cam} {cam_info}")
+        if cam is None:
+            sys.exit("вебка не найдена — задайте --cam x:y:w:h")
+        face = cam_detect.faces_center_in_box(a.src, cam)
+        cam_info["faces_center"] = face
+        title_png = None
+        if a.title:
+            import title_card
+            title_png = base + "_title.png"
+            cam_info["title"] = title_card.render_title(a.title, a.title_accent, title_png)
+            print(f"      заголовок: {cam_info['title']}")
+        print("[3/4] Компоновка: tiktok")
+        render_tiktok(a.src, a.out, start, end, cam, title_png, src_w, src_h, face)
+        timer = None
     if a.layout == "auto":
         if a.cam:
             cam = parse_box(a.cam)
@@ -448,15 +548,18 @@ def main():
         if cam is None:
             print("      вебка не найдена — запасная компоновка full")
             a.layout = "full"
-    if a.layout == "auto":
+    if a.layout == "tiktok":
+        pass
+    elif a.layout == "auto":
         timer = parse_box(a.timer) if a.timer else None
     elif a.layout == "stack":
         cam = parse_box(a.cam or "1416:786:480:270")      # раскладка тестового исходника
         timer = parse_box(a.timer or "20:20:380:80")
     else:
         cam, timer = None, (parse_box(a.timer) if a.timer else None)
-    print(f"[3/4] Компоновка: {a.layout}")
-    render(a.src, a.out, start, end, cam, timer, clip_srt, src_w, src_h, a.layout)
+    if a.layout != "tiktok":
+        print(f"[3/4] Компоновка: {a.layout}")
+        render(a.src, a.out, start, end, cam, timer, clip_srt, src_w, src_h, a.layout)
 
     o = probe(a.out)
     ov = next(x for x in o["streams"] if x["codec_type"] == "video")
@@ -472,7 +575,7 @@ def main():
         "audio": [{"codec": x["codec_name"], "sample_rate": x["sample_rate"],
                    "channels": x["channels"]} for x in oa],
         "subtitles": bool(clip_srt), "layout": a.layout,
-        "cam": list(cam) if a.layout == "auto" else None, "cam_detect": cam_info,
+        "cam": list(cam) if a.layout in ("auto", "tiktok") else None, "cam_detect": cam_info,
         "per_second": {"rms_db": [round(v, 1) for v in rms.tolist()],
                        "motion": [round(v, 2) for v in mot.tolist()],
                        "score": [round(v, 3) for v in score.tolist()]},

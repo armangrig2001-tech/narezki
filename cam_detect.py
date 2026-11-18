@@ -203,6 +203,37 @@ def detect(src):
     return (x, y, w, h), info
 
 
+def faces_center_in_box(src, box, n=24):
+    """Центр (x, y) лиц внутри найденной вебки, в пикселях исходника; None, если лиц нет."""
+    if cv2 is None:
+        return None
+    x, y, w, h = box
+    pr = json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                    "-of", "json", src], capture_output=True, text=True).stdout)
+    dur = float(pr["format"]["duration"])
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-vf",
+                          f"fps={n}/{dur:.3f},crop={w}:{h}:{x}:{y},format=gray",
+                          "-f", "rawvideo", "-"], capture_output=True).stdout
+    k = len(raw) // (w * h)
+    if not k:
+        return None
+    fr = np.frombuffer(raw[: k * w * h], np.uint8).reshape(k, h, w)
+    casc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    pts = []
+    for f in fr:
+        for (fx, fy, fw, fh) in casc.detectMultiScale(cv2.equalizeHist(f), 1.08, 5,
+                                                      minSize=(max(24, h // 10),) * 2):
+            pts.append((fx, fy, fw, fh))
+    if not pts:
+        return None
+    a = np.array(pts, float)
+    # все устойчивые лица (кластеры по X): берём охват от самого левого до самого правого
+    left = np.percentile(a[:, 0], 10)
+    right = np.percentile(a[:, 0] + a[:, 2], 90)
+    cy = np.median(a[:, 1] + a[:, 3] / 2)
+    return float(x + (left + right) / 2), float(y + cy), float(right - left)
+
+
 def save_debug(src, box, info, path):
     """Кадр из середины клипа с рамкой найденной вебки (для проверки)."""
     pr = json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
