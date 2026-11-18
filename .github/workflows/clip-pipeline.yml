@@ -156,7 +156,7 @@ jobs:
   pr-check:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
 
@@ -230,16 +230,29 @@ jobs:
           print("OK: повторно не смонтирован")
           PY
 
-      - name: 4) Тест новых каналов на реальных клипах (evelone2004, zloyn)
+      - name: 4) Тест каналов на реальных клипах — по ${{ env.TEST_COUNT }} новых ролика
         if: always()
+        env:
+          TEST_COUNT: "5"
+          TEST_CHANNELS: all
+          # уже выданные нарезки — не повторять ни клип, ни его момент
+          EXCLUDE: >-
+            InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d
+            BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8 AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ
+            PoorRockyMarjoramFrankerZ-jddvp6I_l_VqntpO SpineyCaringGarageGOWSkull-hQKeTnQ_vzkqj3Gf
+            InterestingComfortableBubbleteaRaccAttack-jxMkKdm72p8fsHyS CrazyTentativeKumquatTBTacoRight-_tpJYTIWixZMFZ5x
+            SavageEntertainingRadishCoolStoryBob-AIgRmpOztodkiQ7J
         run: |
-          python -m pipeline.run --phase test --channels new --out out/4
+          args=(--phase test --channels "$TEST_CHANNELS" --count "$TEST_COUNT" --out out/4)
+          for c in $EXCLUDE; do args+=(--exclude-clip "$c"); done
+          python -m pipeline.run "${args[@]}"
           python - <<'PY'
           import json
           d = json.load(open("out/4/run_test.json"))
-          for ch in ("evelone2004", "zloyn"):
-              t = d.get(ch, {}).get("test") or {}
-              print(ch, "→", t.get("outcome"), t.get("source"), t.get("detail", ""))
+          for ch, data in d.items():
+              t = data.get("test") or {}
+              ok = [c for c in t.get("clips", []) if c.get("outcome") == "ok"]
+              print(ch, "→", t.get("outcome"), f"готово {len(ok)}:", *[f"\n   {c['title']} — {c['source']}" for c in ok])
               assert t.get("outcome") in ("ok", "no_clips", "source_unavailable"), f"{ch}: {t}"
           PY
 

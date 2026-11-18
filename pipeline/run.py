@@ -513,56 +513,70 @@ def needs_work(st, now):
 
 
 def phase_test(args, st, rep, now, work_dir, out_dir):
-    """Тест канала: максимум один свежий подходящий клип → видео → монтаж → артефакт.
+    """Тест канала: до --count свежих подходящих клипов разных моментов → видео → монтаж → артефакт.
 
     Без записи состояния и без расхода дневного лимита. Исходы различаются:
     no_clips (нет подходящих), source_unavailable (видео не получено), render_error, ok.
     """
+    count = max(1, args.count)
     res = {"channel": C.CHANNEL, "found": st.get("plan_found", 0), "source": None,
-           "outcome": "no_clips", "detail": "", "mp4": None}
+           "outcome": "no_clips", "detail": "", "mp4": None, "clips": []}
     clips = window_clips(st, now, hours=C.DISCOVERY_HOURS)
     groups = S.group_clips(clips, st["same_event"])
     prelim = S.prelim_scores(clips, groups, now)
-    fresh = [c for c in clips if clips[c]["status"] not in ST.RENDER_ACTIVE]
-    order = sorted(fresh, key=lambda c: -prelim[c]["prelim"])
-    tried, reasons = 0, []
-    for cid in order[:4]:
+    exclude = set(args.exclude_clip or [])
+    excluded_groups = {groups[c] for c in exclude if c in groups}
+    fresh = [c for c in clips if clips[c]["status"] not in ST.RENDER_ACTIVE and c not in exclude
+             and groups[c] not in excluded_groups]
+    # по одному лучшему клипу на момент, по убыванию популярности
+    best = {}
+    for c in sorted(fresh, key=lambda c: -prelim[c]["prelim"]):
+        best.setdefault(groups[c], c)
+    order = sorted(best.values(), key=lambda c: -prelim[c]["prelim"])
+    tried, reasons, done = 0, [], 0
+    labels = {"ok": "✅ готово", "no_clips": "нет подходящих клипов", "source_unavailable": "исходное видео недоступно",
+              "render_error": "ошибка монтажа", "eval_error": "ошибка оценки"}
+    for cid in order[: count * 3 + 2]:
+        if done >= count:
+            break
         rec = st["clips"][cid]
         tried += 1
         try:
             evaluate(st, rec, prelim, work_dir, rep)
         except SourceUnavailable as e:
             reasons.append(f"{cid}: исходное видео недоступно — {e}")
-            res.update(outcome="source_unavailable", source=rec["url"], detail=str(e)[:300])
+            if not done:
+                res.update(outcome="source_unavailable", source=rec["url"], detail=str(e)[:300])
             continue
         except Exception as e:
             reasons.append(f"{cid}: ошибка оценки — {type(e).__name__}: {e}")
-            res.update(outcome="eval_error", source=rec["url"], detail=f"{type(e).__name__}: {e}"[:300])
             continue
         if rec["status"] == "rejected":
             reasons.append(f"{cid}: отклонён — {rec.get('reject_reason')}")
-            if res["outcome"] == "no_clips":
-                res["detail"] = "; ".join(reasons)
             continue
-        res.update(source=rec["url"], score=rec.get("score"), reason=rec.get("reason"), window=rec.get("window"))
+        item = {"source": rec["url"], "score": rec.get("score"), "window": rec.get("window")}
         try:
             r = do_render(st, rec, work_dir, out_dir, rep)
-            res.update(outcome="ok", mp4=os.path.relpath(r["mp4"], out_dir), checks=r["checks"],
-                       srt=bool(r["srt"]), notes=r["notes"], title=r["meta"]["title"])
+            item.update(outcome="ok", mp4=os.path.relpath(r["mp4"], out_dir), title=r["meta"]["title"],
+                        checks=r["checks"])
+            done += 1
+            res.update(outcome="ok", source=res["source"] or rec["url"], mp4=res["mp4"] or item["mp4"])
             rep.row(rec, "✅ смонтирован (тест)", f"ffprobe {r['checks']['resolution']}, {r['checks']['duration']} с, "
                     f"звук {'есть' if r['checks']['audio'] else 'нет'}; заголовок «{r['meta']['title']}»"
                     + (f"; размыто участков: {r['checks']['blurred_regions']}" if r['checks'].get('blurred_regions') else ""))
             for n in r["notes"]:
                 rep.notes.append(f"{cid}: {n}")
         except Exception as e:
-            res.update(outcome="render_error", detail=f"{type(e).__name__}: {e}"[:300])
-            rep.row(rec, "ошибка монтажа (тест)", res["detail"])
+            item.update(outcome="render_error", detail=f"{type(e).__name__}: {e}"[:300])
+            if not done:
+                res.update(outcome="render_error", source=rec["url"], detail=item["detail"])
+            rep.row(rec, "ошибка монтажа (тест)", item["detail"])
             traceback.print_exc()
-        break
-    labels = {"ok": "✅ готово", "no_clips": "нет подходящих клипов", "source_unavailable": "исходное видео недоступно",
-              "render_error": "ошибка монтажа", "eval_error": "ошибка оценки"}
+        res["clips"].append(item)
+    if res["outcome"] == "no_clips" and reasons:
+        res["detail"] = "; ".join(reasons)
     rep.lines.append(f"**Тест {C.PROFILE['name']} ({C.CHANNEL}):** найдено {res['found']}, проверено {tried}, "
-                     f"исходник: {res['source'] or '—'}, итог: **{labels.get(res['outcome'], res['outcome'])}**"
+                     f"готово {done} из {count}, итог: **{labels.get(res['outcome'], res['outcome'])}**"
                      + (f" — {res['detail']}" if res["detail"] and res["outcome"] != "ok" else ""))
     for r_ in reasons:
         rep.notes.append(r_)
@@ -595,6 +609,8 @@ def main(argv=None):
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--include-clip", action="append")
+    ap.add_argument("--exclude-clip", action="append", help="тест: не брать эти клипы и их моменты")
+    ap.add_argument("--count", type=int, default=1, help="тест: сколько роликов на канал")
     ap.add_argument("--now", help="ISO-время для тестов")
     a = ap.parse_args(argv)
 

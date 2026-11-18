@@ -316,6 +316,8 @@ def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
 
 # Субтитры раскладки tiktok: в зоне игры, ниже вебки/таймера (0..760) и заголовка (~746..1040),
 # выше нижних ~400 px интерфейса TikTok. Единицы libass для SRT: высота 288.
+TITLE_SECONDS = 5.0   # заголовок виден только первые 5 секунд ролика
+
 TIKTOK_SUB_STYLE = ("FontName=Montserrat ExtraBold,FontSize=12,PrimaryColour=&H00FFFFFF,"
                     "OutlineColour=&H00000000,BackColour=&H80000000,BorderStyle=1,Outline=2,"
                     "Shadow=0,Alignment=2,MarginL=24,MarginR=34,MarginV=66")
@@ -364,7 +366,7 @@ def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None,
         f"[b]crop={gw}:{src_h}:'{xexpr}':0,scale={W}:{GAME_H}:flags=lanczos,setsar=1[game];"
         f"[cam][game]vstack=inputs=2[st0]"
     )
-    title_enable = ""
+    title_enable = f":enable='lt(t,{TITLE_SECONDS})'"
     if zoom:
         # кратковременное увеличение вебки на пике реакции: вебка 1080x1100 поверх верха кадра
         z0, z1 = zoom
@@ -375,7 +377,7 @@ def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None,
             zx = int(max(cam[0], min(cam[0] + cam[2] - zw, face[0] - zw / 2)))
         fc += (f";[z]crop={zw}:{cam[3]}:{zx // 2 * 2}:{cam[1]},scale={W}:{ZH}:flags=lanczos,setsar=1[zc]"
                f";[st0][zc]overlay=0:0:enable='between(t,{z0:.2f},{z1:.2f})'[st]")
-        title_enable = f":enable='not(between(t,{z0:.2f},{z1:.2f}))'"
+        title_enable = f":enable='lt(t,{TITLE_SECONDS})*not(between(t,{z0:.2f},{z1:.2f}))'"
     else:
         fc += ";[st0]null[st]"
     inputs = []
@@ -432,7 +434,8 @@ def render_full(src, out, start, end, timer, srt, src_w, src_h, title_png=None, 
     inputs = []
     if title_png:  # заголовок между кадром целиком и крупным планом
         inputs = ["-loop", "1", "-i", title_png]
-        fc = fc[:-len("[v0]")] + "[vt];" + f"[vt][1:v]overlay=x=(W-w)/2:y={TOP_Y + TOP_H - 20}:shortest=1[v0]"
+        fc = fc[:-len("[v0]")] + "[vt];" + (f"[vt][1:v]overlay=x=(W-w)/2:y={TOP_Y + TOP_H - 20}:shortest=1"
+                                            f":enable='lt(t,{TITLE_SECONDS})'[v0]")
     # MarginV в единицах libass (высота 288): 90 ≈ 600 px от низа => ~1320 px
     finish(src, out, start, end, fc, srt, margin_v=90, extra_inputs=inputs, blur=blur)
 
