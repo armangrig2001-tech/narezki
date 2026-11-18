@@ -21,6 +21,7 @@
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "language": "ru",
+   "manual": true,
    "moment_type": "other",
    "output": {
     "checks": {
@@ -37,7 +38,7 @@
    "score": 55,
    "score_mode": "meta",
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "scored",
+   "status": "render_queued",
    "timer_box": [
     2131,
     254,
