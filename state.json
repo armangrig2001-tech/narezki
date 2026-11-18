@@ -187,10 +187,6 @@
     610,
     242
    ],
-   "claim": {
-    "at": "2026-11-18T14:42:21Z",
-    "run": "44323416385"
-   },
    "contest_ok": true,
    "created_at": "2026-11-18T13:11:53Z",
    "criteria": null,
@@ -202,11 +198,22 @@
    "id": "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
    "language": "ru",
    "moment_type": "other",
+   "output": {
+    "checks": {
+     "audio": true,
+     "duration": 34.0,
+     "resolution": "1080x1920",
+     "size_mb": 16.5
+    },
+    "mp4": "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ/AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ.mp4",
+    "srt": "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ/AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ.srt"
+   },
    "reason": "Отбор по метаданным: рост просмотров 73-й перцентиль, 7 клипа одного момента, возраст 1.3 ч",
+   "rendered_at": "2026-11-18T14:44:26Z",
    "score": 89,
    "score_mode": "meta",
    "slug": "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
-   "status": "render_queued",
+   "status": "rendered",
    "timer_box": [
     2131,
     254,
@@ -9723,6 +9730,7 @@
    "evaluated": 5,
    "finalized": false,
    "rendered": [
+    "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
