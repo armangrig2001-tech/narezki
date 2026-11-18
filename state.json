@@ -10,20 +10,17 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T14:22:43Z",
-    "run": "44323416385"
-   },
    "contest_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.6,
-   "evaluated_at": "2026-11-18T14:08:53Z",
+   "duration": 34.63,
+   "evaluated_at": "2026-11-18T14:25:01Z",
    "first_seen": "2026-11-18T14:06:38Z",
    "force_run": "44323416385",
    "frames_sheet": "work/pipeline/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+   "language": "ru",
    "moment_type": "other",
    "output": {
     "checks": {
@@ -35,21 +32,130 @@
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
     "srt": null
    },
-   "reason": "Отбор по метаданным: рост просмотров 50-й перцентиль, возраст 2.0 ч",
+   "reason": "Отбор по метаданным: рост просмотров 50-й перцентиль, возраст 2.2 ч",
    "rendered_at": "2026-11-18T14:10:52Z",
    "score": 55,
    "score_mode": "meta",
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "rendered",
+   "status": "scored",
    "timer_box": [
     2131,
     254,
     258,
     50
    ],
-   "title": "драка",
+   "title": null,
    "title_accent": null,
-   "transcript": null,
+   "transcript": {
+    "language": "ru",
+    "probability": 0.816,
+    "segments": [
+     {
+      "end": 5.94,
+      "start": 3.76,
+      "text": "Донни, что ты делаешь?",
+      "words": [
+       {
+        "end": 4.48,
+        "start": 3.76,
+        "word": " Донни,"
+       },
+       {
+        "end": 5.6,
+        "start": 4.8,
+        "word": " что"
+       },
+       {
+        "end": 5.9,
+        "start": 5.6,
+        "word": " ты"
+       },
+       {
+        "end": 5.94,
+        "start": 5.9,
+        "word": " делаешь?"
+       }
+      ]
+     },
+     {
+      "end": 8.24,
+      "start": 7.28,
+      "text": "Подожди меня, мать!",
+      "words": [
+       {
+        "end": 7.88,
+        "start": 7.28,
+        "word": " Подожди"
+       },
+       {
+        "end": 7.94,
+        "start": 7.88,
+        "word": " меня,"
+       },
+       {
+        "end": 8.24,
+        "start": 7.96,
+        "word": " мать!"
+       }
+      ]
+     },
+     {
+      "end": 9.88,
+      "start": 8.9,
+      "text": "Я не могу помочь тебя!",
+      "words": [
+       {
+        "end": 9.12,
+        "start": 8.9,
+        "word": " Я"
+       },
+       {
+        "end": 9.28,
+        "start": 9.12,
+        "word": " не"
+       },
+       {
+        "end": 9.3,
+        "start": 9.28,
+        "word": " могу"
+       },
+       {
+        "end": 9.6,
+        "start": 9.3,
+        "word": " помочь"
+       },
+       {
+        "end": 9.88,
+        "start": 9.6,
+        "word": " тебя!"
+       }
+      ]
+     },
+     {
+      "end": 13.68,
+      "start": 11.28,
+      "text": "Донни, ты мать!",
+      "words": [
+       {
+        "end": 11.88,
+        "start": 11.28,
+        "word": " Донни,"
+       },
+       {
+        "end": 13.44,
+        "start": 13.44,
+        "word": " ты"
+       },
+       {
+        "end": 13.68,
+        "start": 13.44,
+        "word": " мать!"
+       }
+      ]
+     }
+    ],
+    "text": "Донни, что ты делаешь? Подожди меня, мать! Я не могу помочь тебя! Донни, ты мать!"
+   },
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "video_id": null,
    "views": 4,
@@ -61,7 +167,6 @@
    ],
    "views_points": 4,
    "vod_offset": null,
-   "whisper_error": "TypeError: open() got an unexpected keyword argument 'metadata_errors'",
    "window": [
     1.0,
     34.0
@@ -72,9 +177,7 @@
   "2026-11-18": {
    "evaluated": 1,
    "finalized": false,
-   "rendered": [
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
-   ]
+   "rendered": []
   }
  },
  "game_id": "1867279146",
