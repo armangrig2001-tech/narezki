@@ -38,7 +38,8 @@ def merge(remote, mine, touched):
     out = copy.deepcopy(remote)
     for cid, rec in mine["clips"].items():
         r = out["clips"].get(cid)
-        protected = r is not None and (
+        forced = rec.get("force_run") is not None and rec.get("force_run") == mine.get("_run_id")
+        protected = r is not None and not forced and (
             (r.get("status") == "rendered" and rec.get("status") != "rendered")
             or _foreign_claim(r, mine.get("_run_id")))
         if r is None or (cid in touched and not protected):

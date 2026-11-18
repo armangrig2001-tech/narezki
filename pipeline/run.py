@@ -296,7 +296,10 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
             rep.row(mrec, "уже смонтирован — повторно не ставим", "используйте force для пересборки")
             mid = None
         else:
-            if mrec["status"] in {"scored", "reserve"} | ST.RENDER_ACTIVE and mrec.get("window"):
+            if manual.get("force"):
+                mrec["force_run"] = store.run_id  # явная пересборка: снимает защиту «смонтирован»
+                store.touched.add(mid)
+            elif mrec["status"] in {"scored", "reserve"} and mrec.get("window"):
                 skip_eval.add(mid)  # уже оценён — без повторной оценки
             elif mrec["status"] != "new":
                 mrec["status"] = "new"
@@ -414,7 +417,9 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
             rep.row(r, "ошибка монтажа, повтор позже" if r["status"] == "render_retry"
                     else "ошибка монтажа (попытки исчерпаны)", r["last_error"])
             traceback.print_exc()
-        r.pop("manual", None) if r["status"] == "rendered" else None
+        if r["status"] == "rendered":
+            r.pop("manual", None)
+            r.pop("force_run", None)
         store.release(st, qid)
         store.save(st, f"work: монтаж {qid}")
 
