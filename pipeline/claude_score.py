@@ -27,9 +27,18 @@ SCHEMA = {
         "end_sec": {"type": "number"},
         "title": {"type": "string", "description": "заголовок 3–7 слов ЗАГЛАВНЫМИ, интрига без спойлера"},
         "title_accent": {"type": "string", "description": "одно главное слово заголовка"},
+        "streamer_leads_scene": {"type": "boolean",
+                                 "description": "сам стример ведёт сцену или заметно реагирует"},
+        "excluded_content": {"type": "boolean",
+                             "description": "реакция на фильм/сериал/аниме или отвлекающий фоновый видеоряд"},
+        "context_sufficient": {"type": "boolean",
+                               "description": "хватает ли исходного контекста для понятного вертикального ролика"},
+        "reaction_peak_sec": {"type": "number",
+                              "description": "секунда пика реакции стримера в клипе, -1 если нет"},
     },
     "required": ["moment_type", "strength", "clarity", "reaction", "hook", "vertical", "reason",
-                 "start_sec", "end_sec", "title", "title_accent"],
+                 "start_sec", "end_sec", "title", "title_accent", "streamer_leads_scene",
+                 "excluded_content", "context_sufficient", "reaction_peak_sec"],
     "additionalProperties": False,
 }
 
@@ -45,9 +54,12 @@ SYSTEM = """Ты монтажёр вертикальных нарезок (TikTo
 - vertical 0–5: читается ли в вертикали (вебка сверху, игра снизу).
 Будь строг: 20+ по силе — только редкие яркие моменты.
 
-Выбери отрезок start_sec / end_sec внутри клипа длиной 30–40 с (если клип короче — весь клип):
-в начале зритель должен успеть понять, что происходит (без долгой подводки), в конце — увидеть
-развязку или реакцию; закончи сразу после пика реакции.
+Приоритет — моменты, где быстро понятно, что происходит, есть развязка и сам стример ведёт сцену
+или заметно реагирует. Громкость сама по себе не делает момент интересным.
+
+Выбери отрезок start_sec / end_sec внутри клипа длиной 30–40 с; если законченный момент короче —
+оставь его коротким. Начни с действия или сильной реплики (без долгой подводки), передай завязку,
+событие и реакцию, сохрани оригинальную реакцию и закончи сразу после её пика, без пустого хвоста.
 Заголовок: 3–7 слов, ЗАГЛАВНЫМИ, интрига без спойлера, без эмодзи, кавычек и точки в конце;
 title_accent — одно главное слово из заголовка."""
 
@@ -61,8 +73,8 @@ def _img(fp):
         return base64.standard_b64encode(fh.read()).decode("ascii")
 
 
-def score(frames, transcript, meta):
-    """frames: [(t, path)], transcript: dict|None, meta: {title, duration, views, created_at}."""
+def score(frames, transcript, meta, notes=""):
+    """frames: [(t, path)], transcript: dict|None, meta: {title, duration}; notes — правила канала."""
     import anthropic
 
     content = []
@@ -74,7 +86,7 @@ def score(frames, transcript, meta):
         f"Длительность клипа: {meta['duration']:.1f} с. Название (подсказка): {meta.get('title') or '—'}.\n"
         f"Язык речи: {(transcript or {}).get('language', 'неизвестен')}.\n"
         f"Расшифровка:\n{transcript_for_prompt(transcript)}\n\nВерни оценку по схеме.")})
-    req = dict(model=C.CLAUDE_MODEL, max_tokens=16000, system=SYSTEM,
+    req = dict(model=C.CLAUDE_MODEL, max_tokens=16000, system=SYSTEM + ("\n\n" + notes if notes else ""),
                messages=[{"role": "user", "content": content}],
                output_config={"effort": "medium",
                               "format": {"type": "json_schema", "schema": SCHEMA}})

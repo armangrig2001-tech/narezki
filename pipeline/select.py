@@ -184,9 +184,76 @@ def prelim_scores(clips, groups, now):
     return out
 
 
-def meta_total(p, segment_fit):
-    """Отбор по метаданным (без Claude): 0..100 по доступным сигналам."""
-    return int(round(40 * p["vel_pct"] + 25 * p["cluster"] + 15 * p["fresh"] + 20 * segment_fit))
+def meta_total(p, sig):
+    """Отбор по метаданным (без Claude), 0..100.
+
+    Просмотры с учётом возраста 25 (нейтрально при ≤1 просмотре), клипы одного момента 10,
+    свежесть 10, реплики 20, реакция стримера/развязка 15, действие в игре 10, контекст 10.
+    Громкость не участвует.
+    """
+    if not isinstance(sig, dict):  # совместимость: старая сигнатура с пригодностью отрезка
+        sig = {"speech": sig, "reaction": 0.5, "action": 0.5, "context": sig}
+    return int(round(25 * p["vel_pct"] + 10 * p["cluster"] + 10 * p["fresh"] + 20 * sig["speech"]
+                     + 15 * sig["reaction"] + 10 * sig["action"] + 10 * sig["context"]))
+
+
+def choose_window(speech, cam_a, game_a, dur, lo=C.CLIP_MIN_SEC, hi=C.CLIP_MAX_SEC):
+    """Окно монтажа без Claude: завязка → событие → реакция.
+
+    Посекундный балл = реплики 0.45 + реакция в вебке 0.35 + действие 0.2 (без громкости).
+    Начало — на реплике или действии; пустой хвост срезается. Законченный момент короче 30 с
+    остаётся коротким.
+    """
+    n = len(speech)
+    score = [0.45 * speech[i] + 0.35 * cam_a[i] + 0.2 * game_a[i] for i in range(n)]
+    live = [score[i] > 0.15 for i in range(n)]
+    if dur <= lo:
+        s, e = 0, n
+    else:
+        best = None
+        for L in range(int(lo), int(min(hi, dur)) + 1):
+            for i in range(0, n - L + 1):
+                v = sum(score[i:i + L]) / L
+                # бонус за реакцию в конце окна
+                tail = score[i + int(L * 0.7):i + L]
+                v += 0.15 * (sum(tail) / max(1, len(tail)))
+                if best is None or v > best[0] + 1e-9:
+                    best = (v, i, i + L)
+        _, s, e = best
+        # начало — ближайшая реплика/действие (±2 с)
+        for k in range(s, max(-1, s - 3), -1):
+            if 0 <= k < n and k > 0 and live[k] and not live[k - 1]:
+                s = k
+                break
+    # пустой хвост (до 4 с)
+    cut = 0
+    while e - s > 3 and cut < 4 and not live[min(n - 1, e - 1)]:
+        e -= 1
+        cut += 1
+    e = min(float(dur), float(e))
+    if dur > lo and e - s < lo:
+        return fit_window(s, e, dur, lo, hi)
+    return float(s), round(e, 3)
+
+
+def reaction_peak(cam_a, window, min_ratio=2.0):
+    """Секунда сильной реакции в вебке внутри окна (для кратковременного увеличения вебки)."""
+    s, e = int(window[0]), int(window[1])
+    seg = list(cam_a[s:e])
+    if len(seg) < 4:
+        return None
+    srt = sorted(seg)
+    med = srt[len(srt) // 2]
+    i = max(range(len(seg)), key=lambda k: seg[k])
+    if seg[i] >= 0.6 and seg[i] >= min_ratio * max(med, 0.05):
+        return float(s + i)
+    return None
+
+
+def render_pace(now, target=C.TARGET_PER_DAY):
+    """Сколько роликов канала может быть готово к этому часу (лимит распределяется по дню)."""
+    h = local_hour(now)
+    return max(1, min(target, 1 + math.floor((target - 1) * h / 20)))
 
 
 # ---------- бюджет подробной оценки ----------
@@ -236,7 +303,7 @@ def _pick_diverse(pool, k, used_types):
     return out
 
 
-def decide_day(day_clips, finalize):
+def decide_day(day_clips, finalize, max_per_day=C.MAX_PER_DAY, pace=None):
     """Решения по клипам одних суток.
 
     day_clips: список {id, status, score, score_mode, moment_type}. Учитываются только
@@ -261,7 +328,10 @@ def decide_day(day_clips, finalize):
         return c["score_mode"] == "meta" and c["score"] >= lo
 
     if not finalize:
-        slots = max(0, (C.TARGET_PER_DAY - C.LATE_SLOTS) - n_active)
+        cap = C.TARGET_PER_DAY - C.LATE_SLOTS
+        if pace is not None:
+            cap = min(cap, pace)  # распределение по ходу дня: первый запуск не забирает весь лимит
+        slots = max(0, cap - n_active)
         pool = [c for c in open_ if claude(c, C.SCORE_IMMEDIATE) or meta(c, C.META_IMMEDIATE)]
         for c in _pick_diverse(pool, slots, used_types):
             out[c["id"]] = "render_queued"
@@ -282,7 +352,7 @@ def decide_day(day_clips, finalize):
         out[c["id"]] = "render_queued"
     total = n_active + len(picked)
     # седьмой — только отдельный сильный момент 85+ по оценке Claude
-    if total == C.TARGET_PER_DAY:
+    if total == C.TARGET_PER_DAY and max_per_day > C.TARGET_PER_DAY:
         extra = [c for c in pool if c not in picked and claude(c, C.SCORE_IMMEDIATE)]
         if extra:
             out[extra[0]["id"]] = "render_queued"

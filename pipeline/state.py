@@ -17,7 +17,8 @@ import json
 import os
 
 PROCESSED = {"rendered", "render_queued", "render_retry", "duplicate", "rejected",
-             "render_failed", "eval_failed"}
+             "render_failed", "eval_failed", "source_unavailable"}
+OPEN = {"new", "eval_retry", "source_retry"}   # ждут подробной оценки (в т.ч. повтор загрузки)
 RENDER_ACTIVE = {"rendered", "render_queued", "render_retry"}
 
 

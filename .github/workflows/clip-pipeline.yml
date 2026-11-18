@@ -1,12 +1,26 @@
 name: Clip Pipeline
 
-# Конвейер нарезок strogo / Grand Theft Auto VI: поиск клипов раз в 10 минут, очередь в ветке
-# pipeline-state, подробная оценка (Whisper + Claude или метаданные), дневная подборка, монтаж.
+# Конвейер нарезок strogo, evelone2004, zloyn (категория по умолчанию Grand Theft Auto VI):
+# поиск клипов раз в 10 минут, очередь в ветке pipeline-state (свой файл на канал), подробная
+# оценка (Whisper + Claude или метаданные), дневная подборка по каналу, монтаж.
 on:
   schedule:
     - cron: "*/10 * * * *"
   workflow_dispatch:
     inputs:
+      channel:
+        description: "Канал"
+        type: choice
+        options: [strogo, evelone2004, zloyn, evelone2004+zloyn, все каналы]
+        default: strogo
+      category:
+        description: "Категория: название игры или all (все категории)"
+        required: false
+        default: "Grand Theft Auto VI"
+      test:
+        description: "Тест: по одному свежему клипу на канал → MP4 в артефакты, без записи состояния и лимита"
+        type: boolean
+        default: false
       clip_url:
         description: "Проверить конкретный клип (ссылка Twitch). Пусто — обычный поиск"
         required: false
@@ -28,6 +42,7 @@ on:
       - "narezchik.py"
       - "cam_detect.py"
       - "title_card.py"
+      - "scripts/find_twitch_clips.py"
 
 permissions:
   contents: write   # ветка состояния pipeline-state
@@ -55,11 +70,15 @@ jobs:
   pipeline:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       CLIP_URL: ${{ inputs.clip_url }}
       DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
       FORCE: ${{ inputs.force && 'true' || 'false' }}
+      TEST: ${{ inputs.test && 'true' || 'false' }}
+      # расписание — все каналы; ручной запуск — выбранный (по умолчанию strogo, как раньше)
+      CHANNELS: ${{ github.event_name == 'schedule' && 'all' || (inputs.channel == 'evelone2004+zloyn' && 'new' || (inputs.channel == 'все каналы' && 'all' || inputs.channel)) }}
+      CATEGORY: ${{ inputs.category == 'Grand Theft Auto VI' && 'default' || (inputs.category || 'default') }}
     steps:
       - uses: actions/checkout@v4
 
@@ -69,10 +88,27 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-pipeline.txt
 
+      - name: Кэш модели Whisper (тест)
+        if: env.TEST == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.WHISPER_CACHE }}
+          key: faster-whisper-${{ env.WHISPER_MODEL }}-v1
+
+      - name: Тест каналов (по одному свежему клипу, без записи состояния)
+        id: test
+        if: env.TEST == 'true'
+        run: |
+          command -v ffmpeg > /dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null; }
+          python -m pip install -q -r requirements-pipeline.txt
+          ch="$CHANNELS"; [ "$ch" = "strogo" ] && ch=new   # тест по умолчанию — новые каналы
+          python -m pipeline.run --phase test --channels "$ch" --category "$CATEGORY" --out out
+
       - name: Поиск и очередь (plan)
         id: plan
+        if: env.TEST != 'true'
         run: |
-          args=(--phase plan)
+          args=(--phase plan --channels "$CHANNELS" --category "$CATEGORY")
           [ -n "$CLIP_URL" ] && args+=(--clip-url "$CLIP_URL")
           [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
           [ "$FORCE" = "true" ] && args+=(--force)
@@ -95,21 +131,24 @@ jobs:
         id: work
         if: steps.plan.outputs.needs_work == 'true'
         run: |
-          args=(--phase work)
+          # каналы из plan: при clip_url это канал владельца клипа
+          args=(--phase work --channels "${{ steps.plan.outputs.channels }}" --category "$CATEGORY")
           [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
           python -m pipeline.run "${args[@]}"
 
       - name: Готовые нарезки → артефакт
-        if: always() && steps.work.outputs.rendered != '' && steps.work.outputs.rendered != '0'
+        if: always() && ((steps.work.outputs.rendered != '' && steps.work.outputs.rendered != '0') || env.TEST == 'true')
         uses: actions/upload-artifact@v4
         with:
-          name: clips-${{ github.run_id }}
+          name: ${{ env.TEST == 'true' && 'test-clips' || 'clips' }}-${{ github.run_id }}
           path: |
             out/**/*.mp4
             out/**/*.srt
+            out/**/*.txt
+            out/**/*.json
             out/**/frames.jpg
             out/*.md
-            out/*.json
+          if-no-files-found: ignore
           retention-days: 30
 
   # Проверка PR на реальном клипе «драка» (34,6 с): Whisper → субтитры, MP4 в артефакте,
@@ -117,7 +156,7 @@ jobs:
   pr-check:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -144,16 +183,16 @@ jobs:
       - name: 1) Ручной запуск на клипе «драка»
         run: |
           url="https://www.twitch.tv/strogo/clip/$DRAKA_ID"
-          python -m pipeline.run --phase plan --clip-url "$url" --force --out out/1
-          python -m pipeline.run --phase work --out out/1
+          python -m pipeline.run --phase plan --channels strogo --clip-url "$url" --force --out out/1
+          python -m pipeline.run --phase work --channels strogo --out out/1
           python - <<'PY'
           import glob, json, os
-          d = json.load(open("out/1/run_work.json"))
+          d = json.load(open("out/1/run_work_strogo.json"))
           cid = os.environ["DRAKA_ID"]
           assert cid in d["rendered"], f"клип не смонтирован: {d}"
-          srt = glob.glob(f"out/1/{cid}/*.srt")
+          srt = glob.glob(f"out/1/strogo/{cid}/*.srt")
           assert srt and os.path.getsize(srt[0]) > 0, "Whisper не дал субтитров"
-          print("OK: MP4 и субтитры:", glob.glob(f"out/1/{cid}/*"))
+          print("OK: MP4 и субтитры:", glob.glob(f"out/1/strogo/{cid}/*"))
           PY
 
       - name: 2) Плановый запуск не ставит тот же момент в монтаж
@@ -161,11 +200,11 @@ jobs:
           PIPELINE_MAX_EVAL: "0"     # реальные новые клипы в PR-проверке не оцениваем
           PIPELINE_MAX_RENDER: "0"
         run: |
-          python -m pipeline.run --phase plan --include-clip "$DRAKA_ID" --out out/2
-          python -m pipeline.run --phase work --include-clip "$DRAKA_ID" --out out/2
+          python -m pipeline.run --phase plan --channels strogo --include-clip "$DRAKA_ID" --out out/2
+          python -m pipeline.run --phase work --channels strogo --include-clip "$DRAKA_ID" --out out/2
           python - <<'PY'
           import json, os
-          d = json.load(open("out/2/run_work.json"))
+          d = json.load(open("out/2/run_work_strogo.json"))
           cid = os.environ["DRAKA_ID"]
           assert cid in d["excluded_processed"], d
           assert cid not in d["render_queue"] and cid not in d["evaluated"], d
@@ -174,14 +213,27 @@ jobs:
 
       - name: 3) Повторный ручной запуск без force — пропуск
         run: |
-          python -m pipeline.run --phase plan --clip-url "https://www.twitch.tv/strogo/clip/$DRAKA_ID" --out out/3
-          python -m pipeline.run --phase work --out out/3
+          python -m pipeline.run --phase plan --channels strogo --clip-url "https://www.twitch.tv/strogo/clip/$DRAKA_ID" --out out/3
+          python -m pipeline.run --phase work --channels strogo --out out/3
           python - <<'PY'
           import json, os
-          d = json.load(open("out/3/run_work.json"))
+          d = json.load(open("out/3/run_work_strogo.json"))
           cid = os.environ["DRAKA_ID"]
           assert cid in d["skipped"] and not d["rendered"], d
           print("OK: повторно не смонтирован")
+          PY
+
+      - name: 4) Тест новых каналов на реальных клипах (evelone2004, zloyn)
+        if: always()
+        run: |
+          python -m pipeline.run --phase test --channels new --out out/4
+          python - <<'PY'
+          import json
+          d = json.load(open("out/4/run_test.json"))
+          for ch in ("evelone2004", "zloyn"):
+              t = d.get(ch, {}).get("test") or {}
+              print(ch, "→", t.get("outcome"), t.get("source"), t.get("detail", ""))
+              assert t.get("outcome") in ("ok", "no_clips", "source_unavailable"), f"{ch}: {t}"
           PY
 
       - name: Готовые нарезки → артефакт
@@ -192,6 +244,7 @@ jobs:
           path: |
             out/**/*.mp4
             out/**/*.srt
+            out/**/*.txt
             out/**/frames.jpg
             out/**/*.md
             out/**/*.json

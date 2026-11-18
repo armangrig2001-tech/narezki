@@ -78,7 +78,7 @@ def upsert(st, clip, now, game_id=None):
         "created_at": clip["created_at"], "title": clip.get("title", ""),
         "video_id": clip.get("video_id") or None, "vod_offset": clip.get("vod_offset"),
         "duration": float(clip.get("duration") or 0), "game_id": clip.get("game_id"),
-        "slug": cid,
+        "slug": cid, "channel": C.CHANNEL,
     })
     if game_id and clip.get("game_id") != game_id:
         rec["other_game"] = True
@@ -105,7 +105,10 @@ def phase_plan(args, st, rep, now):
         stream["last_live_at"] = S.iso(now)
         stream["started_at"] = s.get("started_at")
     bid = tw.user_id(C.CHANNEL)
-    gid = tw.game_id(C.CATEGORY)
+    all_cats = (C.CATEGORY or "").lower() == "all"
+    gid = None if all_cats else tw.game_id(C.CATEGORY)
+    if not all_cats and not gid:
+        raise RuntimeError(f"категория «{C.CATEGORY}» не найдена в Twitch")
     st["game_id"] = gid
     found = 0
     if args.clip_url:
@@ -121,16 +124,26 @@ def phase_plan(args, st, rep, now):
         found = 1
     else:
         clips = tw.clips(bid, C.DISCOVERY_HOURS)
+        excluded_games = set()
+        if all_cats and C.PROFILE.get("exclude_games"):
+            ids = sorted({c.get("game_id") for c in clips if c.get("game_id")})
+            names = {}
+            for i in range(0, len(ids), 100):
+                for g in tw.get("games", {"id": ids[i:i + 100]}).get("data", []):
+                    names[g["id"]] = g["name"]
+            excluded_games = {i for i, n in names.items() if n in C.PROFILE["exclude_games"]}
         for c in clips:
-            if gid and c.get("game_id") == gid:
+            if (all_cats and c.get("game_id") not in excluded_games) or (gid and c.get("game_id") == gid):
                 upsert(st, c, now, gid)
                 found += 1
+        st["last_discovery"] = {"at": S.iso(now), "total": len(clips), "matched": found}
         for cid in args.include_clip or []:
             c = tw.clip(cid)
             if c:
                 upsert(st, c, now, gid)
-        rep.lines.append(f"Поиск: {len(clips)} клипов канала за {C.DISCOVERY_HOURS} ч, "
-                         f"из них в категории «{C.CATEGORY}»: {found}.")
+        cat = "все категории" + (" (без просмотра фильмов/аниме)" if excluded_games else "") \
+            if all_cats else f"категория «{C.CATEGORY}»"
+        rep.lines.append(f"Поиск: {len(clips)} клипов канала за {C.DISCOVERY_HOURS} ч, подходят ({cat}): {found}.")
     rep.lines.append(f"Эфир: {'идёт' if live else 'офлайн'}.")
     st["plan_found"] = found
     return found
@@ -160,16 +173,29 @@ def verify_same_event(st, a, b, work_dir, rep):
     return same
 
 
+class SourceUnavailable(Exception):
+    """Метаданные клипа есть, а видео получить не удалось (yt-dlp)."""
+
+
+def clean_title(t, max_words=7):
+    import re
+    t = re.sub(r"[^\w\s!?,.:-]", " ", t or "", flags=re.U)
+    words = [w for w in t.split() if w]
+    return " ".join(words[:max_words]).upper().rstrip(".") if words else ""
+
+
 def evaluate(st, rec, prelim, work_dir, rep):
     """Загрузка, Whisper, кадры, вебка/таймер, оценка Claude или по метаданным, окно монтажа."""
     import cam_detect
-    import narezchik
     from . import claude_score as CS
     from . import media as M
     from . import transcribe as T
 
     d = os.path.join(work_dir, rec["id"])
-    src = M.download(rec["url"], d)
+    try:
+        src = M.download(rec["url"], d)
+    except M.MediaError as e:
+        raise SourceUnavailable(str(e)) from None
     dur = M.duration(src)
     rec["duration"] = round(dur, 2)
     try:
@@ -193,10 +219,16 @@ def evaluate(st, rec, prelim, work_dir, rep):
     rec["contest_ok"] = bool(has_timer)
     p = prelim.get(rec["id"]) or {"vel_pct": 0.5, "cluster": 0.0, "fresh": 0.5, "views_points": 5}
     rec["views_points"] = p["views_points"]
+    prof = C.PROFILE
+    rec["title_fallback"] = clean_title(rec.get("title"))
+    pr = M.probe(src)
+    vs = next(x for x in pr["streams"] if x["codec_type"] == "video")
+    cam_a, game_a = M.activity_per_sec(src, dur, cam, int(vs["width"]), int(vs["height"]))
+    speech = M.speech_per_sec(tr, dur)
     result = None
     if CS.available():
         try:
-            result = CS.score(frames, tr, {"title": rec.get("title"), "duration": dur})
+            result = CS.score(frames, tr, {"title": rec.get("title"), "duration": dur}, prof.get("claude_notes", ""))
         except Exception as e:
             rep.notes.append(f"Claude не оценил {rec['id']}: {type(e).__name__}: {e}"[:300])
     if result:
@@ -205,25 +237,43 @@ def evaluate(st, rec, prelim, work_dir, rep):
                     "reason": result["reason"], "title": result["title"].strip().upper(),
                     "title_accent": result["title_accent"].strip().upper()})
         rec["score"] = sum(crit.values()) + p["views_points"]
-        rec["window"] = list(S.fit_window(result["start_sec"], result["end_sec"], dur))
+        s0, e0 = float(result["start_sec"]), float(result["end_sec"])
+        # законченный момент короче 30 с оставляем коротким
+        rec["window"] = [max(0.0, s0), min(dur, e0)] if 8 <= e0 - s0 < C.CLIP_MIN_SEC and dur > C.CLIP_MIN_SEC \
+            and result.get("context_sufficient") else list(S.fit_window(s0, e0, dur))
+        rec["leads"] = bool(result.get("streamer_leads_scene"))
+        rec["excluded"] = bool(result.get("excluded_content"))
+        rec["context_ok"] = bool(result.get("context_sufficient"))
+        pk = result.get("reaction_peak_sec", -1)
+        rec["zoom_at"] = float(pk) if prof.get("cam_zoom") and cam and pk is not None and pk >= 0 else None
     else:
-        fit = M.segment_fit(dur, tr["text"] if tr else None)
-        rec.update({"score_mode": "meta", "moment_type": "other", "criteria": None,
-                    "score": S.meta_total(p, fit), "title": None, "title_accent": None})
-        parts = [f"рост просмотров {int(p['vel_pct'] * 100)}-й перцентиль"
-                 + (" (нейтрально: у всех ≤1 просмотра)" if p.get("neutral_views") else "")]
+        win = S.choose_window(speech, cam_a, game_a, dur)
+        sig = M.content_signals(win, speech, cam_a, game_a, dur)
+        rec.update({"score_mode": "meta", "moment_type": "other", "criteria": None, "signals": sig,
+                    "score": S.meta_total(p, sig), "title": None, "title_accent": None,
+                    "window": [win[0], win[1]], "leads": None, "excluded": None,
+                    "context_ok": sig["context"] >= 0.5})
+        parts = [f"просмотры с учётом возраста: {int(p['vel_pct'] * 100)}-й перцентиль"
+                 + (" (нейтрально: ≤1 просмотра)" if p.get("neutral_views") else "")]
         if p.get("cluster_size", 1) > 1:
             parts.append(f"{p['cluster_size']} клипа одного момента")
+        parts.append(f"реплики {int(sig['speech'] * 100)}%, реакция {sig['reaction']:.2f}, "
+                     f"действие {sig['action']:.2f}, контекст {sig['context']:.2f}")
         parts.append(f"возраст {p.get('age_h', 0):.1f} ч")
         rec["reason"] = "Отбор по метаданным: " + ", ".join(parts)
-        rms = narezchik.audio_rms_per_sec(src, dur)
-        mot = narezchik.motion_per_sec(src, dur)
-        if dur > C.CLIP_MIN_SEC:
-            s, e, _ = narezchik.pick_window(rms, mot, int(C.CLIP_MIN_SEC), int(C.CLIP_MAX_SEC))
-            rec["window"] = list(S.fit_window(s, min(e, dur), dur))
-        else:
-            rec["window"] = [0.0, round(dur, 3)]
-    rec["status"] = "scored"
+        rec["zoom_at"] = S.reaction_peak(cam_a, win) if prof.get("cam_zoom") and cam else None
+    # правила канала: кто ведёт сцену, исключённый контент, контекст, отсутствие вебки
+    reject = None
+    if rec.get("excluded"):
+        reject = "реакция на фильм/аниме или фоновый видеоряд"
+    elif prof["login"] != "strogo" and rec["score_mode"] == "claude" and rec.get("leads") is False:
+        reject = f"{prof['name']} не ведёт сцену"
+    elif rec.get("context_ok") is False and rec["score_mode"] == "claude":
+        reject = "не хватает контекста для вертикального ролика"
+    elif not cam and prof.get("no_cam") == "full_if_lead" and not (rec["score_mode"] == "claude" and rec.get("leads")):
+        reject = f"вебка не найдена, а роль {prof['name']} по исходнику не подтверждена"
+    rec["reject_reason"] = reject
+    rec["status"] = "rejected" if reject else "scored"
     rec["evaluated_at"] = S.iso(datetime.now(timezone.utc))
     return src
 
@@ -273,7 +323,7 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
             if r["status"] in ST.PROCESSED:
                 rep.data["excluded_processed"].append(i)
                 continue
-            if done and i != mid and r["status"] in ("new", "eval_retry", "scored", "reserve"):
+            if done and i != mid and r["status"] in ST.OPEN | {"scored", "reserve"}:
                 r["status"], r["dup_of"] = "duplicate", done[0]
                 store.touched.add(i)
                 rep.data["duplicates"].append(i)
@@ -282,7 +332,7 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
     # 2) кандидаты на подробную оценку — представители групп
     cands = []
     for ids in members.values():
-        open_ids = [i for i in ids if clips[i]["status"] in ("new", "eval_retry") and i != mid]
+        open_ids = [i for i in ids if clips[i]["status"] in ST.OPEN and i != mid]
         if open_ids and not any(clips[i]["status"] in ST.RENDER_ACTIVE | {"scored", "reserve"} for i in ids):
             cands.append(S.representative(open_ids, clips))
     used = ST.day(st, today)["evaluated"]
@@ -313,7 +363,7 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
     for cid in picked:
         if cid in skip_eval:
             continue
-        allowed = {"new", "eval_retry"} | ({st["clips"][cid]["status"]} if cid == mid else set())
+        allowed = set(ST.OPEN) | ({st["clips"][cid]["status"]} if cid == mid else set())
         if not store.claim(st, cid, allowed):
             rep.notes.append(f"{cid}: уже взят другим запуском — пропуск")
             continue
@@ -340,6 +390,15 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
                 rep.data["evaluated"].append(cid)
                 if rec.get("whisper_error"):
                     rep.notes.append(f"{cid}: сбой Whisper ({rec['whisper_error']}) — монтаж без субтитров")
+                if rec["status"] == "rejected":
+                    rep.row(rec, "отклонён", rec.get("reject_reason") or "")
+            except SourceUnavailable as e:
+                rec["attempts"] = rec.get("attempts", 0) + 1
+                rec["source_error"] = str(e)[:300]
+                rec["status"] = "source_retry" if rec["attempts"] < C.MAX_ATTEMPTS else "source_unavailable"
+                rep.data.setdefault("source_unavailable", []).append(cid)
+                rep.row(rec, "исходное видео недоступно" + (", повтор позже" if rec["status"] == "source_retry" else ""),
+                        rec["source_error"])
             except Exception as e:
                 rec["attempts"] = rec.get("attempts", 0) + 1
                 rec["last_error"] = f"{type(e).__name__}: {e}"[:300]
@@ -366,14 +425,15 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
         view = [{"id": r["id"], "status": r["status"], "score": r.get("score"),
                  "score_mode": r.get("score_mode", "meta"), "moment_type": r.get("moment_type") or "other"}
                 for r in recs]
-        for cid, status in S.decide_day(view, finalize).items():
+        pace = S.render_pace(now) if C.CHANNEL in C.NEW_CHANNELS and dkey == today and not finalize else None
+        for cid, status in S.decide_day(view, finalize, C.MAX_PER_DAY, pace).items():
             st["clips"][cid]["status"] = status
             store.touched.add(cid)
         ST.day(st, dkey)["finalized"] = finalize
     for cid in rep.data["evaluated"]:
         r = st["clips"][cid]
-        if r["status"] != "render_queued":
-            rep.row(r, {"reserve": "резерв", "rejected": "отклонён"}.get(r["status"], r["status"]))
+        if r["status"] not in ("render_queued", "rejected"):
+            rep.row(r, {"reserve": "резерв"}.get(r["status"], r["status"]))
     store.save(st, "work: дневная подборка")
 
     # 5) монтаж — клип готов только после успешного рендера
@@ -404,8 +464,10 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
             rep.data["rendered"].append(qid)
             extra = (f"ffprobe {res['checks']['resolution']}, {res['checks']['duration']} с, "
                      f"звук {'есть' if res['checks']['audio'] else 'нет'}; субтитры "
-                     f"{'есть' if res['srt'] else 'нет'}; конкурс: "
-                     f"{'таймер в кадре' if r.get('contest_ok') else 'НЕПРИГОДЕН (таймера нет)'}")
+                     f"{'есть' if res['srt'] else 'нет'}"
+                     + ((f"; конкурс: {'таймер в кадре' if r.get('contest_ok') else 'НЕПРИГОДЕН (таймера нет)'}")
+                        if C.PROFILE.get("contest_timer") else "")
+                     + f"; файлы: {os.path.basename(res['mp4'])} + .txt/.json")
             rep.row(r, "✅ смонтирован", extra)
             for n in res["notes"]:
                 rep.notes.append(f"{qid}: {n}")
@@ -431,7 +493,7 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
     reserve = [c for c, r in st["clips"].items()
                if r["status"] == "reserve" and S.local_day(r["created_at"]) == today]
     rep.lines.append(f"Подборка {today}: готово {len(rendered_today)} из цели {C.TARGET_PER_DAY} "
-                     f"(диапазон {C.MIN_PER_DAY}–{C.MAX_PER_DAY}), в резерве {len(reserve)}, "
+                     f"(не больше {C.MAX_PER_DAY}), в резерве {len(reserve)}, "
                      f"итог суток {'подведён' if d.get('finalized') else 'после эфира'}.")
 
 
@@ -441,17 +503,89 @@ def needs_work(st, now):
     clips = window_clips(st, now)
     if any(r["status"] in ("render_queued", "render_retry") for r in clips.values()):
         return True
-    open_ = [r for r in clips.values() if r["status"] in ("new", "eval_retry")]
+    open_ = [r for r in clips.values() if r["status"] in ST.OPEN]
     if open_ and S.eval_allowance(ST.day(st, S.local_day(now))["evaluated"], now) > 0:
         return True
     # добор после эфира из резерва
     return any(r["status"] in ("scored", "reserve") for r in clips.values()) and S.should_finalize(st["stream"], now)
 
 
+def phase_test(args, st, rep, now, work_dir, out_dir):
+    """Тест канала: максимум один свежий подходящий клип → видео → монтаж → артефакт.
+
+    Без записи состояния и без расхода дневного лимита. Исходы различаются:
+    no_clips (нет подходящих), source_unavailable (видео не получено), render_error, ok.
+    """
+    res = {"channel": C.CHANNEL, "found": st.get("plan_found", 0), "source": None,
+           "outcome": "no_clips", "detail": "", "mp4": None}
+    clips = window_clips(st, now, hours=C.DISCOVERY_HOURS)
+    groups = S.group_clips(clips, st["same_event"])
+    prelim = S.prelim_scores(clips, groups, now)
+    fresh = [c for c in clips if clips[c]["status"] not in ST.RENDER_ACTIVE]
+    order = sorted(fresh, key=lambda c: -prelim[c]["prelim"])
+    tried, reasons = 0, []
+    for cid in order[:4]:
+        rec = st["clips"][cid]
+        tried += 1
+        try:
+            evaluate(st, rec, prelim, work_dir, rep)
+        except SourceUnavailable as e:
+            reasons.append(f"{cid}: исходное видео недоступно — {e}")
+            res.update(outcome="source_unavailable", source=rec["url"], detail=str(e)[:300])
+            continue
+        except Exception as e:
+            reasons.append(f"{cid}: ошибка оценки — {type(e).__name__}: {e}")
+            res.update(outcome="eval_error", source=rec["url"], detail=f"{type(e).__name__}: {e}"[:300])
+            continue
+        if rec["status"] == "rejected":
+            reasons.append(f"{cid}: отклонён — {rec.get('reject_reason')}")
+            if res["outcome"] == "no_clips":
+                res["detail"] = "; ".join(reasons)
+            continue
+        res.update(source=rec["url"], score=rec.get("score"), reason=rec.get("reason"), window=rec.get("window"))
+        try:
+            r = do_render(st, rec, work_dir, out_dir, rep)
+            res.update(outcome="ok", mp4=os.path.relpath(r["mp4"], out_dir), checks=r["checks"],
+                       srt=bool(r["srt"]), notes=r["notes"], title=r["meta"]["title"])
+            rep.row(rec, "✅ смонтирован (тест)", f"ffprobe {r['checks']['resolution']}, {r['checks']['duration']} с, "
+                    f"звук {'есть' if r['checks']['audio'] else 'нет'}; субтитры {'есть' if r['srt'] else 'нет'}")
+            for n in r["notes"]:
+                rep.notes.append(f"{cid}: {n}")
+        except Exception as e:
+            res.update(outcome="render_error", detail=f"{type(e).__name__}: {e}"[:300])
+            rep.row(rec, "ошибка монтажа (тест)", res["detail"])
+            traceback.print_exc()
+        break
+    labels = {"ok": "✅ готово", "no_clips": "нет подходящих клипов", "source_unavailable": "исходное видео недоступно",
+              "render_error": "ошибка монтажа", "eval_error": "ошибка оценки"}
+    rep.lines.append(f"**Тест {C.PROFILE['name']} ({C.CHANNEL}):** найдено {res['found']}, проверено {tried}, "
+                     f"исходник: {res['source'] or '—'}, итог: **{labels.get(res['outcome'], res['outcome'])}**"
+                     + (f" — {res['detail']}" if res["detail"] and res["outcome"] != "ok" else ""))
+    for r_ in reasons:
+        rep.notes.append(r_)
+    rep.data["test"] = res
+    return res
+
+
+def resolve_clip_channel(clip_url):
+    from .twitch import Twitch, clip_id_from_url
+    cid = clip_id_from_url(clip_url) or clip_url.strip()
+    clip = Twitch().clip(cid)
+    if not clip:
+        raise RuntimeError(f"клип {cid} не найден в Twitch Helix")
+    name = (clip.get("broadcaster_name") or "").lower()
+    for login in C.PROFILES:
+        if login == name:
+            return login
+    return None
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--phase", choices=["plan", "work", "all"], default="all")
-    ap.add_argument("--state", default="state/state.json")
+    ap.add_argument("--phase", choices=["plan", "work", "all", "test"], default="all")
+    ap.add_argument("--channels", default="", help="strogo | evelone2004 | zloyn | new | all (пусто — все)")
+    ap.add_argument("--category", default="default", help="название категории или all")
+    ap.add_argument("--state", default="state/state.json", help="папка состояния = dirname(--state)")
     ap.add_argument("--out", default="out")
     ap.add_argument("--work", default="work/pipeline")
     ap.add_argument("--clip-url", default="")
@@ -464,43 +598,74 @@ def main(argv=None):
     from .store import Store
     now = S.parse_ts(a.now) if a.now else datetime.now(timezone.utc)
     os.makedirs(a.out, exist_ok=True)
-    store = Store(a.state, C.CHANNEL, remote=os.environ.get("STATE_REMOTE") or None,
-                  branch=os.environ.get("STATE_BRANCH", "pipeline-state"), readonly=a.dry_run)
-    st = store.load()
-    rep = Report()
-    mode = "оценка Claude" if os.environ.get("ANTHROPIC_API_KEY", "").strip() else "отбор по метаданным"
-    header = (f"## Clip Pipeline — {C.CHANNEL} / {C.CATEGORY}\n\nРежим: **{mode}**"
-              f"{' · dry run (без рендера и без записи состояния)' if a.dry_run else ''}"
-              f" · {now.astimezone(S.YEREVAN):%Y-%m-%d %H:%M} (Ереван)")
+    state_dir = os.path.dirname(a.state) or "."
+    test = a.phase == "test"
     code = 0
     try:
-        if a.phase in ("plan", "all"):
-            phase_plan(a, st, rep, now)
-            nw = needs_work(st, now)
-            gh_output(needs_work=str(nw).lower())
-            rep.lines.append("Нужна оценка/монтаж: " + ("да" if nw else "нет — новых кандидатов и очереди нет"))
-            st["runs"] = (st.get("runs") or []) + [{"at": S.iso(now), "phase": "plan", "run": store.run_id}]
-            st["updated_at"] = S.iso(now)
-            store.save(st, "plan: поиск и история просмотров")
-            if a.dry_run and a.phase == "plan":
-                # dry run не пишет ветку: передаём результат поиска в фазу work через файл
-                ST.save(a.state + ".dry", st)
-        if a.phase in ("work", "all"):
-            if a.dry_run and os.path.exists(a.state + ".dry"):
-                st = ST.load(a.state + ".dry", C.CHANNEL)
-            elif a.phase == "work":
-                st = store.load()
-            phase_work(a, st, rep, now, a.work, a.out, store)
-            st["runs"] = (st.get("runs") or []) + [{"at": S.iso(now), "phase": "work", "run": store.run_id,
-                                                     "rendered": rep.data["rendered"]}]
-            store.save(st, "work: итог")
+        channels = C.channels_from_arg(a.channels if a.channels or not test else "new")
+        if a.clip_url and a.phase in ("plan", "all"):
+            owner = resolve_clip_channel(a.clip_url)
+            channels = [owner] if owner else channels[:1]
     except Exception as e:
-        code = 1
-        rep.lines.append(f"❌ **Ошибка:** {type(e).__name__}: {e}")
-        traceback.print_exc()
-    rep.write(os.path.join(a.out, f"summary_{a.phase}.md"), os.path.join(a.out, f"run_{a.phase}.json"),
-              header if a.phase != "work" else "### Оценка и монтаж")
-    gh_output(rendered=len(rep.data["rendered"]))
+        print(f"❌ {type(e).__name__}: {e}")
+        return 1
+    mode = "оценка Claude" if os.environ.get("ANTHROPIC_API_KEY", "").strip() else "отбор по метаданным"
+    any_work, total_rendered, combined = False, 0, {}
+    head = (f"## Clip Pipeline{' — тест новых каналов' if test else ''}\n\nРежим: **{mode}**"
+            f"{' · dry run (без рендера и без записи состояния)' if a.dry_run else ''}"
+            f"{' · тест: без записи состояния и без расхода лимита' if test else ''}"
+            f" · {now.astimezone(S.YEREVAN):%Y-%m-%d %H:%M} (Ереван)")
+    gs = os.environ.get("GITHUB_STEP_SUMMARY")
+    if gs and a.phase != "work":
+        with open(gs, "a", encoding="utf-8") as fh:
+            fh.write(head + "\n\n")
+    for login in channels:
+        prof = C.apply_profile(login, a.category)
+        path = os.path.join(state_dir, prof["state_file"])
+        store = Store(path, login, remote=os.environ.get("STATE_REMOTE") or None,
+                      branch=os.environ.get("STATE_BRANCH", "pipeline-state"), readonly=a.dry_run or test)
+        rep = Report()
+        out_dir = os.path.join(a.out, login)
+        work_dir = os.path.join(a.work, login)
+        try:
+            st = store.load()
+            if a.phase in ("plan", "all", "test"):
+                phase_plan(a, st, rep, now)
+                nw = needs_work(st, now)
+                any_work = any_work or nw
+                if not test:
+                    rep.lines.append("Нужна оценка/монтаж: " + ("да" if nw else "нет — новых кандидатов и очереди нет"))
+                    st["runs"] = (st.get("runs") or []) + [{"at": S.iso(now), "phase": "plan", "run": store.run_id}]
+                    st["updated_at"] = S.iso(now)
+                    store.save(st, f"plan {login}: поиск и история просмотров")
+                    if a.dry_run:
+                        ST.save(path + ".dry", st)
+            if test:
+                phase_test(a, st, rep, now, work_dir, out_dir)
+            elif a.phase in ("work", "all"):
+                if a.dry_run and os.path.exists(path + ".dry"):
+                    st = ST.load(path + ".dry", login)
+                elif a.phase == "work":
+                    st = store.load()
+                if a.phase == "work" and not needs_work(st, now):
+                    rep.lines.append("Работы нет.")
+                else:
+                    phase_work(a, st, rep, now, work_dir, out_dir, store)
+                    st["runs"] = (st.get("runs") or []) + [{"at": S.iso(now), "phase": "work", "run": store.run_id,
+                                                             "rendered": rep.data["rendered"]}]
+                    store.save(st, f"work {login}: итог")
+        except Exception as e:
+            code = 1
+            rep.lines.append(f"❌ **Ошибка:** {type(e).__name__}: {e}")
+            traceback.print_exc()
+        total_rendered += len(rep.data["rendered"]) + (1 if (rep.data.get("test") or {}).get("outcome") == "ok" else 0)
+        combined[login] = rep.data
+        rep.write(os.path.join(a.out, f"summary_{a.phase}_{login}.md"),
+                  os.path.join(a.out, f"run_{a.phase}_{login}.json"),
+                  f"### {prof['name']} ({login}) — {'тест' if test else a.phase}")
+    with open(os.path.join(a.out, f"run_{a.phase}.json"), "w", encoding="utf-8") as fh:
+        json.dump(combined, fh, ensure_ascii=False, indent=1)
+    gh_output(needs_work=str(any_work).lower(), rendered=total_rendered, channels=",".join(channels))
     return code
 
 

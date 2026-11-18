@@ -322,7 +322,7 @@ TIKTOK_SUB_STYLE = ("FontName=Montserrat ExtraBold,FontSize=12,PrimaryColour=&H0
 FONTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "fonts")
 
 
-def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None, srt=None):
+def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None, srt=None, zoom=None):
     """Раскладка TikTok/Shorts: вебка 1080x760 сверху, игра 1080x1160 снизу, заголовок на стыке.
 
     * вебка: вся высота найденной рамки (оверлеи стримера внутри вебки, например
@@ -358,15 +358,29 @@ def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None,
     xexpr = pan_expr(ts, xs)
     title_y = CAM_H - 14
     fc = (
-        f"[0:v]split=2[a][b];"
+        f"[0:v]split={3 if zoom else 2}[a][b]{'[z]' if zoom else ''};"
         f"[a]crop={cw}:{ch}:{cx}:{cy},scale={W}:{CAM_H}:flags=lanczos,setsar=1[cam];"
         f"[b]crop={gw}:{src_h}:'{xexpr}':0,scale={W}:{GAME_H}:flags=lanczos,setsar=1[game];"
-        f"[cam][game]vstack=inputs=2[st]"
+        f"[cam][game]vstack=inputs=2[st0]"
     )
+    title_enable = ""
+    if zoom:
+        # кратковременное увеличение вебки на пике реакции: вебка 1080x1100 поверх верха кадра
+        z0, z1 = zoom
+        ZH = 1100
+        zw = min(cam[2], int(cam[3] * W / ZH)) // 2 * 2
+        zx = int(cam[0] + (cam[2] - zw) / 2)
+        if face:
+            zx = int(max(cam[0], min(cam[0] + cam[2] - zw, face[0] - zw / 2)))
+        fc += (f";[z]crop={zw}:{cam[3]}:{zx // 2 * 2}:{cam[1]},scale={W}:{ZH}:flags=lanczos,setsar=1[zc]"
+               f";[st0][zc]overlay=0:0:enable='between(t,{z0:.2f},{z1:.2f})'[st]")
+        title_enable = f":enable='not(between(t,{z0:.2f},{z1:.2f}))'"
+    else:
+        fc += ";[st0]null[st]"
     inputs = []
     if title_png:
         inputs = ["-loop", "1", "-i", title_png]
-        fc += f";[st][1:v]overlay=x=(W-w)/2:y={title_y}:shortest=1[v0]"
+        fc += f";[st][1:v]overlay=x=(W-w)/2:y={title_y}:shortest=1{title_enable}[v0]"
     else:
         fc += ";[st]null[v0]"
     print(f"      вебка: crop {cw}x{ch}+{cx}+{cy} -> {W}x{CAM_H}; игра: crop {gw}x{src_h}, "
