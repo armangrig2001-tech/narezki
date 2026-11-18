@@ -13,7 +13,7 @@
    "contest_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.63,
+   "duration": 34.6,
    "evaluated_at": "2026-11-18T14:08:53Z",
    "first_seen": "2026-11-18T14:06:38Z",
    "frames_sheet": "work/pipeline/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
@@ -42,7 +42,7 @@
     258,
     50
    ],
-   "title": null,
+   "title": "драка",
    "title_accent": null,
    "transcript": null,
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
@@ -73,6 +73,10 @@
   }
  },
  "game_id": "1867279146",
+ "manual": {
+  "force": true,
+  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+ },
  "runs": [
   {
    "at": "2026-11-18T14:06:38Z",
@@ -86,15 +90,20 @@
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
    ],
    "run": "44320541753"
+  },
+  {
+   "at": "2026-11-18T14:12:25Z",
+   "phase": "plan",
+   "run": "44321549071"
   }
  ],
  "same_event": [],
  "stream": {
-  "checked_at": "2026-11-18T14:06:38Z",
-  "last_live_at": "2026-11-18T14:06:38Z",
+  "checked_at": "2026-11-18T14:12:25Z",
+  "last_live_at": "2026-11-18T14:12:25Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T14:06:38Z",
+ "updated_at": "2026-11-18T14:12:25Z",
  "version": 1
 }
