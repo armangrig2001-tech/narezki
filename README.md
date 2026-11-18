@@ -27,3 +27,14 @@ CAM=1400:760:500:300 TIMER=20:20:380:80 ./run.sh
 `output/clip.mp4` собран из **тестового** исходника (`make_test_source.sh`), т.к. `sample.mp4`
 в репозитории нет. Выбран момент 00:00:50.000 — 00:01:30.000 исходника (40 с).
 Субтитры в тестовом прогоне — заранее заданная SRT-фикстура, не распознавание речи.
+
+## Find Twitch Clips (GitHub Actions)
+
+Workflow `.github/workflows/find-twitch-clips.yml`, ручной запуск (`workflow_dispatch`):
+Actions → **Find Twitch Clips** → Run workflow. Нужны секреты `TWITCH_CLIENT_ID`, `TWITCH_CLIENT_SECRET`.
+
+Скрипт `scripts/find_twitch_clips.py` через Twitch Helix API берёт публичные клипы канала
+(по умолчанию `strogo`) за последние 24 ч, фильтрует по категории `Grand Theft Auto VI`
+и сортирует от новых к старым. Отчёт — в Summary запуска (название, ссылка, дата, длительность,
+просмотры), JSON — артефакт `twitch-clips`. Статусы: `found` / `empty` (успех, 0 клипов) /
+`error` (ошибка авторизации или API — job падает).
