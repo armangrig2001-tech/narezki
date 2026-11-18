@@ -200,6 +200,9 @@ def detect(src):
     if w < sw * 0.08 or h < sh * 0.08:
         info["method"] += "-too-small"
         return None, info
+    if w > sw * 0.5 or h > sh * 0.5:  # вебка не бывает больше половины кадра — это ошибка поиска
+        info["method"] += "-too-large"
+        return None, info
     return (x, y, w, h), info
 
 
