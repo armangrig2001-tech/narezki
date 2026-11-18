@@ -1,0 +1,49 @@
+{
+ "channel": "strogo",
+ "checked_pairs": [],
+ "clips": {
+  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M": {
+   "attempts": 0,
+   "created_at": "2026-11-18T12:07:27Z",
+   "duration": 34.6,
+   "first_seen": "2026-11-18T14:06:38Z",
+   "game_id": "1867279146",
+   "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+   "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+   "status": "new",
+   "title": "драка",
+   "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+   "video_id": null,
+   "views": 4,
+   "views_history": [
+    [
+     "2026-11-18T14:06:38Z",
+     4
+    ]
+   ],
+   "vod_offset": null
+  }
+ },
+ "days": {},
+ "game_id": "1867279146",
+ "manual": {
+  "force": true,
+  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+ },
+ "runs": [
+  {
+   "at": "2026-11-18T14:06:38Z",
+   "phase": "plan",
+   "run": "44320541753"
+  }
+ ],
+ "same_event": [],
+ "stream": {
+  "checked_at": "2026-11-18T14:06:38Z",
+  "last_live_at": "2026-11-18T14:06:38Z",
+  "live": true,
+  "started_at": "2026-11-17T20:27:56Z"
+ },
+ "updated_at": "2026-11-18T14:06:38Z",
+ "version": 1
+}
