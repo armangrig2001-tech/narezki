@@ -322,7 +322,8 @@ TIKTOK_SUB_STYLE = ("FontName=Montserrat ExtraBold,FontSize=12,PrimaryColour=&H0
 FONTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "fonts")
 
 
-def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None, srt=None, zoom=None):
+def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None, srt=None, zoom=None,
+                  blur=None):
     """Раскладка TikTok/Shorts: вебка 1080x760 сверху, игра 1080x1160 снизу, заголовок на стыке.
 
     * вебка: вся высота найденной рамки (оверлеи стримера внутри вебки, например
@@ -388,10 +389,10 @@ def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None,
     d = end - start
     fade = f"afade=t=in:d=0.1,afade=t=out:st={max(0, d - 0.1):.3f}:d=0.1,"
     finish(src, out, start, end, fc, srt, margin_v=66, extra_inputs=inputs, afilter_pre=fade,
-           sub_style=TIKTOK_SUB_STYLE, fontsdir=FONTS_DIR)
+           sub_style=TIKTOK_SUB_STYLE, fontsdir=FONTS_DIR, blur=blur)
 
 
-def render_full(src, out, start, end, timer, srt, src_w, src_h):
+def render_full(src, out, start, end, timer, srt, src_w, src_h, title_png=None, blur=None):
     """Компоновка «весь кадр + крупный план» для исходника с неизвестной раскладкой.
 
     По правилам вертикального формата (HyperFrames, types/vertical.md):
@@ -428,8 +429,12 @@ def render_full(src, out, start, end, timer, srt, src_w, src_h):
         fc = fc[:-len("[v0]")] + "[v00];"
         fc += f"[d]crop={tw}:{th}:{tx}:{ty},scale={tw_o}:{th_o}:flags=lanczos[tmr];"
         fc += f"[v00][tmr]overlay=x={W - tw_o - 30}:y={Z_Y + 30}[v0]"
+    inputs = []
+    if title_png:  # заголовок между кадром целиком и крупным планом
+        inputs = ["-loop", "1", "-i", title_png]
+        fc = fc[:-len("[v0]")] + "[vt];" + f"[vt][1:v]overlay=x=(W-w)/2:y={TOP_Y + TOP_H - 20}:shortest=1[v0]"
     # MarginV в единицах libass (высота 288): 90 ≈ 600 px от низа => ~1320 px
-    finish(src, out, start, end, fc, srt, margin_v=90)
+    finish(src, out, start, end, fc, srt, margin_v=90, extra_inputs=inputs, blur=blur)
 
 
 def loudnorm_2pass(src, start, end, pre=""):
@@ -452,9 +457,32 @@ def _ff_escape(path):
     return path.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
 
+def blur_chain(regions, label_in="0:v", label_out="vb"):
+    """Размытие участков исходника (обнажённая грудь и т. п.) до компоновки кадра.
+
+    regions: [{t0, t1, x, y, w, h}] — время готового ролика, координаты исходника.
+    """
+    if not regions:
+        return None
+    parts, cur = [], label_in
+    for i, r in enumerate(regions):
+        nxt = label_out if i == len(regions) - 1 else f"vb{i}"
+        en = f"between(t,{r['t0']:.2f},{r['t1']:.2f})"
+        parts.append(f"[{cur}]split[bb{i}][br{i}];"
+                     f"[br{i}]crop={r['w']}:{r['h']}:{r['x']}:{r['y']},boxblur=luma_radius=24:luma_power=3,"
+                     f"setsar=1[bz{i}];"
+                     f"[bb{i}][bz{i}]overlay={r['x']}:{r['y']}:enable='{en}'[{nxt}]")
+        cur = nxt
+    return ";".join(parts)
+
+
 def finish(src, out, start, end, fc, srt, margin_v, extra_inputs=(), afilter_pre="",
-           sub_style=None, fontsdir=None):
+           sub_style=None, fontsdir=None, blur=None):
     W, H = 1080, 1920
+    chain = blur_chain(blur)
+    if chain:
+        assert fc.startswith("[0:v]"), fc[:20]
+        fc = chain + ";[vb]" + fc[len("[0:v]"):]
     last = "v0"
     if srt:
         esc = _ff_escape(srt)

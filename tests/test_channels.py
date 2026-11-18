@@ -41,6 +41,19 @@ class ProfileTests(unittest.TestCase):
         self.assertIn("профиле", zl["upload_note"])
 
 
+class TitleTests(unittest.TestCase):
+    def test_title_with_streamer_name(self):
+        from pipeline.render import build_title
+        t, name = build_title({"channel": "zloyn", "title": None, "title_fallback": "В СТРИПКЛУБЕ"})
+        self.assertEqual((t, name), ("ZLOYn В СТРИПКЛУБЕ ГТА 6", "ZLOYn"))
+        t, _ = build_title({"channel": "strogo", "title_fallback": "ДРАКА"})
+        self.assertEqual(t, "STROGO ДРАКА ГТА 6")
+        t, _ = build_title({"channel": "evelone2004", "title_fallback": "ЭВЕЛОН УГНАЛ ТАНК В GTA 6"})
+        self.assertEqual(t, "EVELONE УГНАЛ ТАНК В GTA 6")
+        t, _ = build_title({"channel": "zloyn", "title_fallback": ""})
+        self.assertEqual(t, "ZLOYn В ГТА 6")
+
+
 class WindowTests(unittest.TestCase):
     def test_short_complete_moment_stays_short(self):
         sp = [1] * 18 + [0] * 4
@@ -60,12 +73,25 @@ class WindowTests(unittest.TestCase):
         self.assertLessEqual(s, 12)
         self.assertGreaterEqual(e, 40)                # реакция сохранена
 
-    def test_loudness_not_used(self):
-        # сигналы без речи и реакции — низкий балл, сколько бы ни было «шума»
-        p = {"vel_pct": 0.5, "cluster": 0.0, "fresh": 0.5}
-        quiet_lead = S.meta_total(p, {"speech": 0.8, "reaction": 0.8, "action": 0.4, "context": 1.0})
-        noise = S.meta_total(p, {"speech": 0.0, "reaction": 0.1, "action": 0.4, "context": 1.0})
-        self.assertGreater(quiet_lead, noise + 20)
+    def test_popularity_drives_selection(self):
+        # популярный клип (просмотры + много зрителей клипнули момент) выше тихого непопулярного
+        sig = {"speech": 0.5, "reaction": 0.5, "action": 0.5, "context": 1.0}
+        popular = {"vel_pct": 0.95, "abs_pct": 0.9, "cluster": 1.0, "fresh": 0.5}
+        unpopular = {"vel_pct": 0.1, "abs_pct": 0.1, "cluster": 0.0, "fresh": 0.5}
+        rich = {"speech": 1.0, "reaction": 1.0, "action": 1.0, "context": 1.0}
+        self.assertGreater(S.meta_total(popular, sig), S.meta_total(unpopular, rich) + 40)
+        # при равной популярности содержание — дополнительный критерий; громкости в формуле нет
+        self.assertGreater(S.meta_total(unpopular, rich), S.meta_total(unpopular, {"speech": 0, "reaction": 0,
+                                                                                   "action": 0, "context": 0}))
+
+    def test_reactions_count_unique_viewers(self):
+        from datetime import timedelta
+        now = datetime(2026, 11, 18, 14, 0, tzinfo=timezone.utc)
+        mk = lambda cid, who, off: {"id": cid, "created_at": S.iso(now - timedelta(minutes=30)), "views": 5,
+                                    "video_id": "v", "vod_offset": off, "duration": 30, "creator": who}
+        clips = {"a": mk("a", "u1", 100), "b": mk("b", "u1", 105), "c": mk("c", "u2", 110)}
+        p = S.prelim_scores(clips, S.group_clips(clips), now)
+        self.assertEqual(p["a"]["cluster_size"], 2)   # u1 дважды — одна реакция
 
     def test_reaction_peak(self):
         cam = [0.1] * 10 + [0.9] + [0.1] * 10

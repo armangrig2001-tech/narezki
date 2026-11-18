@@ -151,7 +151,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 30
 
-  # Проверка PR на реальном клипе «драка» (34,6 с): Whisper → субтитры, MP4 в артефакте,
+  # Проверка PR на реальном клипе «драка» (34,6 с): заголовок, без субтитров, MP4 в артефакте,
   # повторный плановый запуск не ставит тот же момент в монтаж. Состояние — ветка pipeline-state-pr.
   pr-check:
     if: github.event_name == 'pull_request'
@@ -180,7 +180,7 @@ jobs:
           path: ${{ env.WHISPER_CACHE }}
           key: faster-whisper-${{ env.WHISPER_MODEL }}-v1
 
-      - name: 1) Ручной запуск на клипе «драка»
+      - name: 1) Ручной запуск на клипе «драка» (заголовок, без субтитров, проверка наготы)
         env:
           PIPELINE_MAX_EVAL: "0"     # только сам клип «драка», без посторонних кандидатов
         run: |
@@ -192,9 +192,11 @@ jobs:
           d = json.load(open("out/1/run_work_strogo.json"))
           cid = os.environ["DRAKA_ID"]
           assert cid in d["rendered"], f"клип не смонтирован: {d}"
-          srt = glob.glob(f"out/1/strogo/{cid}/*.srt")
-          assert srt and os.path.getsize(srt[0]) > 0, "Whisper не дал субтитров"
-          print("OK: MP4 и субтитры:", glob.glob(f"out/1/strogo/{cid}/*"))
+          files = glob.glob(f"out/1/strogo/{cid}/*")
+          assert not [f for f in files if f.endswith(".srt")], "субтитры не должны делаться"
+          meta = json.load(open(f"out/1/strogo/{cid}/{cid}.json"))
+          assert meta["title"].startswith("STROGO "), meta
+          print("OK: MP4 с заголовком «%s», без субтитров:" % meta["title"], files)
           PY
 
       - name: 2) Плановый запуск не ставит тот же момент в монтаж

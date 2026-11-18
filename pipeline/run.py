@@ -78,7 +78,7 @@ def upsert(st, clip, now, game_id=None):
         "created_at": clip["created_at"], "title": clip.get("title", ""),
         "video_id": clip.get("video_id") or None, "vod_offset": clip.get("vod_offset"),
         "duration": float(clip.get("duration") or 0), "game_id": clip.get("game_id"),
-        "slug": cid, "channel": C.CHANNEL,
+        "slug": cid, "channel": C.CHANNEL, "creator": clip.get("creator_name") or clip.get("creator_id"),
     })
     if game_id and clip.get("game_id") != game_id:
         rec["other_game"] = True
@@ -236,7 +236,8 @@ def evaluate(st, rec, prelim, work_dir, rep):
         rec.update({"score_mode": "claude", "criteria": crit, "moment_type": result["moment_type"],
                     "reason": result["reason"], "title": result["title"].strip().upper(),
                     "title_accent": result["title_accent"].strip().upper()})
-        rec["score"] = sum(crit.values()) + p["views_points"]
+        # популярность на Twitch — 40 баллов, оценка Claude по кадрам и речи — 60
+        rec["score"] = int(round(0.6 * sum(crit.values()) / 90 * 100 + 40 * p.get("popularity", 0.5)))
         s0, e0 = float(result["start_sec"]), float(result["end_sec"])
         # законченный момент короче 30 с оставляем коротким
         rec["window"] = [max(0.0, s0), min(dur, e0)] if 8 <= e0 - s0 < C.CLIP_MIN_SEC and dur > C.CLIP_MIN_SEC \
@@ -253,14 +254,15 @@ def evaluate(st, rec, prelim, work_dir, rep):
                     "score": S.meta_total(p, sig), "title": None, "title_accent": None,
                     "window": [win[0], win[1]], "leads": None, "excluded": None,
                     "context_ok": sig["context"] >= 0.5})
-        parts = [f"просмотры с учётом возраста: {int(p['vel_pct'] * 100)}-й перцентиль"
-                 + (" (нейтрально: ≤1 просмотра)" if p.get("neutral_views") else "")]
-        if p.get("cluster_size", 1) > 1:
-            parts.append(f"{p['cluster_size']} клипа одного момента")
+        parts = [f"{p.get('views', rec.get('views', 0))} просмотров на Twitch "
+                 f"({int(p['vel_pct'] * 100)}-й перцентиль среди клипов того же возраста"
+                 + ("; нейтрально: ≤1 просмотра" if p.get("neutral_views") else "") + ")"]
+        parts.append(f"этот момент клипнули {p.get('cluster_size', 1)} зрител"
+                     + ("ь" if p.get("cluster_size", 1) == 1 else "я" if p.get("cluster_size", 1) < 5 else "ей"))
         parts.append(f"реплики {int(sig['speech'] * 100)}%, реакция {sig['reaction']:.2f}, "
                      f"действие {sig['action']:.2f}, контекст {sig['context']:.2f}")
         parts.append(f"возраст {p.get('age_h', 0):.1f} ч")
-        rec["reason"] = "Отбор по метаданным: " + ", ".join(parts)
+        rec["reason"] = "Популярность на Twitch: " + ", ".join(parts)
         rec["zoom_at"] = S.reaction_peak(cam_a, win) if prof.get("cam_zoom") and cam else None
     # правила канала: кто ведёт сцену, исключённый контент, контекст, отсутствие вебки
     reject = None
@@ -389,7 +391,7 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
                 evaluate(st, rec, prelim, work_dir, rep)
                 rep.data["evaluated"].append(cid)
                 if rec.get("whisper_error"):
-                    rep.notes.append(f"{cid}: сбой Whisper ({rec['whisper_error']}) — монтаж без субтитров")
+                    rep.notes.append(f"{cid}: сбой Whisper ({rec['whisper_error']}) — отбор без учёта реплик")
                 if rec["status"] == "rejected":
                     rep.row(rec, "отклонён", rec.get("reject_reason") or "")
             except SourceUnavailable as e:
@@ -463,8 +465,8 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
                            "checks": res["checks"]}
             rep.data["rendered"].append(qid)
             extra = (f"ffprobe {res['checks']['resolution']}, {res['checks']['duration']} с, "
-                     f"звук {'есть' if res['checks']['audio'] else 'нет'}; субтитры "
-                     f"{'есть' if res['srt'] else 'нет'}"
+                     f"звук {'есть' if res['checks']['audio'] else 'нет'}; заголовок «{res['meta']['title']}»"
+                     + (f"; размыто участков: {res['checks']['blurred_regions']}" if res['checks'].get('blurred_regions') else "")
                      + ((f"; конкурс: {'таймер в кадре' if r.get('contest_ok') else 'НЕПРИГОДЕН (таймера нет)'}")
                         if C.PROFILE.get("contest_timer") else "")
                      + f"; файлы: {os.path.basename(res['mp4'])} + .txt/.json")
@@ -548,7 +550,8 @@ def phase_test(args, st, rep, now, work_dir, out_dir):
             res.update(outcome="ok", mp4=os.path.relpath(r["mp4"], out_dir), checks=r["checks"],
                        srt=bool(r["srt"]), notes=r["notes"], title=r["meta"]["title"])
             rep.row(rec, "✅ смонтирован (тест)", f"ffprobe {r['checks']['resolution']}, {r['checks']['duration']} с, "
-                    f"звук {'есть' if r['checks']['audio'] else 'нет'}; субтитры {'есть' if r['srt'] else 'нет'}")
+                    f"звук {'есть' if r['checks']['audio'] else 'нет'}; заголовок «{r['meta']['title']}»"
+                    + (f"; размыто участков: {r['checks']['blurred_regions']}" if r['checks'].get('blurred_regions') else ""))
             for n in r["notes"]:
                 rep.notes.append(f"{cid}: {n}")
         except Exception as e:

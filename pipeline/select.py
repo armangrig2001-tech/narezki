@@ -155,9 +155,13 @@ def prelim_scores(clips, groups, now):
     buckets = {}
     for cid in ids:
         buckets.setdefault(age_bucket(ages[cid]), []).append(cid)
-    sizes = {}
+    # реакции зрителей Twitch: сколько РАЗНЫХ зрителей сделали клип этого момента
+    creators = {}
     for cid, g in groups.items():
-        sizes[g] = sizes.get(g, 0) + 1
+        who = (clips.get(cid) or {}).get("creator") or cid
+        creators.setdefault(g, set()).add(who)
+    sizes = {g: len(v) for g, v in creators.items()}
+    all_views = sorted(clips[c].get("views", 0) for c in ids)
     out = {}
     for cid in ids:
         if neutral:
@@ -171,13 +175,17 @@ def prelim_scores(clips, groups, now):
             equal = sum(1 for v in vals if v == vel[cid])
             vp = (below + 0.5 * equal) / len(vals)
         n = sizes.get(groups.get(cid, cid), 1)
-        cluster = min(1.0, (n - 1) / 3)
+        cluster = min(1.0, (n - 1) / 4)
+        vv = clips[cid].get("views", 0)
+        abs_pct = 0.5 if neutral else (sum(1 for x in all_views if x < vv) + 0.5 * sum(1 for x in all_views if x == vv)) / len(all_views)
         fresh = 1.0 if ages[cid] <= 2 else max(0.0, 1 - (ages[cid] - 2) / 22)
         out[cid] = {
             "vel_pct": round(vp, 3), "cluster": round(cluster, 3), "cluster_size": n,
             "fresh": round(fresh, 3), "age_h": round(ages[cid], 2),
-            "prelim": round(0.5 * vp + 0.3 * cluster + 0.2 * fresh, 4),
-            # «динамика просмотров» — 10 баллов из 100
+            "abs_pct": round(abs_pct, 3), "views": vv,
+            # популярность на Twitch: просмотры с учётом возраста + абсолютные просмотры + реакции
+            "popularity": round(0.45 * vp + 0.2 * abs_pct + 0.35 * cluster, 4),
+            "prelim": round(0.9 * (0.45 * vp + 0.2 * abs_pct + 0.35 * cluster) + 0.1 * fresh, 4),
             "views_points": int(round(10 * (0.7 * vp + 0.3 * cluster))),
             "neutral_views": neutral,
         }
@@ -185,16 +193,17 @@ def prelim_scores(clips, groups, now):
 
 
 def meta_total(p, sig):
-    """Отбор по метаданным (без Claude), 0..100.
+    """Отбор без Claude, 0..100 — прежде всего популярность на Twitch.
 
-    Просмотры с учётом возраста 25 (нейтрально при ≤1 просмотре), клипы одного момента 10,
-    свежесть 10, реплики 20, реакция стримера/развязка 15, действие в игре 10, контекст 10.
-    Громкость не участвует.
+    Популярность 75: просмотры с учётом возраста 34, абсолютные просмотры 15, реакции зрителей
+    (сколько разных зрителей клипнули этот момент) 26. Свежесть 5. Содержание 20: реплики 6,
+    реакция стримера 6, действие 4, контекст 4. Громкость не участвует.
     """
     if not isinstance(sig, dict):  # совместимость: старая сигнатура с пригодностью отрезка
         sig = {"speech": sig, "reaction": 0.5, "action": 0.5, "context": sig}
-    return int(round(25 * p["vel_pct"] + 10 * p["cluster"] + 10 * p["fresh"] + 20 * sig["speech"]
-                     + 15 * sig["reaction"] + 10 * sig["action"] + 10 * sig["context"]))
+    abs_pct = p.get("abs_pct", p["vel_pct"])
+    return int(round(34 * p["vel_pct"] + 15 * abs_pct + 26 * p["cluster"] + 5 * p["fresh"]
+                     + 6 * sig["speech"] + 6 * sig["reaction"] + 4 * sig["action"] + 4 * sig["context"]))
 
 
 def choose_window(speech, cam_a, game_a, dur, lo=C.CLIP_MIN_SEC, hi=C.CLIP_MAX_SEC):

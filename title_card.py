@@ -41,10 +41,11 @@ def split_lines(words, font, max_w, draw):
     return best[1]
 
 
-def render_title(text, accent, out, max_w=960, size=100, min_size=64, pad=(30, 16), radius=18):
-    text = text.strip().rstrip(".").upper()
+def render_title(text, accent, out, max_w=960, size=100, min_size=64, pad=(30, 16), radius=18, keep=()):
+    """keep — слова, у которых сохраняется регистр (ник стримера, например ZLOYn)."""
+    keep_map = {k.upper(): k for k in keep}
+    words = [keep_map.get(w.upper(), w.upper()) for w in text.strip().rstrip(".").split()]
     accent_set = {w.strip().upper() for w in (accent or "").split(",") if w.strip()}
-    words = text.split()
     font_path = find_font()
     probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
     while True:
@@ -67,7 +68,7 @@ def render_title(text, accent, out, max_w=960, size=100, min_size=64, pad=(30, 1
         lw = probe.textlength(" ".join(line), font=font)
         x = (W - lw) / 2
         for w in line:
-            col = YELLOW if w.strip("«»\"',!?:;").upper() in accent_set else WHITE
+            col = YELLOW if w.strip("«»\"',!?:;").upper() in accent_set else WHITE  # noqa: E501
             d.text((x, y), w, font=font, fill=col)
             x += probe.textlength(w, font=font) + space
         y += line_h

@@ -9,7 +9,7 @@ DISCOVERY_HOURS = 48          # окно поиска клипов в Helix
 DAILY_EVAL_BUDGET = 24        # подробных оценок в сутки
 EVAL_BUDGET_START = 6         # доступно с начала суток; остальное открывается по часам
 FRESH_MINUTES = 90            # «свежий» клип
-FRESH_SHARE = 0.34            # доля мест в выборке на оценку для свежих клипов
+FRESH_SHARE = 0.2             # доля мест в выборке на оценку для свежих клипов (главное — популярность)
 
 TARGET_PER_DAY = 6            # цель: 6 разных событий
 MIN_PER_DAY = 5
@@ -34,6 +34,9 @@ MAX_ATTEMPTS = 3              # повтор при временной ошиб�
 CLIP_MIN_SEC = 30.0
 CLIP_MAX_SEC = 40.0
 
+BURN_SUBTITLES = False        # субтитры на ролик не накладываются (расшифровка — только для отбора)
+BLUR_NUDITY = True            # размывать обнажённую грудь и т. п. (NudeNet)
+
 WHISPER_MODEL = os.environ.get("WHISPER_MODEL", "small")
 WHISPER_COMPUTE = os.environ.get("WHISPER_COMPUTE", "int8")
 WHISPER_CACHE = os.environ.get("WHISPER_CACHE", os.path.expanduser("~/.cache/faster-whisper"))
@@ -49,14 +52,14 @@ WEIGHTS = {"strength": 25, "clarity": 25, "reaction": 20, "hook": 15, "views": 1
 # свои правила отбора и монтажа. Строго — прежние настройки без изменений.
 PROFILES = {
     "strogo": {
-        "login": "strogo", "name": "Строго", "state_file": "state.json",
+        "login": "strogo", "name": "Строго", "state_file": "state.json", "title_name": "STROGO",
         "discovery_hours": 48, "max_per_day": 7, "contest_timer": True,
         "cam_zoom": False, "no_cam": "full",           # без вебки — «весь кадр + крупный план»
         "claude_notes": "",
         "tiktok": "", "shorts_suffix": "", "reels": "", "upload_note": "",
     },
     "evelone2004": {
-        "login": "evelone2004", "name": "Эвелон", "state_file": "evelone2004.json",
+        "login": "evelone2004", "name": "Эвелон", "state_file": "evelone2004.json", "title_name": "EVELONE",
         "discovery_hours": 24, "max_per_day": 6, "contest_timer": False,
         "cam_zoom": True, "no_cam": "full_if_lead",    # полный кадр — только если роль Эвелона ясна
         "claude_notes": (
@@ -67,7 +70,7 @@ PROFILES = {
         "reels": "twitch: evelone2004 #evelone", "upload_note": "",
     },
     "zloyn": {
-        "login": "zloyn", "name": "Злой", "state_file": "zloyn.json",
+        "login": "zloyn", "name": "Злой", "state_file": "zloyn.json", "title_name": "ZLOYn",
         "discovery_hours": 24, "max_per_day": 6, "contest_timer": False,
         "cam_zoom": False, "no_cam": "full_if_lead",
         "claude_notes": (
