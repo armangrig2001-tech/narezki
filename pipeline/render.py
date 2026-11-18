@@ -5,19 +5,62 @@ from . import config as C
 from . import transcribe as T
 
 
+MAT = ("хуй", "хуе", "хуё", "пизд", "ебл", "ебат", "ебан", "ёб", "еба", "бля", "сук", "нахуй", "мудак", "пидор",
+       "залуп", "шлюх", "гандон", "дроч")
+FILLER = {"НУ", "КОРОЧЕ", "ТИПА", "ВОТ", "ЭЭ", "ЭМ", "ААА", "ЭТО", "ЗНАЧИТ", "СЛУШАЙ", "БЛИН", "ДА", "НЕТ",
+          "ОКЕЙ", "ОК", "ТАК", "ВООБЩЕ", "ПРОСТО", "ЧЕ", "ЧЁ"}
+
+
+def phrase_from_transcript(tr, window, max_words=5):
+    """Бесплатная фраза заголовка из расшифровки Whisper: короткая яркая реплика без мата и «воды»."""
+    import re
+    if not tr or not tr.get("segments"):
+        return ""
+    s0, s1 = window
+    best = None
+    for seg in tr["segments"]:
+        if seg["end"] < s0 or seg["start"] > s1:
+            continue
+        text = seg["text"].strip()
+        low = text.lower()
+        if any(m in low for m in MAT):
+            continue
+        words = [w for w in re.findall(r"[\w-]+[!?]?", text, flags=re.U)
+                 if w.upper().strip("!?") not in FILLER and not re.fullmatch(r"\d+", w)]
+        if len(words) < 2 or not any(len(w.strip("!?")) >= 4 for w in words):
+            continue
+        score = -abs(len(words) - 4)                       # 3–5 слов — лучше всего
+        score += 1.5 if ("!" in text or "?" in text) else 0  # восклицание/вопрос — эмоция
+        score += 1.0 * (seg["start"] - s0) / max(1.0, s1 - s0)  # ближе к развязке/реакции
+        if best is None or score > best[0]:
+            best = (score, words[:max_words])
+    return " ".join(best[1]).upper().rstrip(",.:") if best else ""
+
+
 def build_title(rec):
     """Заголовок: ник стримера + о чём момент, например «ZLOYn В СТРИПКЛУБЕ ГТА 6».
 
-    Фраза — из оценки Claude (если есть), иначе из названия клипа на Twitch (его пишет зритель,
-    сделавший клип). Без упоминания игры добавляется «ГТА 6». Не длиннее 7 слов.
+    Фраза: от Claude (если есть ключ) → осмысленное название клипа на Twitch → реплика стримера из
+    расшифровки Whisper (бесплатно) → просто «В ГТА 6». Без упоминания игры добавляется «ГТА 6».
     """
     import re
     p = C.PROFILES.get(rec.get("channel") or "strogo", C.PROFILES["strogo"])
     name = p.get("title_name") or p["login"].upper()
-    phrase = (rec.get("title") or rec.get("title_fallback") or "").strip()
     drop = {name.upper(), p["login"].upper(), p["name"].upper(), "СТРОГО", "ЭВЕЛОН", "ЗЛОЙ"}
-    words = [w for w in re.split(r"\s+", phrase) if w and w.upper().strip("!?.,:") not in drop]
-    words = words[:5]
+
+    def clean(phrase):
+        words = [w for w in re.split(r"\s+", (phrase or "").strip()) if w and w.upper().strip("!?.,:") not in drop]
+        return words[:5]
+
+    def meaningful(ws):
+        core = [re.sub(r"[^\w]", "", w, flags=re.U) for w in ws]
+        return any(len(c) >= 4 for c in core) or sum(len(c) >= 3 for c in core) >= 2
+
+    words = clean(rec.get("title"))                         # Claude
+    if not meaningful(words):
+        words = clean(rec.get("title_fallback"))            # название клипа (без мусора)
+    if not meaningful(words) and rec.get("window"):
+        words = clean(phrase_from_transcript(rec.get("transcript"), rec["window"]))  # реплика (Whisper)
     text = " ".join(words).upper()
     if not re.search(r"GTA|ГТА", text):
         text = (text + " ГТА 6").strip() if words else "В ГТА 6"
