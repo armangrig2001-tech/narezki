@@ -31,7 +31,7 @@ on:
       - "narezchik.py"
 
 permissions:
-  contents: read
+  contents: write   # публикация готового MP4 в GitHub Release (прямая ссылка)
 
 env:
   HYPERFRAMES_NO_TELEMETRY: "1"
@@ -157,3 +157,24 @@ jobs:
           name: draka-vertical
           path: out/
           if-no-files-found: error
+
+      - name: Publish MP4 to GitHub Release (direct link)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          clip_id=$(python -c "import os,re;u=os.environ['CLIP_URL'].split('?')[0].rstrip('/');print(re.sub(r'[^A-Za-z0-9_-]','',u.rsplit('/',1)[-1])[:80] or 'clip')")
+          tag="clip-${clip_id}"
+          cp out/draka_vertical.mp4 "out/${clip_id}_vertical.mp4"
+          if ! gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+              --title "Вертикальный клип: ${clip_id}" \
+              --notes "Источник: ${CLIP_URL}. Собрано workflow Render Twitch Clip, запуск ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
+          fi
+          gh release upload "$tag" "out/${clip_id}_vertical.mp4" --repo "$GITHUB_REPOSITORY" --clobber
+          url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/${tag}/${clip_id}_vertical.mp4"
+          echo "Прямая ссылка: $url"
+          {
+            echo ""
+            echo "### ▶️ Готовое видео"
+            echo "Прямая ссылка на MP4: $url"
+          } >> "$GITHUB_STEP_SUMMARY"
