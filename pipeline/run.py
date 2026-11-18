@@ -177,11 +177,25 @@ class SourceUnavailable(Exception):
     """Метаданные клипа есть, а видео получить не удалось (yt-dlp)."""
 
 
+JUNK_WORDS = {"XD", "LOL", "KEK", "KEKW", "LUL", "OMEGALUL", "POG", "POGGERS", "W", "L", "GG", "ЛОЛ", "КЕК", "АХАХ"}
+
+
 def clean_title(t, max_words=7):
+    """Фраза из названия клипа на Twitch без мусора («XDDD», «222222», «WW», «ХВХВХВ»)."""
     import re
     t = re.sub(r"[^\w\s!?,.:-]", " ", t or "", flags=re.U)
-    words = [w for w in t.split() if w]
-    return " ".join(words[:max_words]).upper().rstrip(".") if words else ""
+    words = []
+    for w in t.split():
+        core = re.sub(r"[^\w]", "", w, flags=re.U)
+        letters = re.sub(r"[\d_]", "", core)
+        up = letters.upper()
+        if not letters or (len(up) >= 2 and len(set(up)) == 1) or (len(up) >= 5 and len(set(up)) <= 2) \
+                or re.fullmatch(r"[XХ]+[DД]+", up) or up in JUNK_WORDS:
+            continue  # без букв, «WW», «XDDD», «ХВХВХВ», чатовые междометия
+        words.append(w)
+    if not any(len(re.sub(r"[^\w]", "", w)) >= 3 for w in words):
+        return ""
+    return " ".join(words[:max_words]).upper().rstrip(".:,")
 
 
 def evaluate(st, rec, prelim, work_dir, rep):
@@ -192,12 +206,20 @@ def evaluate(st, rec, prelim, work_dir, rep):
     from . import transcribe as T
 
     d = os.path.join(work_dir, rec["id"])
+    if rec.get("duration") and float(rec["duration"]) < C.MIN_CLIP_SEC:
+        rec.update(status="rejected", reject_reason=f"клип короче {C.MIN_CLIP_SEC:.0f} с ({rec['duration']:.1f} с)",
+                   score=None, window=None)
+        return None
     try:
         src = M.download(rec["url"], d)
     except M.MediaError as e:
         raise SourceUnavailable(str(e)) from None
     dur = M.duration(src)
     rec["duration"] = round(dur, 2)
+    if dur < C.MIN_CLIP_SEC:
+        rec.update(status="rejected", reject_reason=f"клип короче {C.MIN_CLIP_SEC:.0f} с ({dur:.1f} с)",
+                   score=None, window=None)
+        return src
     try:
         tr = T.transcribe(src)
         rec["transcript"] = tr
@@ -334,7 +356,8 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
     # 2) кандидаты на подробную оценку — представители групп
     cands = []
     for ids in members.values():
-        open_ids = [i for i in ids if clips[i]["status"] in ST.OPEN and i != mid]
+        open_ids = [i for i in ids if clips[i]["status"] in ST.OPEN and i != mid
+                    and float(clips[i].get("duration") or 99) >= C.MIN_CLIP_SEC]
         if open_ids and not any(clips[i]["status"] in ST.RENDER_ACTIVE | {"scored", "reserve"} for i in ids):
             cands.append(S.representative(open_ids, clips))
     used = ST.day(st, today)["evaluated"]
@@ -527,7 +550,7 @@ def phase_test(args, st, rep, now, work_dir, out_dir):
     exclude = set(args.exclude_clip or [])
     excluded_groups = {groups[c] for c in exclude if c in groups}
     fresh = [c for c in clips if clips[c]["status"] not in ST.RENDER_ACTIVE and c not in exclude
-             and groups[c] not in excluded_groups]
+             and groups[c] not in excluded_groups and float(clips[c].get("duration") or 99) >= C.MIN_CLIP_SEC]
     # по одному лучшему клипу на момент, по убыванию популярности
     best = {}
     for c in sorted(fresh, key=lambda c: -prelim[c]["prelim"]):

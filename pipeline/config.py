@@ -31,6 +31,7 @@ MAX_EVAL_PER_RUN = int(os.environ.get("PIPELINE_MAX_EVAL", "4"))
 MAX_RENDER_PER_RUN = int(os.environ.get("PIPELINE_MAX_RENDER", "3"))
 MAX_ATTEMPTS = 3              # повтор при временной ошибке
 
+MIN_CLIP_SEC = 5.0            # клипы короче 5 с не берём
 CLIP_MIN_SEC = 30.0
 CLIP_MAX_SEC = 40.0
 

@@ -117,3 +117,15 @@ class DayLimitTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CleanTitleTests(unittest.TestCase):
+    def test_junk_twitch_titles_dropped(self):
+        from pipeline.run import clean_title
+        for junk in ("XDDD", "222222", "WW", "ХВХВХВХВХВХ", "KEKW", "ааааа"):
+            self.assertEqual(clean_title(junk), "", junk)
+        self.assertEqual(clean_title("в стрипклубе"), "В СТРИПКЛУБЕ")
+        self.assertEqual(clean_title("Дверь держи, чтобы мама не"), "ДВЕРЬ ДЕРЖИ, ЧТОБЫ МАМА НЕ")
+
+    def test_min_clip_length(self):
+        self.assertEqual(C.MIN_CLIP_SEC, 5.0)
