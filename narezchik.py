@@ -187,6 +187,8 @@ def render(src, out, start, end, cam, timer, srt, src_w, src_h, layout="stack"):
     W, H = 1080, 1920
     if layout == "full":
         return render_full(src, out, start, end, timer, srt, src_w, src_h)
+    if layout == "auto":
+        return render_cam(src, out, start, end, cam, timer, srt, src_w, src_h)
     CAM_H = 608                      # вебка 16:9 на всю ширину
     GAME_H = H - CAM_H               # 1312
     # центральный кроп геймплея под 1080x1312
@@ -206,6 +208,53 @@ def render(src, out, start, end, cam, timer, srt, src_w, src_h, layout="stack"):
         f"[st]drawbox=x=0:y={CAM_H - 3}:w={W}:h=6:color=white@0.9:t=fill[st2];"
         f"[st2][tmr]overlay=x={W - tw_o - 30}:y={CAM_H + 30}[v0]"
     )
+    finish(src, out, start, end, fc, srt, margin_v=60)
+
+
+def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
+    """Вебка (найдена автоматически) — сверху на всю ширину, под ней геймплей.
+
+    Высота блока вебки следует её пропорциям (480..900 px), лишнее срезается
+    по центру. Геймплей — кроп на всю высоту исходника; окно сдвигается в
+    сторону от вебки, чтобы она не дублировалась внизу.
+    """
+    W, H = 1080, 1920
+    cx, cy, cw, ch = cam
+    cam_h = int(min(900, max(480, round(W * ch / cw)))) // 2 * 2
+    # кроп вебки под пропорцию W:cam_h (cover)
+    want = W / cam_h
+    if cw / ch > want:
+        nw = int(ch * want) // 2 * 2
+        cx, cw = cx + (cw - nw) // 2, nw
+    else:
+        nh = int(cw / want) // 2 * 2
+        cy, ch = cy + (ch - nh) // 2, nh
+    game_h = H - cam_h
+    gw = min(src_w, int(round(src_h * W / game_h))) // 2 * 2
+    gx = (src_w - gw) // 2
+    # сдвиг окна геймплея от вебки, если она попадает в окно
+    c0, c1 = cam[0], cam[0] + cam[2]
+    if c1 > gx and c0 < gx + gw:
+        if cam[0] + cam[2] / 2 > src_w / 2:          # вебка справа -> окно левее
+            gx = max(0, min(gx, c0 - gw))
+        else:                                         # вебка слева -> окно правее
+            gx = min(src_w - gw, max(gx, c1))
+    gx = max(0, min(src_w - gw, gx)) // 2 * 2
+    n = 3 if timer else 2
+    fc = (
+        f"[0:v]split={n}[a][b]{'[c]' if timer else ''};"
+        f"[a]crop={cw}:{ch}:{cx}:{cy},scale={W}:{cam_h}:flags=lanczos,setsar=1[cam];"
+        f"[b]crop={gw}:{src_h}:{gx}:0,scale={W}:{game_h}:flags=lanczos,setsar=1[game];"
+        f"[cam][game]vstack=inputs=2[st];"
+        f"[st]drawbox=x=0:y={cam_h - 2}:w={W}:h=4:color=black@0.9:t=fill[v0]"
+    )
+    if timer:
+        tx, ty, tw, th = timer
+        tw_o, th_o = int(tw * 1.6) // 2 * 2, int(th * 1.6) // 2 * 2
+        fc = fc[:-len("[v0]")] + "[v00];"
+        fc += f"[c]crop={tw}:{th}:{tx}:{ty},scale={tw_o}:{th_o}:flags=lanczos[tmr];"
+        fc += f"[v00][tmr]overlay=x={W - tw_o - 30}:y={cam_h + 30}[v0]"
+    print(f"      вебка: crop {cw}x{ch}+{cx}+{cy} -> {W}x{cam_h}; геймплей: crop {gw}x{src_h}+{gx}+0 -> {W}x{game_h}")
     finish(src, out, start, end, fc, srt, margin_v=60)
 
 
@@ -276,10 +325,13 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("src")
     ap.add_argument("-o", "--out", default="output/clip.mp4")
-    ap.add_argument("--layout", choices=["stack", "full"], default="stack",
-                    help="stack: вебка сверху + геймплей; full: весь кадр + крупный план")
+    ap.add_argument("--layout", choices=["stack", "full", "auto"], default="stack",
+                    help="stack: вебка сверху + геймплей (регионы вручную); "
+                         "auto: вебка находится автоматически; full: весь кадр + крупный план")
     ap.add_argument("--cam", default=None, help="x:y:w:h вебки в исходнике (stack)")
     ap.add_argument("--timer", default=None, help="x:y:w:h таймера в исходнике")
+    ap.add_argument("--subs", action="store_true",
+                    help="расшифровать речь Whisper и прожечь субтитры (по умолчанию нет)")
     ap.add_argument("--keep-all", action="store_true",
                     help="брать весь исходник, срезая только пустые начало/конец")
     ap.add_argument("--srt", help="SRT с таймкодами исходника")
@@ -316,7 +368,7 @@ def main():
     clip_srt = None
     if not os.path.exists(srt_src):
         srt_src = base + ".full.srt"
-        if not try_whisper(a.src, srt_src):
+        if not (a.subs and try_whisper(a.src, srt_src)):
             srt_src = None
     if srt_src:
         clip_srt = base + ".srt"
@@ -327,7 +379,22 @@ def main():
     else:
         print("[3/4] Субтитры: расшифровки нет (whisper не установлен, SRT не найден) — без субтитров")
 
-    if a.layout == "stack":
+    cam_info = None
+    if a.layout == "auto":
+        if a.cam:
+            cam = parse_box(a.cam)
+            cam_info = {"method": "manual"}
+        else:
+            import cam_detect
+            cam, cam_info = cam_detect.detect(a.src)
+            print(f"      автопоиск вебки: {cam} {cam_info}")
+            cam_detect.save_debug(a.src, cam, cam_info, base + "_cam_detect.jpg")
+        if cam is None:
+            print("      вебка не найдена — запасная компоновка full")
+            a.layout = "full"
+    if a.layout == "auto":
+        timer = parse_box(a.timer) if a.timer else None
+    elif a.layout == "stack":
         cam = parse_box(a.cam or "1416:786:480:270")      # раскладка тестового исходника
         timer = parse_box(a.timer or "20:20:380:80")
     else:
@@ -349,6 +416,7 @@ def main():
         "audio": [{"codec": x["codec_name"], "sample_rate": x["sample_rate"],
                    "channels": x["channels"]} for x in oa],
         "subtitles": bool(clip_srt), "layout": a.layout,
+        "cam": list(cam) if a.layout == "auto" else None, "cam_detect": cam_info,
         "per_second": {"rms_db": [round(v, 1) for v in rms.tolist()],
                        "motion": [round(v, 2) for v in mot.tolist()],
                        "score": [round(v, 3) for v in score.tolist()]},
