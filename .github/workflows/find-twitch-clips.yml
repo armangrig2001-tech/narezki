@@ -1,0 +1,56 @@
+name: Find Twitch Clips
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Twitch-канал (login)"
+        default: "strogo"
+        required: true
+      category:
+        description: "Категория (точное название в Twitch)"
+        default: "Grand Theft Auto VI"
+        required: true
+      hours:
+        description: "За сколько последних часов искать"
+        default: "24"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  find-clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Query Twitch Helix API
+        id: clips
+        env:
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          CHANNEL: ${{ inputs.channel }}
+          CATEGORY: ${{ inputs.category }}
+          HOURS: ${{ inputs.hours }}
+        run: |
+          python3 scripts/find_twitch_clips.py \
+            --channel "$CHANNEL" --category "$CATEGORY" --hours "$HOURS" \
+            --out twitch_clips.json
+
+      - name: Upload clips JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: twitch-clips
+          path: twitch_clips.json
+          if-no-files-found: warn
+
+      - name: Result
+        if: always()
+        run: echo "status=${{ steps.clips.outputs.status }} count=${{ steps.clips.outputs.count }}"
