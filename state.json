@@ -4598,6 +4598,10 @@
   },
   "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d": {
    "attempts": 0,
+   "claim": {
+    "at": "2026-11-18T14:30:19Z",
+    "run": "44323416385"
+   },
    "created_at": "2026-11-18T11:29:51Z",
    "duration": 60.0,
    "first_seen": "2026-11-18T14:27:10Z",
