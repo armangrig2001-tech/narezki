@@ -1,5 +1,6 @@
 """Распознавание речи faster-whisper: одна расшифровка с таймкодами — и для оценки, и для субтитров."""
 import os
+import subprocess
 
 from . import config as C
 
@@ -16,9 +17,20 @@ def _model():
     return _MODEL
 
 
+def load_audio(path, sr=16000):
+    """Звук 16 кГц моно float32 через ffmpeg (без PyAV: его новые версии несовместимы с faster-whisper)."""
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-vn", "-ac", "1", "-ar", str(sr),
+                          "-f", "f32le", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).copy()
+
+
 def transcribe(path):
     """{language, probability, segments:[{start,end,text,words:[{start,end,word}]}], text}."""
-    segments, info = _model().transcribe(path, language=None, word_timestamps=True,
+    audio = load_audio(path)
+    if audio.size < 16000:
+        raise RuntimeError("в клипе нет звука")
+    segments, info = _model().transcribe(audio, language=None, word_timestamps=True,
                                          vad_filter=True, beam_size=5)
     segs = []
     for s in segments:
