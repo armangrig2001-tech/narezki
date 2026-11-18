@@ -3,6 +3,7 @@
  "checked_pairs": [
   "AdorableNaiveNarwhalHotPokket-cRO2ZIFFlUHiPXeK|InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
   "HilariousCulturedBaguetteCharlietheUnicorn-Ka-qwZf63YtNXT-9|InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|NastyEasyNeanderthalSquadGoals-EH9hoycqa9TtbnWH",
   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SnappyHilariousLorisBIRB-hTJ2x6PN4jhujfkA",
   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SteamyBetterPandaBleedPurple-td8iPudTTnFOZEGM",
   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|TacitBigPepperoniDogFace-3h4Ex12kWJbCGUeX"
@@ -10381,16 +10382,12 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T21:32:36Z",
-    "run": "44402323142"
-   },
    "contest_ok": true,
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.6,
-   "evaluated_at": "2026-11-18T19:27:40Z",
+   "duration": 34.63,
+   "evaluated_at": "2026-11-18T21:35:22Z",
    "excluded": null,
    "final_title": "STROGO ДРАКА ГТА 6",
    "first_seen": "2026-11-18T14:06:38Z",
@@ -10412,10 +10409,10 @@
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
     "srt": null
    },
-   "reason": "Популярность на Twitch: 9 просмотров на Twitch (95-й перцентиль среди клипов того же возраста), этот момент клипнули 4 зрителя, реплики 61%, реакция 0.74, действие 0.74, контекст 1.00, возраст 7.3 ч",
+   "reason": "Популярность на Twitch: 10 просмотров на Twitch (93-й перцентиль среди клипов того же возраста), этот момент клипнули 4 зрителя, реплики 61%, реакция 0.74, действие 0.74, контекст 1.00, возраст 9.4 ч",
    "reject_reason": null,
    "rendered_at": "2026-11-18T19:31:34Z",
-   "score": 85,
+   "score": 84,
    "score_mode": "meta",
    "signals": {
     "action": 0.744,
@@ -10427,14 +10424,14 @@
     "speech": 0.613
    },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "rendered",
+   "status": "scored",
    "timer_box": [
     2131,
     254,
     258,
     50
    ],
-   "title": "драка",
+   "title": null,
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
@@ -21484,18 +21481,17 @@
  },
  "days": {
   "2026-11-18": {
-   "evaluated": 5,
+   "evaluated": 4,
    "finalized": true,
    "rendered": [
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
   },
   "2026-11-19": {
-   "evaluated": 0,
+   "evaluated": 1,
    "finalized": false,
    "rendered": []
   }
