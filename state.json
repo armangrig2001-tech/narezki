@@ -130,7 +130,7 @@
    "score": 89,
    "score_mode": "meta",
    "slug": "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
-   "status": "scored",
+   "status": "render_queued",
    "timer_box": [
     2131,
     254,
@@ -880,7 +880,7 @@
    "score": 97,
    "score_mode": "meta",
    "slug": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-   "status": "scored",
+   "status": "render_queued",
    "timer_box": [
     2131,
     254,
@@ -3992,7 +3992,7 @@
    "score": 88,
    "score_mode": "meta",
    "slug": "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
-   "status": "scored",
+   "status": "reserve",
    "timer_box": [
     2131,
     254,
@@ -5737,7 +5737,7 @@
    "score": 99,
    "score_mode": "meta",
    "slug": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
-   "status": "scored",
+   "status": "render_queued",
    "timer_box": null,
    "title": null,
    "title_accent": null,
