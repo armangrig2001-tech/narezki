@@ -10,39 +10,33 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T14:25:06Z",
-    "run": "44323416385"
-   },
    "contest_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
    "duration": 34.63,
    "evaluated_at": "2026-11-18T14:25:01Z",
    "first_seen": "2026-11-18T14:06:38Z",
-   "force_run": "44323416385",
    "frames_sheet": "work/pipeline/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "language": "ru",
-   "manual": true,
    "moment_type": "other",
    "output": {
     "checks": {
      "audio": true,
      "duration": 33.0,
      "resolution": "1080x1920",
-     "size_mb": 15.2
+     "size_mb": 15.3
     },
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
-    "srt": null
+    "srt": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.srt"
    },
    "reason": "Отбор по метаданным: рост просмотров 50-й перцентиль, возраст 2.2 ч",
-   "rendered_at": "2026-11-18T14:10:52Z",
+   "rendered_at": "2026-11-18T14:27:06Z",
    "score": 55,
    "score_mode": "meta",
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "render_queued",
+   "status": "rendered",
    "timer_box": [
     2131,
     254,
@@ -182,7 +176,9 @@
   "2026-11-18": {
    "evaluated": 1,
    "finalized": false,
-   "rendered": []
+   "rendered": [
+    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+   ]
   }
  },
  "game_id": "1867279146",
