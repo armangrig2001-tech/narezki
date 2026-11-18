@@ -32,6 +32,8 @@ MAX_RENDER_PER_RUN = int(os.environ.get("PIPELINE_MAX_RENDER", "3"))
 MAX_ATTEMPTS = 3              # повтор при временной ошибке
 
 MIN_CLIP_SEC = 5.0            # клипы короче 5 с не берём
+VOD_CONTEXT = True            # короткий клип → 30–40 с из записи стрима вокруг него
+VOD_SCAN = True               # поиск моментов по записи стрима (и во время эфира)
 CLIP_MIN_SEC = 30.0
 CLIP_MAX_SEC = 40.0
 

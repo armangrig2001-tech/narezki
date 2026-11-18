@@ -77,7 +77,8 @@ def upsert(st, clip, now, game_id=None):
         "url": clip.get("url") or f"https://clips.twitch.tv/{cid}",
         "created_at": clip["created_at"], "title": clip.get("title", ""),
         "video_id": clip.get("video_id") or None, "vod_offset": clip.get("vod_offset"),
-        "duration": float(clip.get("duration") or 0), "game_id": clip.get("game_id"),
+        "duration": float(clip.get("duration") or 0), "clip_duration": float(clip.get("duration") or 0),
+        "game_id": clip.get("game_id"),
         "slug": cid, "channel": C.CHANNEL, "creator": clip.get("creator_name") or clip.get("creator_id"),
     })
     if game_id and clip.get("game_id") != game_id:
@@ -146,6 +147,27 @@ def phase_plan(args, st, rep, now):
         rep.lines.append(f"Поиск: {len(clips)} клипов канала за {C.DISCOVERY_HOURS} ч, подходят ({cat}): {found}.")
     rep.lines.append(f"Эфир: {'идёт' if live else 'офлайн'}.")
     st["plan_found"] = found
+    if not args.clip_url and C.VOD_SCAN:
+        from . import vod as V
+        try:
+            vods = V.list_vods(tw, bid)
+        except Exception as e:
+            vods = []
+            rep.notes.append(f"список записей недоступен: {e}")
+        lim = now - timedelta(hours=24)
+        keep = {}
+        for i, v in enumerate(vods[:2]):
+            if i > 0 and S.parse_ts(v["created_at"]) < lim:
+                continue
+            sv = st.setdefault("vods", {}).get(v["id"], {})
+            sv.update({"duration": v["duration"], "created_at": v["created_at"],
+                       "live": bool(live and i == 0), "viewable": v["viewable"]})
+            keep[v["id"]] = sv
+        st["vods"] = {**{k: x for k, x in st.get("vods", {}).items() if k in keep or x.get("analyzed_until")}, **keep}
+        if keep:
+            v0 = next(iter(keep.items()))
+            rep.lines.append(f"Запись: {V.vod_url(v0[0])} — {v0[1]['duration'] // 60} мин, разобрано до "
+                             f"{(v0[1].get('analyzed_until') or 0) // 60} мин{' (эфир идёт)' if v0[1]['live'] else ''}.")
     return found
 
 
@@ -177,6 +199,44 @@ class SourceUnavailable(Exception):
     """Метаданные клипа есть, а видео получить не удалось (yt-dlp)."""
 
 
+def get_source(rec, d, rep=None):
+    """Видео для оценки и монтажа.
+
+    * момент из записи — отрезок записи;
+    * клип с известным местом в записи — отрезок записи вокруг клипа (подводка + момент + реакция,
+      ≈30–40 с), если запись доступна; иначе сам клип;
+    * остальное — сам клип.
+    """
+    from . import media as M
+    from . import vod as V
+    if rec.get("kind") == "vod":
+        s = max(0, rec["vod_offset"] - 3)
+        e = rec["vod_offset"] + rec["duration"] + 3
+        try:
+            path = V.download_section(rec["video_id"], s, e, os.path.join(d, "vod_section.mp4"))
+        except M.MediaError as ex:
+            raise SourceUnavailable(str(ex)) from None
+        rec["source"] = {"kind": "vod", "start": s, "end": e}
+        return path
+    if C.VOD_CONTEXT and rec.get("video_id") and rec.get("vod_offset") is not None:
+        dur = float(rec.get("clip_duration") or rec.get("duration") or 0)
+        if dur < C.CLIP_MIN_SEC:
+            s, e = V.context_window(float(rec["vod_offset"]), dur)
+            try:
+                path = V.download_section(rec["video_id"], s, e, os.path.join(d, "vod_context.mp4"))
+                rec["source"] = {"kind": "vod_context", "start": s, "end": e}
+                return path
+            except M.MediaError as ex:
+                if rep:
+                    rep.notes.append(f"{rec['id']}: запись недоступна ({str(ex)[:120]}) — берём сам клип")
+    try:
+        path = M.download(rec["url"], d)
+    except M.MediaError as ex:
+        raise SourceUnavailable(str(ex)) from None
+    rec["source"] = {"kind": "clip"}
+    return path
+
+
 JUNK_WORDS = {"XD", "LOL", "KEK", "KEKW", "LUL", "OMEGALUL", "POG", "POGGERS", "W", "L", "GG", "ЛОЛ", "КЕК", "АХАХ"}
 
 
@@ -206,14 +266,12 @@ def evaluate(st, rec, prelim, work_dir, rep):
     from . import transcribe as T
 
     d = os.path.join(work_dir, rec["id"])
-    if rec.get("duration") and float(rec["duration"]) < C.MIN_CLIP_SEC:
+    rec.setdefault("clip_duration", rec.get("duration"))
+    if rec.get("duration") and float(rec.get("clip_duration") or rec["duration"]) < C.MIN_CLIP_SEC:
         rec.update(status="rejected", reject_reason=f"клип короче {C.MIN_CLIP_SEC:.0f} с ({rec['duration']:.1f} с)",
                    score=None, window=None)
         return None
-    try:
-        src = M.download(rec["url"], d)
-    except M.MediaError as e:
-        raise SourceUnavailable(str(e)) from None
+    src = get_source(rec, d, rep)
     dur = M.duration(src)
     rec["duration"] = round(dur, 2)
     if dur < C.MIN_CLIP_SEC:
@@ -285,6 +343,11 @@ def evaluate(st, rec, prelim, work_dir, rep):
                      f"действие {sig['action']:.2f}, контекст {sig['context']:.2f}")
         parts.append(f"возраст {p.get('age_h', 0):.1f} ч")
         rec["reason"] = "Популярность на Twitch: " + ", ".join(parts)
+        if rec.get("kind") == "vod":
+            rec["reason"] = (f"Момент найден по записи стрима ({', '.join(rec.get('vod_reasons') or [])}); "
+                             f"реплики {int(sig['speech'] * 100)}%, реакция {sig['reaction']:.2f}, действие {sig['action']:.2f}")
+        elif (rec.get("source") or {}).get("kind") == "vod_context":
+            rec["reason"] += "; ролик дополнен контекстом из записи стрима"
         rec["zoom_at"] = S.reaction_peak(cam_a, win) if prof.get("cam_zoom") and cam else None
     # правила канала: кто ведёт сцену, исключённый контент, контекст, отсутствие вебки
     reject = None
@@ -303,15 +366,54 @@ def evaluate(st, rec, prelim, work_dir, rep):
 
 
 def do_render(st, rec, work_dir, out_dir, rep):
-    from . import media as M
     from .render import render_clip
-    src = M.download(rec["url"], os.path.join(work_dir, rec["id"]))
+    src = get_source(rec, os.path.join(work_dir, rec["id"]), rep)
     res = render_clip(src, rec, os.path.join(out_dir, rec["id"]), rec.get("transcript"))
     if not res["ok"]:
         raise RuntimeError(f"ffprobe не прошёл: {res['checks']}")
     if rec.get("frames_sheet") and os.path.exists(rec["frames_sheet"]):
         shutil.copy(rec["frames_sheet"], os.path.join(out_dir, rec["id"], "frames.jpg"))
     return res
+
+
+def scan_vod(st, rep, now, work_dir, store, chunk=None, force_vod=None):
+    """Один кусок записи за запуск: звук → Whisper → пики → кандидаты-«моменты записи»."""
+    from . import transcribe as T
+    from . import vod as V
+    items = sorted((st.get("vods") or {}).items(), key=lambda kv: kv[1].get("created_at", ""), reverse=True)
+    for vid, sv in items:
+        if force_vod and vid != force_vod:
+            continue
+        ch = chunk or V.pending_chunk({"duration": sv.get("duration", 0)}, sv.get("live"), sv)
+        if not ch:
+            continue
+        s, e = ch
+        d = os.path.join(work_dir, f"vod-{vid}")
+        audio = V.download_section(vid, s, e, os.path.join(d, f"audio_{int(s)}_{int(e)}.m4a"), audio_only=True)
+        try:
+            tr = T.transcribe(audio)
+        except Exception as ex:
+            tr = None
+            rep.notes.append(f"запись {vid}: Whisper не сработал ({ex}) — поиск по звуку без реплик")
+        offs = [float(r["vod_offset"]) for r in st["clips"].values()
+                if r.get("video_id") == vid and r.get("vod_offset") is not None and r.get("kind") != "vod"]
+        moments = V.find_moments(audio, tr, offs, base=s)
+        added = []
+        for m in moments:
+            rec = V.moment_record(C.CHANNEL, {"id": vid, "created_at": sv["created_at"]}, m)
+            if rec["id"] not in st["clips"]:
+                st["clips"][rec["id"]] = rec
+                store.touched.add(rec["id"])
+                added.append(rec)
+        if not chunk:
+            sv["analyzed_until"] = e
+        rep.lines.append(f"Разбор записи {V.vod_url(vid)}: {int(s) // 60}–{int(e) // 60} мин, "
+                         f"найдено моментов: {len(added)}"
+                         + (" — " + "; ".join(f"{int(r['vod_offset']) // 60}:{int(r['vod_offset']) % 60:02d} "
+                                              f"({', '.join(r['vod_reasons'])})" for r in added) if added else ""))
+        store.save(st, f"vod {vid}: разобрано до {int(e)} с")
+        return added
+    return []
 
 
 def _clips(st, now, args):
@@ -352,6 +454,17 @@ def phase_work(args, st, rep, now, work_dir, out_dir, store):
                 store.touched.add(i)
                 rep.data["duplicates"].append(i)
                 rep.row(r, "дубль уже смонтированного момента", done[0][:16])
+
+    # 1б) разбор нового куска записи стрима (в т. ч. во время эфира)
+    if C.VOD_SCAN and not mid:
+        try:
+            scan_vod(st, rep, now, work_dir, store)
+        except Exception as e:
+            rep.notes.append(f"разбор записи не удался: {type(e).__name__}: {e}"[:300])
+            traceback.print_exc()
+        clips = _clips(st, now, args)
+        groups, members = _group_members(clips, st)
+        prelim = S.prelim_scores(clips, groups, now)
 
     # 2) кандидаты на подробную оценку — представители групп
     cands = []
@@ -531,6 +644,11 @@ def needs_work(st, now):
     open_ = [r for r in clips.values() if r["status"] in ST.OPEN]
     if open_ and S.eval_allowance(ST.day(st, S.local_day(now))["evaluated"], now) > 0:
         return True
+    if C.VOD_SCAN:
+        from . import vod as V
+        for vid, sv in (st.get("vods") or {}).items():
+            if sv.get("duration") and V.pending_chunk({"duration": sv["duration"]}, sv.get("live"), sv):
+                return True
     # добор после эфира из резерва
     return any(r["status"] in ("scored", "reserve") for r in clips.values()) and S.should_finalize(st["stream"], now)
 
@@ -544,7 +662,31 @@ def phase_test(args, st, rep, now, work_dir, out_dir):
     count = max(1, args.count)
     res = {"channel": C.CHANNEL, "found": st.get("plan_found", 0), "source": None,
            "outcome": "no_clips", "detail": "", "mp4": None, "clips": []}
+    if args.source == "vod":
+        # моменты из последних минут свежей записи стрима
+        from . import vod as V
+        vods = sorted((st.get("vods") or {}).items(), key=lambda kv: kv[1].get("created_at", ""), reverse=True)
+        if not vods:
+            res["detail"] = "у канала нет доступных записей"
+            rep.lines.append(f"**Тест записи {C.PROFILE['name']} ({C.CHANNEL}):** записей нет")
+            rep.data["test"] = res
+            return res
+        vid, sv = vods[0]
+        edge = sv["duration"] - (V.LIVE_EDGE_SEC if sv.get("live") else 0)
+        span = args.vod_minutes * 60
+        try:
+            added = scan_vod(st, rep, now, work_dir, _NoStore(), chunk=(max(0, edge - span), edge), force_vod=vid)
+        except Exception as e:
+            res.update(outcome="source_unavailable", source=V.vod_url(vid), detail=f"{type(e).__name__}: {e}"[:300])
+            rep.lines.append(f"**Тест записи {C.PROFILE['name']}:** запись недоступна — {res['detail']}")
+            rep.data["test"] = res
+            return res
+        res["found"] = len(added)
+        for r in added:
+            r["status"] = "new"
     clips = window_clips(st, now, hours=C.DISCOVERY_HOURS)
+    if args.source == "vod":
+        clips = {k: v for k, v in clips.items() if v.get("kind") == "vod"}
     groups = S.group_clips(clips, st["same_event"])
     prelim = S.prelim_scores(clips, groups, now)
     exclude = set(args.exclude_clip or [])
@@ -598,13 +740,22 @@ def phase_test(args, st, rep, now, work_dir, out_dir):
         res["clips"].append(item)
     if res["outcome"] == "no_clips" and reasons:
         res["detail"] = "; ".join(reasons)
-    rep.lines.append(f"**Тест {C.PROFILE['name']} ({C.CHANNEL}):** найдено {res['found']}, проверено {tried}, "
+    rep.lines.append(f"**Тест {'записи ' if args.source == 'vod' else ''}{C.PROFILE['name']} ({C.CHANNEL}):** "
+                     f"найдено {res['found']}, проверено {tried}, "
                      f"готово {done} из {count}, итог: **{labels.get(res['outcome'], res['outcome'])}**"
                      + (f" — {res['detail']}" if res["detail"] and res["outcome"] != "ok" else ""))
     for r_ in reasons:
         rep.notes.append(r_)
     rep.data["test"] = res
     return res
+
+
+class _NoStore:
+    """Хранилище-заглушка для теста: ничего не пишет."""
+    touched = set()
+
+    def save(self, st, msg=""):
+        return st
 
 
 def resolve_clip_channel(clip_url):
@@ -634,6 +785,8 @@ def main(argv=None):
     ap.add_argument("--include-clip", action="append")
     ap.add_argument("--exclude-clip", action="append", help="тест: не брать эти клипы и их моменты")
     ap.add_argument("--count", type=int, default=1, help="тест: сколько роликов на канал")
+    ap.add_argument("--source", choices=["clips", "vod"], default="clips", help="тест: клипы или моменты записи")
+    ap.add_argument("--vod-minutes", type=int, default=15, help="тест записи: сколько последних минут разобрать")
     ap.add_argument("--now", help="ISO-время для тестов")
     a = ap.parse_args(argv)
 

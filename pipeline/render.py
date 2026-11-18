@@ -141,7 +141,13 @@ def publish_texts(rec):
     p = C.PROFILES.get(rec.get("channel") or "strogo", C.PROFILES["strogo"])
     title = rec.get("final_title") or build_title(rec)[0]
     s, e = rec["window"]
-    src_line = f"Источник: {rec['url']} (фрагмент {s:.1f}–{e:.1f} с клипа)"
+    srcinfo = rec.get("source") or {}
+    if srcinfo.get("kind") in ("vod", "vod_context") and rec.get("video_id"):
+        t = int(srcinfo["start"] + s)
+        link = f"https://www.twitch.tv/videos/{rec['video_id']}?t={t // 3600}h{t % 3600 // 60}m{t % 60}s"
+        src_line = f"Источник: {link}" + (f" (клип: {rec['url']})" if rec.get("kind") != "vod" else "")
+    else:
+        src_line = f"Источник: {rec['url']} (фрагмент {s:.1f}–{e:.1f} с клипа)"
     tags = p.get("tiktok") or f"twitch: {p['login']}"
     shorts_title = title if not p.get("shorts_suffix") else f"{title} | {p['shorts_suffix']}"
     out = {
@@ -150,7 +156,7 @@ def publish_texts(rec):
         "shorts_title": shorts_title[:100],
         "shorts_description": f"{title}\n{p.get('shorts_suffix') or tags}\n{src_line}",
         "reels": f"{title}\n{p.get('reels') or tags}",
-        "source": rec["url"],
+        "source": src_line.replace("Источник: ", ""),
         "upload_note": p.get("upload_note") or "",
         "contest_ok": rec.get("contest_ok"),
     }

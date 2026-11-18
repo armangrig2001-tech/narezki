@@ -256,6 +256,21 @@ jobs:
               assert t.get("outcome") in ("ok", "no_clips", "source_unavailable"), f"{ch}: {t}"
           PY
 
+      - name: 5) Поиск моментов по записи стрима (последние 15 минут, все каналы)
+        if: always()
+        run: |
+          python -m pipeline.run --phase test --source vod --vod-minutes 15 --channels all --count 1 --out out/5
+          python - <<'PY'
+          import json
+          d = json.load(open("out/5/run_test.json"))
+          for ch, data in d.items():
+              t = data.get("test") or {}
+              ok = [c for c in t.get("clips", []) if c.get("outcome") == "ok"]
+              print(ch, "→", t.get("outcome"), "моментов:", t.get("found"), *[f"\n   {c['title']} — {c['source']}" for c in ok],
+                    t.get("detail", ""))
+              assert t.get("outcome") in ("ok", "no_clips", "source_unavailable"), f"{ch}: {t}"
+          PY
+
       - name: Готовые нарезки → артефакт
         if: always()
         uses: actions/upload-artifact@v4

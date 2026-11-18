@@ -132,7 +132,9 @@ def representative(member_ids, clips):
         r = clips[cid]
         iv = _vod_interval(r)
         end = iv[2] if iv else float(r.get("duration") or 0)
-        return (float(r.get("duration") or 0), end, r.get("views", 0), cid)
+        # клип зрителей важнее найденного по записи момента (популярность известна, контекст
+        # всё равно добавится из записи)
+        return (r.get("kind") != "vod", float(r.get("duration") or 0), end, r.get("views", 0), cid)
     return max(member_ids, key=key)
 
 
@@ -163,8 +165,12 @@ def prelim_scores(clips, groups, now):
     sizes = {g: len(v) for g, v in creators.items()}
     all_views = sorted(clips[c].get("views", 0) for c in ids)
     out = {}
+    vod_scores = sorted(clips[c].get("vod_score", 0) for c in ids if clips[c].get("kind") == "vod")
     for cid in ids:
-        if neutral:
+        if clips[cid].get("kind") == "vod":   # момент из записи: сила сигнала среди других моментов
+            sc = clips[cid].get("vod_score", 0)
+            vp = (sum(1 for x in vod_scores if x < sc) + 0.5 * sum(1 for x in vod_scores if x == sc)) / max(1, len(vod_scores))
+        elif neutral:
             vp = 0.5
         else:
             peers = buckets[age_bucket(ages[cid])]
@@ -178,6 +184,8 @@ def prelim_scores(clips, groups, now):
         cluster = min(1.0, (n - 1) / 4)
         vv = clips[cid].get("views", 0)
         abs_pct = 0.5 if neutral else (sum(1 for x in all_views if x < vv) + 0.5 * sum(1 for x in all_views if x == vv)) / len(all_views)
+        if clips[cid].get("kind") == "vod":
+            abs_pct = vp
         fresh = 1.0 if ages[cid] <= 2 else max(0.0, 1 - (ages[cid] - 2) / 22)
         out[cid] = {
             "vel_pct": round(vp, 3), "cluster": round(cluster, 3), "cluster_size": n,
