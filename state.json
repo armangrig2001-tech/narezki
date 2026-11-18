@@ -4,18 +4,36 @@
  "clips": {
   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M": {
    "attempts": 0,
-   "claim": {
-    "at": "2026-11-18T14:06:43Z",
-    "run": "44320541753"
-   },
+   "cam": [
+    1931,
+    0,
+    628,
+    314
+   ],
+   "contest_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
-   "duration": 34.6,
+   "criteria": null,
+   "duration": 34.63,
+   "evaluated_at": "2026-11-18T14:08:53Z",
    "first_seen": "2026-11-18T14:06:38Z",
+   "frames_sheet": "work/pipeline/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+   "moment_type": "other",
+   "reason": "Отбор по метаданным: рост просмотров 50-й перцентиль, возраст 2.0 ч",
+   "score": 55,
+   "score_mode": "meta",
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "new",
-   "title": "драка",
+   "status": "scored",
+   "timer_box": [
+    2131,
+    254,
+    258,
+    50
+   ],
+   "title": null,
+   "title_accent": null,
+   "transcript": null,
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "video_id": null,
    "views": 4,
@@ -25,12 +43,18 @@
      4
     ]
    ],
-   "vod_offset": null
+   "views_points": 4,
+   "vod_offset": null,
+   "whisper_error": "TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+   "window": [
+    1.0,
+    34.0
+   ]
   }
  },
  "days": {
   "2026-11-18": {
-   "evaluated": 0,
+   "evaluated": 1,
    "finalized": false,
    "rendered": []
   }
