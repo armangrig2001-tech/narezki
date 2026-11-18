@@ -32743,19 +32743,7 @@
   }
  },
  "game_id": "1867279146",
- "manual": {
-  "force": false,
-  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
- },
  "runs": [
-  {
-   "at": "2026-11-18T14:06:41Z",
-   "phase": "work",
-   "rendered": [
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
-   ],
-   "run": "44320541753"
-  },
   {
    "at": "2026-11-18T14:12:25Z",
    "phase": "plan",
@@ -33044,6 +33032,12 @@
   {
    "at": "2026-11-18T23:02:13Z",
    "phase": "plan",
+   "run": "44416637485"
+  },
+  {
+   "at": "2026-11-18T23:02:16Z",
+   "phase": "work",
+   "rendered": [],
    "run": "44416637485"
   }
  ],
