@@ -4,6 +4,10 @@
  "clips": {
   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M": {
    "attempts": 0,
+   "claim": {
+    "at": "2026-11-18T14:06:43Z",
+    "run": "44320541753"
+   },
    "created_at": "2026-11-18T12:07:27Z",
    "duration": 34.6,
    "first_seen": "2026-11-18T14:06:38Z",
