@@ -211,17 +211,64 @@ def render(src, out, start, end, cam, timer, srt, src_w, src_h, layout="stack"):
     finish(src, out, start, end, fc, srt, margin_v=60)
 
 
-def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
-    """Вебка (найдена автоматически) — сверху на всю ширину, под ней геймплей.
+def action_track(src, start, end, src_w, src_h, cam, fps=4, smooth_s=5.0):
+    """Плавная траектория центра действия по X (доли ширины) для панорамы геймплея.
 
-    Высота блока вебки следует её пропорциям (480..900 px), лишнее срезается
-    по центру. Геймплей — кроп на всю высоту исходника; окно сдвигается в
-    сторону от вебки, чтобы она не дублировалась внизу.
+    Энергия разности кадров по столбцам без зоны вебки и левого HUD,
+    центроид по каждому кадру, затем скользящее среднее ~5 с.
+    """
+    W, H = 640, int(round(src_h * 640 / src_w / 2)) * 2
+    raw = subprocess.run(
+        ["ffmpeg", "-v", "error", "-ss", f"{start:.3f}", "-t", f"{end - start:.3f}", "-i", src,
+         "-vf", f"fps={fps},scale={W}:{H},format=gray", "-f", "rawvideo", "-"],
+        check=True, capture_output=True).stdout
+    f = np.frombuffer(raw, np.uint8)
+    n = f.size // (W * H)
+    if n < 3:
+        return [0.0], [0.5]
+    f = f[: n * W * H].reshape(n, H, W).astype(np.float32)
+    d = np.abs(np.diff(f, axis=0))
+    cx, cy, cw, ch = (int(v * W / src_w) for v in cam)
+    d[:, max(0, cy - 4):cy + ch + 4, max(0, cx - 4):cx + cw + 4] = 0
+    d[:, :, : int(W * 0.08)] = 0
+    cols = d.sum(axis=1)
+    cen = (cols * np.arange(W)).sum(1) / (cols.sum(1) + 1e-6) / W
+    k = max(1, int(smooth_s * fps))
+    pad = np.pad(cen, (k // 2, k - 1 - k // 2), mode="edge")
+    sm = np.convolve(pad, np.ones(k) / k, mode="valid")
+    ts = (np.arange(len(sm)) + 1) / fps
+    # прореживание до точки в секунду
+    idx = list(range(0, len(sm), fps)) + [len(sm) - 1]
+    return [float(ts[i]) for i in idx], [float(sm[i]) for i in idx]
+
+
+def pan_expr(ts, xs):
+    """Кусочно-линейное выражение ffmpeg x(t)."""
+    expr = f"{xs[-1]:.1f}"
+    for i in range(len(ts) - 2, -1, -1):
+        t0, t1, x0, x1 = ts[i], ts[i + 1], xs[i], xs[i + 1]
+        if t1 <= t0:
+            continue
+        seg = f"{x0:.1f}+({x1 - x0:.1f})*(t-{t0:.3f})/{t1 - t0:.3f}"
+        expr = f"if(lt(t\\,{t1:.3f})\\,{seg}\\,{expr})"
+    return f"if(lt(t\\,{ts[0]:.3f})\\,{xs[0]:.1f}\\,{expr})"
+
+
+def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
+    """Вебка (найдена автоматически) сверху, под ней геймплей с плавной панорамой.
+
+    Раскладка 1080x1920 по правилам вертикального формата (HyperFrames,
+    types/vertical.md): верхние 168 px — под интерфейсом платформы, там только
+    размытый фон вебки; вебка с 168 px на всю ширину; геймплей сразу под ней,
+    кроп ~58 % ширины исходника на всю высоту, окно плавно следует за действием.
     """
     W, H = 1080, 1920
+    TOP, BOTTOM_PAD = 168, 180
     cx, cy, cw, ch = cam
-    cam_h = int(min(900, max(480, round(W * ch / cw)))) // 2 * 2
-    # кроп вебки под пропорцию W:cam_h (cover)
+    # убрать рамку оверлея по краям вебки (2 %)
+    ix, iy = int(cw * 0.02) // 2 * 2, int(ch * 0.02) // 2 * 2
+    cx, cy, cw, ch = cx + ix, cy + iy, (cw - 2 * ix) // 2 * 2, (ch - 2 * iy) // 2 * 2
+    cam_h = int(min(820, max(420, round(W * ch / cw)))) // 2 * 2
     want = W / cam_h
     if cw / ch > want:
         nw = int(ch * want) // 2 * 2
@@ -229,32 +276,41 @@ def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
     else:
         nh = int(cw / want) // 2 * 2
         cy, ch = cy + (ch - nh) // 2, nh
-    game_h = H - cam_h
-    gw = min(src_w, int(round(src_h * W / game_h))) // 2 * 2
-    gx = (src_w - gw) // 2
-    # сдвиг окна геймплея от вебки, если она попадает в окно
-    c0, c1 = cam[0], cam[0] + cam[2]
-    if c1 > gx and c0 < gx + gw:
-        if cam[0] + cam[2] / 2 > src_w / 2:          # вебка справа -> окно левее
-            gx = max(0, min(gx, c0 - gw))
-        else:                                         # вебка слева -> окно правее
-            gx = min(src_w - gw, max(gx, c1))
-    gx = max(0, min(src_w - gw, gx)) // 2 * 2
-    n = 3 if timer else 2
+    game_y = TOP + cam_h
+    avail = H - game_y - BOTTOM_PAD
+    gw = min(src_w, int(round(src_h * W / avail))) // 2 * 2
+    game_h = int(round(src_h * W / gw)) // 2 * 2
+    ts, cen = action_track(src, start, end, src_w, src_h, cam)
+    lo, hi = 0.0, float(src_w - gw)
+    # окно геймплея не должно заходить на вебку (иначе она дублируется внизу)
+    if cam[0] + cam[2] / 2 > src_w / 2 and cam[0] - gw >= 0:
+        hi = min(hi, float(cam[0] - gw))
+    elif cam[0] + cam[2] / 2 <= src_w / 2 and cam[0] + cam[2] + gw <= src_w:
+        lo = max(lo, float(cam[0] + cam[2]))
+    xs = [max(lo, min(hi, c * src_w - gw / 2)) for c in cen]
+    xexpr = pan_expr(ts, xs)
+    n = 4 if timer else 3
     fc = (
-        f"[0:v]split={n}[a][b]{'[c]' if timer else ''};"
-        f"[a]crop={cw}:{ch}:{cx}:{cy},scale={W}:{cam_h}:flags=lanczos,setsar=1[cam];"
-        f"[b]crop={gw}:{src_h}:{gx}:0,scale={W}:{game_h}:flags=lanczos,setsar=1[game];"
-        f"[cam][game]vstack=inputs=2[st];"
-        f"[st]drawbox=x=0:y={cam_h - 2}:w={W}:h=4:color=black@0.9:t=fill[v0]"
+        f"[0:v]split={n}[a][b][g]{'[c]' if timer else ''};"
+        f"[a]crop={cw}:{ch}:{cx}:{cy},split=2[cam0][camb];"
+        f"[cam0]scale={W}:{cam_h}:flags=lanczos,setsar=1[cam];"
+        f"[camb]scale={W}:{H // 2}:force_original_aspect_ratio=increase,crop={W}:{H // 2},"
+        f"boxblur=luma_radius=30:luma_power=2,eq=brightness=-0.2,setsar=1[bgt];"
+        f"[g]scale={W}:{H // 2}:force_original_aspect_ratio=increase,crop={W}:{H // 2},"
+        f"boxblur=luma_radius=30:luma_power=2,eq=brightness=-0.25,setsar=1[bgb];"
+        f"[bgt][bgb]vstack=inputs=2[bg];"
+        f"[b]crop={gw}:{src_h}:'{xexpr}':0,scale={W}:{game_h}:flags=lanczos,setsar=1[game];"
+        f"[bg][cam]overlay=0:{TOP}[l1];"
+        f"[l1][game]overlay=0:{game_y}[v0]"
     )
     if timer:
         tx, ty, tw, th = timer
         tw_o, th_o = int(tw * 1.6) // 2 * 2, int(th * 1.6) // 2 * 2
         fc = fc[:-len("[v0]")] + "[v00];"
         fc += f"[c]crop={tw}:{th}:{tx}:{ty},scale={tw_o}:{th_o}:flags=lanczos[tmr];"
-        fc += f"[v00][tmr]overlay=x={W - tw_o - 30}:y={cam_h + 30}[v0]"
-    print(f"      вебка: crop {cw}x{ch}+{cx}+{cy} -> {W}x{cam_h}; геймплей: crop {gw}x{src_h}+{gx}+0 -> {W}x{game_h}")
+        fc += f"[v00][tmr]overlay=x={W - tw_o - 30}:y={game_y + 30}[v0]"
+    print(f"      вебка: crop {cw}x{ch}+{cx}+{cy} -> {W}x{cam_h} @y={TOP}; "
+          f"геймплей: crop {gw}x{src_h}, панорама x {min(xs):.0f}..{max(xs):.0f} -> {W}x{game_h} @y={game_y}")
     finish(src, out, start, end, fc, srt, margin_v=60)
 
 
@@ -422,7 +478,7 @@ def main():
                        "score": [round(v, 3) for v in score.tolist()]},
     }
     json.dump(report, open(base + ".json", "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+              ensure_ascii=False, indent=1, default=float)
     want = (abs(od - (end - start)) <= 0.5) if a.keep_all else (30 <= od <= 40.5)
     ok = (ov["width"], ov["height"]) == (1080, 1920) and bool(oa) and want
     print(f"[4/4] ffprobe: {ov['width']}x{ov['height']} {ov['codec_name']}, "
