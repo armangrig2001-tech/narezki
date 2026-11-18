@@ -109,6 +109,21 @@ def pick_window(rms, motion, min_len=30, max_len=40, w_audio=0.6):
     return s, e, score
 
 
+def trim_dead_ends(rms, motion, dur, max_trim=3):
+    """Весь исходник, кроме тихих и статичных секунд в начале/конце (не более max_trim)."""
+    n = len(rms)
+    if n < 4:
+        return 0.0, dur
+    quiet = (rms < np.median(rms) - 15) & (motion <= np.percentile(motion, 20))
+    s = 0
+    while s < min(max_trim, n) and quiet[s]:
+        s += 1
+    e = n
+    while n - e < max_trim and e > s + 1 and quiet[e - 1]:
+        e -= 1
+    return float(s), (dur if e == n else float(e))
+
+
 def fmt_tc(t):
     h, rem = divmod(t, 3600)
     m, sec = divmod(rem, 60)
@@ -148,8 +163,12 @@ def try_whisper(src, srt_out):
         import whisper  # noqa
     except ImportError:
         return False
-    model = whisper.load_model(os.environ.get("WHISPER_MODEL", "small"))
-    res = model.transcribe(src, language="ru")
+    try:
+        model = whisper.load_model(os.environ.get("WHISPER_MODEL", "small"))
+        res = model.transcribe(src, language=os.environ.get("WHISPER_LANG", "ru"))
+    except Exception as e:  # модель не скачалась / нет звука — рендер без субтитров
+        print(f"      whisper: ошибка расшифровки ({e}) — без субтитров")
+        return False
     with open(srt_out, "w", encoding="utf-8") as fh:
         for i, sgm in enumerate(res["segments"], 1):
             def f(t):
@@ -164,8 +183,10 @@ def parse_box(s):
     return x, y, w, h
 
 
-def render(src, out, start, end, cam, timer, srt, src_w, src_h):
+def render(src, out, start, end, cam, timer, srt, src_w, src_h, layout="stack"):
     W, H = 1080, 1920
+    if layout == "full":
+        return render_full(src, out, start, end, timer, srt, src_w, src_h)
     CAM_H = 608                      # вебка 16:9 на всю ширину
     GAME_H = H - CAM_H               # 1312
     # центральный кроп геймплея под 1080x1312
@@ -185,12 +206,58 @@ def render(src, out, start, end, cam, timer, srt, src_w, src_h):
         f"[st]drawbox=x=0:y={CAM_H - 3}:w={W}:h=6:color=white@0.9:t=fill[st2];"
         f"[st2][tmr]overlay=x={W - tw_o - 30}:y={CAM_H + 30}[v0]"
     )
+    finish(src, out, start, end, fc, srt, margin_v=60)
+
+
+def render_full(src, out, start, end, timer, srt, src_w, src_h):
+    """Компоновка «весь кадр + крупный план» для исходника с неизвестной раскладкой.
+
+    По правилам вертикального формата (HyperFrames, types/vertical.md):
+    ничего важного выше 168 px и ниже 1330 px. Поэтому:
+      * фон — размытая и затемнённая копия кадра (без чёрных полос);
+      * 200..808 px — исходный кадр целиком 1080x608: драка, вебка стримера
+        и оригинальный таймер гарантированно в кадре, ничего не обрезано;
+      * 840..1720 px — крупный план центра кадра (драка), x1.6;
+      * таймер (если задан --timer) дублируется увеличенным поверх крупного плана;
+      * субтитры — у нижней границы безопасной полосы (~1330 px).
+    """
+    W, H = 1080, 1920
+    TOP_Y, TOP_H = 200, 608
+    Z_Y, Z_H = 840, 880
+    zh = int(src_h / 1.6) // 2 * 2
+    zw = min(src_w, int(zh * W / Z_H)) // 2 * 2
+    zx, zy = (src_w - zw) // 2, max(0, (src_h - zh) // 2 - src_h // 20)
+    n = 4 if timer else 3
+    fc = (
+        f"[0:v]split={n}[a][b][c]{'[d]' if timer else ''};"
+        f"[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
+        f"boxblur=luma_radius=40:luma_power=2,eq=brightness=-0.18:saturation=0.8,setsar=1[bg];"
+        f"[b]scale={W}:{TOP_H}:flags=lanczos,setsar=1[top];"
+        f"[c]crop={zw}:{zh}:{zx}:{zy},scale={W}:{Z_H}:flags=lanczos,setsar=1[zoom];"
+        f"[bg][top]overlay=0:{TOP_Y}[l1];"
+        f"[l1][zoom]overlay=0:{Z_Y}[l2];"
+        f"[l2]drawbox=x=0:y={TOP_Y - 4}:w={W}:h=4:color=white@0.85:t=fill,"
+        f"drawbox=x=0:y={TOP_Y + TOP_H}:w={W}:h=4:color=white@0.85:t=fill,"
+        f"drawbox=x=0:y={Z_Y - 4}:w={W}:h=4:color=white@0.85:t=fill[v0]"
+    )
+    if timer:
+        tx, ty, tw, th = timer
+        tw_o, th_o = int(tw * 1.6) // 2 * 2, int(th * 1.6) // 2 * 2
+        fc = fc[:-len("[v0]")] + "[v00];"
+        fc += f"[d]crop={tw}:{th}:{tx}:{ty},scale={tw_o}:{th_o}:flags=lanczos[tmr];"
+        fc += f"[v00][tmr]overlay=x={W - tw_o - 30}:y={Z_Y + 30}[v0]"
+    # MarginV в единицах libass (высота 288): 90 ≈ 600 px от низа => ~1320 px
+    finish(src, out, start, end, fc, srt, margin_v=90)
+
+
+def finish(src, out, start, end, fc, srt, margin_v):
+    W, H = 1080, 1920
     last = "v0"
     if srt:
         esc = srt.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
         style = ("FontName=DejaVu Sans,Bold=1,FontSize=13,PrimaryColour=&H00FFFFFF,"
                  "OutlineColour=&H00000000,BorderStyle=1,Outline=2,Shadow=0,"
-                 "Alignment=2,MarginV=60")
+                 f"Alignment=2,MarginV={margin_v}")
         fc += f";[v0]subtitles='{esc}':original_size={W}x{H}:force_style='{style}'[v1]"
         last = "v1"
 
@@ -209,8 +276,12 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("src")
     ap.add_argument("-o", "--out", default="output/clip.mp4")
-    ap.add_argument("--cam", default="1416:786:480:270", help="x:y:w:h вебки в исходнике")
-    ap.add_argument("--timer", default="20:20:380:80", help="x:y:w:h таймера в исходнике")
+    ap.add_argument("--layout", choices=["stack", "full"], default="stack",
+                    help="stack: вебка сверху + геймплей; full: весь кадр + крупный план")
+    ap.add_argument("--cam", default=None, help="x:y:w:h вебки в исходнике (stack)")
+    ap.add_argument("--timer", default=None, help="x:y:w:h таймера в исходнике")
+    ap.add_argument("--keep-all", action="store_true",
+                    help="брать весь исходник, срезая только пустые начало/конец")
     ap.add_argument("--srt", help="SRT с таймкодами исходника")
     ap.add_argument("--min", type=int, default=30)
     ap.add_argument("--max", type=int, default=40)
@@ -229,8 +300,13 @@ def main():
 
     rms = audio_rms_per_sec(a.src, dur)
     mot = motion_per_sec(a.src, dur)
-    s, e, score = pick_window(rms, mot, a.min, a.max)
-    start, end = float(s), float(min(e, dur))
+    if a.keep_all:
+        start, end = trim_dead_ends(rms, mot, dur)
+        _, _, score = pick_window(rms, mot, 1, 1)
+        s, e = int(start), max(int(start) + 1, int(np.ceil(end)))
+    else:
+        s, e, score = pick_window(rms, mot, a.min, a.max)
+        start, end = float(s), float(min(e, dur))
     print(f"[2/4] Выбран момент: {fmt_tc(start)} — {fmt_tc(end)} "
           f"({end - start:.1f} с), ср. активность {score[s:e].mean():.2f} "
           f"vs {score.mean():.2f} по всему видео")
@@ -251,8 +327,13 @@ def main():
     else:
         print("[3/4] Субтитры: расшифровки нет (whisper не установлен, SRT не найден) — без субтитров")
 
-    render(a.src, a.out, start, end, parse_box(a.cam), parse_box(a.timer),
-           clip_srt, src_w, src_h)
+    if a.layout == "stack":
+        cam = parse_box(a.cam or "1416:786:480:270")      # раскладка тестового исходника
+        timer = parse_box(a.timer or "20:20:380:80")
+    else:
+        cam, timer = None, (parse_box(a.timer) if a.timer else None)
+    print(f"[3/4] Компоновка: {a.layout}")
+    render(a.src, a.out, start, end, cam, timer, clip_srt, src_w, src_h, a.layout)
 
     o = probe(a.out)
     ov = next(x for x in o["streams"] if x["codec_type"] == "video")
@@ -267,14 +348,15 @@ def main():
         "video_codec": ov["codec_name"],
         "audio": [{"codec": x["codec_name"], "sample_rate": x["sample_rate"],
                    "channels": x["channels"]} for x in oa],
-        "subtitles": bool(clip_srt),
+        "subtitles": bool(clip_srt), "layout": a.layout,
         "per_second": {"rms_db": [round(v, 1) for v in rms.tolist()],
                        "motion": [round(v, 2) for v in mot.tolist()],
                        "score": [round(v, 3) for v in score.tolist()]},
     }
     json.dump(report, open(base + ".json", "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    ok = (ov["width"], ov["height"]) == (1080, 1920) and oa and 30 <= od <= 40.5
+    want = (abs(od - (end - start)) <= 0.5) if a.keep_all else (30 <= od <= 40.5)
+    ok = (ov["width"], ov["height"]) == (1080, 1920) and bool(oa) and want
     print(f"[4/4] ffprobe: {ov['width']}x{ov['height']} {ov['codec_name']}, "
           f"{od:.2f} с, аудио: {len(oa)} дорожк. -> {'OK' if ok else 'FAIL'}")
     sys.exit(0 if ok else 1)
