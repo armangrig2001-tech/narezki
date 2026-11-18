@@ -1,0 +1,224 @@
+name: Render Twitch Clip
+
+on:
+  workflow_dispatch:
+    inputs:
+      clip_url:
+        description: "Ссылка на публичный клип Twitch"
+        required: true
+        default: "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+      layout:
+        description: "tiktok — вебка 1080x760 + игра 1080x1160 + заголовок; auto — вебка сверху без заголовка; full — весь кадр"
+        type: choice
+        options: [tiktok, auto, full]
+        default: tiktok
+      title:
+        description: "Заголовок (3–7 слов, заглавными), пусто — без заголовка"
+        required: false
+        default: ""
+      title_accent:
+        description: "Слово(а) заголовка жёлтым, через запятую"
+        required: false
+        default: ""
+      start:
+        description: "Начало фрагмента в клипе, с (пусто — весь клип)"
+        required: false
+        default: ""
+      end:
+        description: "Конец фрагмента в клипе, с (пусто — до конца)"
+        required: false
+        default: ""
+      cam:
+        description: "Регион вебки x:y:w:h вручную (вместо автопоиска), необязательно"
+        required: false
+        default: ""
+      timer:
+        description: "Регион таймера стрима x:y:w:h — дублируется крупно, необязательно"
+        required: false
+        default: ""
+      subtitles:
+        description: "Прожечь субтитры (расшифровка Whisper)"
+        type: boolean
+        default: false
+  # Проверка на PR, который меняет рендер или этот workflow (клип по умолчанию)
+  pull_request:
+    paths:
+      - ".github/workflows/render-twitch-clip.yml"
+      - "narezchik.py"
+      - "cam_detect.py"
+      - "title_card.py"
+
+permissions:
+  contents: write   # публикация готового MP4 в GitHub Release (прямая ссылка)
+
+env:
+  HYPERFRAMES_NO_TELEMETRY: "1"
+  CLIP_URL: ${{ inputs.clip_url || 'https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M' }}
+  LAYOUT: ${{ inputs.layout || 'tiktok' }}
+  # Прогон на PR собирает клип «драка» с утверждёнными параметрами
+  TITLE: ${{ github.event_name == 'pull_request' && 'ЗАЧЕМ Я РАЗВЯЗАЛ ДОННИ В GTA 6' || inputs.title }}
+  TITLE_ACCENT: ${{ github.event_name == 'pull_request' && 'РАЗВЯЗАЛ' || inputs.title_accent }}
+  START: ${{ github.event_name == 'pull_request' && '10.5' || inputs.start }}
+  END: ${{ github.event_name == 'pull_request' && '34.0' || inputs.end }}
+  CAM: ${{ inputs.cam }}
+  TIMER: ${{ inputs.timer }}
+  SUBTITLES: ${{ inputs.subtitles && 'true' || 'false' }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg and fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          ffmpeg -hide_banner -version | head -1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install yt-dlp
+        run: |
+          python -m pip install -q --upgrade pip
+          python -m pip install -q yt-dlp numpy "opencv-python-headless==4.10.0.84" pillow
+          yt-dlp --version
+
+      - name: Download clip (yt-dlp, no login, no cookies)
+        id: dl
+        run: |
+          mkdir -p work out
+          set +e
+          yt-dlp --no-cookies --no-playlist --no-progress \
+            -f "best[ext=mp4]/best" --merge-output-format mp4 \
+            --write-info-json -o "work/source.%(ext)s" -- "$CLIP_URL" > work/ytdlp.log 2>&1
+          rc=$?
+          set -e
+          cat work/ytdlp.log
+          if [ $rc -ne 0 ] || [ ! -s work/source.mp4 ]; then
+            {
+              echo "## ❌ Twitch не отдал видео"
+              echo ""
+              echo "Клип: $CLIP_URL"
+              echo ""
+              echo "yt-dlp завершился с кодом **$rc** (без логина и cookies). Точный вывод:"
+              echo ""
+              echo '```'
+              sed 's/`/'"'"'/g' work/ytdlp.log | tail -n 40
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::yt-dlp не скачал клип (код $rc)"
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          d = json.load(open("work/source.info.json"))
+          print({k: d.get(k) for k in ("id", "title", "uploader", "duration", "width", "height", "fps", "format_id")})
+          PY
+
+      - name: Probe source and save frame sheet
+        run: |
+          ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate,channels -of compact work/source.mp4 | tee work/source_probe.txt
+          # 8 кадров исходника на одном листе — чтобы подобрать регионы cam/timer
+          dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 work/source.mp4)
+          ffmpeg -hide_banner -loglevel error -y -i work/source.mp4 \
+            -vf "fps=8/${dur},scale=960:-2,tile=2x4" -frames:v 1 out/source_frames.jpg
+
+      - name: Install Whisper (CPU) for subtitles
+        if: env.SUBTITLES == 'true'
+        continue-on-error: true
+        run: |
+          python -m pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -q openai-whisper
+
+      - name: Render vertical 1080x1920
+        env:
+          WHISPER_MODEL: small
+          WHISPER_LANG: ru
+        run: |
+          args=(work/source.mp4 -o out/draka_vertical.mp4 --layout "$LAYOUT" --keep-all)
+          [ -n "$CAM" ] && args+=(--cam "$CAM")
+          [ -n "$TIMER" ] && args+=(--timer "$TIMER")
+          [ "$SUBTITLES" = "true" ] && args+=(--subs)
+          [ -n "$START" ] && args+=(--start "$START")
+          [ -n "$END" ] && args+=(--end "$END")
+          [ -n "$TITLE" ] && args+=(--title "$TITLE" --title-accent "$TITLE_ACCENT")
+          python narezchik.py "${args[@]}"
+
+      - name: Verify with ffprobe
+        run: |
+          ffprobe -v error -show_entries format=duration,size:stream=codec_type,codec_name,width,height,sample_rate,channels \
+            -of json out/draka_vertical.mp4 > out/draka_vertical.ffprobe.json
+          python - <<'PY'
+          import json, os
+          p = json.load(open("out/draka_vertical.ffprobe.json"))
+          r = json.load(open("out/draka_vertical.json"))
+          v = next(s for s in p["streams"] if s["codec_type"] == "video")
+          a = [s for s in p["streams"] if s["codec_type"] == "audio"]
+          dur = float(p["format"]["duration"])
+          ok = (v["width"], v["height"]) == (1080, 1920) and a
+          lines = [
+            "## " + ("✅" if ok else "❌") + " draka-vertical",
+            "",
+            f"- Источник: {os.environ['CLIP_URL']}",
+            f"- Фрагмент исходника: {r['source_start']} — {r['source_end']}",
+            f"- Компоновка: `{r['layout']}`, субтитры: {'да' if r['subtitles'] else 'нет'}",
+            f"- Заголовок: {((r.get('cam_detect') or {}).get('title') or {}).get('lines', '—')}",
+            f"- Вебка: {r.get('cam')} ({(r.get('cam_detect') or {}).get('method', '—')})",
+            f"- ffprobe: **{v['width']}×{v['height']}** {v['codec_name']}, **{dur:.2f} с**, "
+            + (f"аудио {a[0]['codec_name']} {a[0]['sample_rate']} Гц, {a[0]['channels']} кан." if a else "**без аудио**"),
+            f"- Размер: {int(p['format']['size']) / 1e6:.1f} МБ",
+            "",
+            "Файл — в артефакте **draka-vertical** этого запуска.",
+          ]
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(lines) + "\n")
+          print("\n".join(lines))
+          raise SystemExit(0 if ok else 1)
+          PY
+          cp work/source.info.json work/source_probe.txt work/ytdlp.log out/ 2>/dev/null || true
+
+      - name: Upload artifact draka-vertical
+        uses: actions/upload-artifact@v4
+        with:
+          name: draka-vertical
+          path: out/
+          if-no-files-found: error
+
+      - name: Push previews to branch previews/<clip>
+        if: always() && steps.dl.outcome == 'success'
+        run: |
+          clip_id=$(python -c "import os,re;u=os.environ['CLIP_URL'].split('?')[0].rstrip('/');print(re.sub(r'[^A-Za-z0-9_-]','',u.rsplit('/',1)[-1])[:80] or 'clip')")
+          rm -rf /tmp/prev && mkdir -p /tmp/prev
+          cp work/source.mp4 /tmp/prev/ || true
+          cp out/*.jpg out/*.json out/draka_vertical.mp4 /tmp/prev/ 2>/dev/null || true
+          cd /tmp/prev
+          git init -q -b "previews/$clip_id"
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -qm "Превью рендера ${clip_id} (run ${GITHUB_RUN_ID})"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/previews/$clip_id"
+          echo "- Превью и исходник: ветка \`previews/$clip_id\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish MP4 to GitHub Release (direct link)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          clip_id=$(python -c "import os,re;u=os.environ['CLIP_URL'].split('?')[0].rstrip('/');print(re.sub(r'[^A-Za-z0-9_-]','',u.rsplit('/',1)[-1])[:80] or 'clip')")
+          tag="clip-${clip_id}"
+          cp out/draka_vertical.mp4 "out/${clip_id}_vertical.mp4"
+          if ! gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+              --title "Вертикальный клип: ${clip_id}" \
+              --notes "Источник: ${CLIP_URL}. Собрано workflow Render Twitch Clip, запуск ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
+          fi
+          gh release upload "$tag" "out/${clip_id}_vertical.mp4" --repo "$GITHUB_REPOSITORY" --clobber
+          url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/${tag}/${clip_id}_vertical.mp4"
+          echo "Прямая ссылка: $url"
+          {
+            echo ""
+            echo "### ▶️ Готовое видео"
+            echo "Прямая ссылка на MP4: $url"
+          } >> "$GITHUB_STEP_SUMMARY"
