@@ -1,6 +1,10 @@
 {
  "channel": "strogo",
- "checked_pairs": [],
+ "checked_pairs": [
+  "AdorableNaiveNarwhalHotPokket-cRO2ZIFFlUHiPXeK|InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SnappyHilariousLorisBIRB-hTJ2x6PN4jhujfkA",
+  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SteamyBetterPandaBleedPurple-td8iPudTTnFOZEGM"
+ ],
  "clips": {
   "AbnegateAbrasiveHedgehogNononoCat-GXQlagg461jtXji_": {
    "attempts": 0,
@@ -3085,21 +3089,20 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T14:37:41Z",
-    "run": "44326161265"
-   },
    "contest_ok": true,
+   "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.6,
-   "evaluated_at": "2026-11-18T14:25:01Z",
+   "duration": 34.63,
+   "evaluated_at": "2026-11-18T14:39:58Z",
+   "excluded": null,
    "first_seen": "2026-11-18T14:06:38Z",
    "force_run": "44326161265",
-   "frames_sheet": "work/pipeline/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
+   "frames_sheet": "work/pipeline/strogo/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "language": "ru",
+   "leads": null,
    "moment_type": "other",
    "output": {
     "checks": {
@@ -3111,20 +3114,31 @@
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
     "srt": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.srt"
    },
-   "reason": "Отбор по метаданным: рост просмотров 50-й перцентиль, возраст 2.2 ч",
+   "reason": "Отбор по метаданным: просмотры с учётом возраста: 0-й перцентиль, реплики 26%, реакция 0.44, действие 0.75, контекст 1.00, возраст 2.5 ч",
+   "reject_reason": null,
    "rendered_at": "2026-11-18T14:27:06Z",
-   "score": 55,
+   "score": 39,
    "score_mode": "meta",
+   "signals": {
+    "action": 0.751,
+    "complete": true,
+    "context": 1.0,
+    "hook": 1.0,
+    "length": 30,
+    "reaction": 0.444,
+    "speech": 0.267
+   },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "rendered",
+   "status": "scored",
    "timer_box": [
     2131,
     254,
     258,
     50
    ],
-   "title": "драка",
+   "title": null,
    "title_accent": null,
+   "title_fallback": "ДРАКА",
    "transcript": {
     "language": "ru",
     "probability": 0.816,
@@ -3248,12 +3262,13 @@
      4
     ]
    ],
-   "views_points": 4,
+   "views_points": 0,
    "vod_offset": null,
    "window": [
-    1.0,
-    34.0
-   ]
+    3.0,
+    33.0
+   ],
+   "zoom_at": null
   },
   "InquisitiveTenderNarwhalWholeWheat-FpMfiA9xZJ9-cA6V": {
    "attempts": 0,
@@ -3980,7 +3995,7 @@
    "contest_ok": true,
    "created_at": "2026-11-18T13:06:01Z",
    "criteria": null,
-   "duration": 60.0,
+   "duration": 59.9,
    "evaluated_at": "2026-11-18T14:38:29Z",
    "first_seen": "2026-11-18T14:27:10Z",
    "frames_sheet": "work/pipeline/OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf/frames.jpg",
@@ -3999,7 +4014,7 @@
     242,
     50
    ],
-   "title": null,
+   "title": "strogo - Highlight 8f3085 Part 02",
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -6820,14 +6835,12 @@
   "2026-11-18": {
    "evaluated": 5,
    "finalized": false,
-   "rendered": [
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
-   ]
+   "rendered": []
   }
  },
  "game_id": "1867279146",
  "manual": {
-  "force": false,
+  "force": true,
   "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
  },
  "runs": [
@@ -6890,13 +6903,22 @@
    "run": "44326161265"
   }
  ],
- "same_event": [],
+ "same_event": [
+  [
+   "AdorableNaiveNarwhalHotPokket-cRO2ZIFFlUHiPXeK",
+   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+  ],
+  [
+   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+   "SnappyHilariousLorisBIRB-hTJ2x6PN4jhujfkA"
+  ]
+ ],
  "stream": {
-  "checked_at": "2026-11-18T14:27:19Z",
-  "last_live_at": "2026-11-18T14:27:19Z",
+  "checked_at": "2026-11-18T14:37:35Z",
+  "last_live_at": "2026-11-18T14:37:35Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T14:27:19Z",
+ "updated_at": "2026-11-18T14:37:35Z",
  "version": 1
 }
