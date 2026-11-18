@@ -166,13 +166,13 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-pipeline.txt
 
-      - name: Модульные тесты отбора
-        run: python -m unittest discover -s tests -v
-
       - name: Установка ffmpeg и зависимостей
         run: |
           command -v ffmpeg > /dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null; }
           python -m pip install -q -r requirements-pipeline.txt
+
+      - name: Модульные тесты (после установки ffmpeg и numpy)
+        run: python -m unittest discover -s tests -v
 
       - name: Кэш модели Whisper
         uses: actions/cache@v4
