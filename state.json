@@ -24,7 +24,13 @@
    "vod_offset": null
   }
  },
- "days": {},
+ "days": {
+  "2026-11-18": {
+   "evaluated": 0,
+   "finalized": false,
+   "rendered": []
+  }
+ },
  "game_id": "1867279146",
  "manual": {
   "force": true,
