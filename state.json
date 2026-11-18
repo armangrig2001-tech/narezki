@@ -4733,7 +4733,7 @@
    },
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "video_id": null,
-   "views": 5,
+   "views": 9,
    "views_history": [
     [
      "2026-11-18T14:06:38Z",
@@ -4746,6 +4746,10 @@
     [
      "2026-11-18T14:41:57Z",
      5
+    ],
+    [
+     "2026-11-18T17:03:02Z",
+     9
     ]
    ],
    "views_points": 0,
@@ -9738,6 +9742,10 @@
   }
  },
  "game_id": "1867279146",
+ "manual": {
+  "force": true,
+  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+ },
  "runs": [
   {
    "at": "2026-11-18T14:06:38Z",
@@ -9836,6 +9844,11 @@
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ"
    ],
    "run": "44323416385"
+  },
+  {
+   "at": "2026-11-18T17:03:02Z",
+   "phase": "plan",
+   "run": "44354015993"
   }
  ],
  "same_event": [
@@ -9849,11 +9862,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-18T14:27:19Z",
-  "last_live_at": "2026-11-18T14:27:19Z",
+  "checked_at": "2026-11-18T17:03:02Z",
+  "last_live_at": "2026-11-18T17:03:02Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T14:27:19Z",
+ "updated_at": "2026-11-18T17:03:02Z",
  "version": 1
 }
