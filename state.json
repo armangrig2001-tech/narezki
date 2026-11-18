@@ -10545,26 +10545,35 @@
     628,
     242
    ],
-   "claim": {
-    "at": "2026-11-18T19:31:36Z",
-    "run": "44380057238"
-   },
    "contest_ok": true,
    "created_at": "2026-11-18T13:06:01Z",
    "criteria": null,
    "duration": 59.9,
    "evaluated_at": "2026-11-18T14:38:29Z",
+   "final_title": "STROGO - HIGHLIGHT 8F3085 PART 02 ГТА 6",
    "first_seen": "2026-11-18T14:27:10Z",
    "frames_sheet": "work/pipeline/OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf/frames.jpg",
    "game_id": "1867279146",
    "id": "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
    "language": "ru",
    "moment_type": "other",
+   "output": {
+    "checks": {
+     "audio": true,
+     "blurred_regions": 1,
+     "duration": 32.0,
+     "resolution": "1080x1920",
+     "size_mb": 25.0
+    },
+    "mp4": "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf/OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf.mp4",
+    "srt": null
+   },
    "reason": "Отбор по метаданным: рост просмотров 69-й перцентиль, 8 клипа одного момента, возраст 1.4 ч",
+   "rendered_at": "2026-11-18T19:36:11Z",
    "score": 88,
    "score_mode": "meta",
    "slug": "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
-   "status": "render_queued",
+   "status": "rendered",
    "timer_box": [
     2131,
     254,
@@ -17279,6 +17288,7 @@
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
+    "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
   }
