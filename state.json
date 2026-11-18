@@ -73,10 +73,6 @@
   }
  },
  "game_id": "1867279146",
- "manual": {
-  "force": true,
-  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
- },
  "runs": [
   {
    "at": "2026-11-18T14:06:38Z",
@@ -94,6 +90,12 @@
   {
    "at": "2026-11-18T14:12:25Z",
    "phase": "plan",
+   "run": "44321549071"
+  },
+  {
+   "at": "2026-11-18T14:12:28Z",
+   "phase": "work",
+   "rendered": [],
    "run": "44321549071"
   }
  ],
