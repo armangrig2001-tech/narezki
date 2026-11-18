@@ -4573,10 +4573,6 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T17:05:26Z",
-    "run": "44354015993"
-   },
    "contest_ok": true,
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
@@ -4584,28 +4580,28 @@
    "duration": 34.63,
    "evaluated_at": "2026-11-18T17:05:22Z",
    "excluded": null,
+   "final_title": "STROGO ДРАКА ГТА 6",
    "first_seen": "2026-11-18T14:06:38Z",
-   "force_run": "44354015993",
    "frames_sheet": "work/pipeline/strogo/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/frames.jpg",
    "game_id": "1867279146",
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "language": "ru",
    "leads": null,
-   "manual": true,
    "moment_type": "other",
    "output": {
     "checks": {
      "audio": true,
+     "blurred_regions": 1,
      "duration": 30.0,
      "resolution": "1080x1920",
-     "size_mb": 14.0
+     "size_mb": 13.5
     },
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
-    "srt": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.srt"
+    "srt": null
    },
    "reason": "Популярность на Twitch: 9 просмотров на Twitch (95-й перцентиль среди клипов того же возраста), этот момент клипнули 3 зрителя, реплики 26%, реакция 0.44, действие 0.75, контекст 1.00, возраст 4.9 ч",
    "reject_reason": null,
-   "rendered_at": "2026-11-18T14:41:53Z",
+   "rendered_at": "2026-11-18T17:08:21Z",
    "score": 75,
    "score_mode": "meta",
    "signals": {
@@ -4618,7 +4614,7 @@
     "speech": 0.267
    },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "render_queued",
+   "status": "rendered",
    "timer_box": [
     2131,
     254,
@@ -9743,6 +9739,7 @@
    "rendered": [
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
+    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
   }
