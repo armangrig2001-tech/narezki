@@ -14115,16 +14115,13 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T22:59:47Z",
-    "run": "44416637485"
-   },
+   "clip_duration": 34.6,
    "contest_ok": true,
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.6,
-   "evaluated_at": "2026-11-18T22:03:41Z",
+   "duration": 34.63,
+   "evaluated_at": "2026-11-18T23:00:42Z",
    "excluded": null,
    "final_title": "STROGO ДРАКА ГТА 6",
    "first_seen": "2026-11-18T14:06:38Z",
@@ -14146,10 +14143,10 @@
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
     "srt": null
    },
-   "reason": "Популярность на Twitch: 10 просмотров на Twitch (94-й перцентиль среди клипов того же возраста), этот момент клипнули 4 зрителя, реплики 36%, реакция 0.44, действие 0.75, контекст 1.00, возраст 9.9 ч",
+   "reason": "Популярность на Twitch: 10 просмотров на Twitch (93-й перцентиль среди клипов того же возраста), этот момент клипнули 4 зрителя, реплики 26%, реакция 0.44, действие 0.75, контекст 1.00, возраст 10.9 ч",
    "reject_reason": null,
    "rendered_at": "2026-11-18T22:07:43Z",
-   "score": 81,
+   "score": 80,
    "score_mode": "meta",
    "signals": {
     "action": 0.751,
@@ -14158,22 +14155,25 @@
     "hook": 1.0,
     "length": 30,
     "reaction": 0.444,
-    "speech": 0.367
+    "speech": 0.267
    },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "rendered",
+   "source": {
+    "kind": "clip"
+   },
+   "status": "scored",
    "timer_box": [
     2131,
     254,
     258,
     50
    ],
-   "title": "драка",
+   "title": null,
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
     "language": "ru",
-    "probability": 0.766,
+    "probability": 0.816,
     "segments": [
      {
       "end": 5.94,
@@ -14187,54 +14187,56 @@
        },
        {
         "end": 5.6,
-        "start": 4.82,
+        "start": 4.8,
         "word": " что"
        },
        {
-        "end": 5.84,
+        "end": 5.9,
         "start": 5.6,
         "word": " ты"
        },
        {
         "end": 5.94,
-        "start": 5.84,
+        "start": 5.9,
         "word": " делаешь?"
        }
       ]
      },
      {
-      "end": 10.86,
-      "start": 6.62,
-      "text": "Ты меня посадишь, мэйн. Я не могу тебя убить. Давай!",
+      "end": 8.24,
+      "start": 7.28,
+      "text": "Подожди меня, мать!",
       "words": [
        {
-        "end": 7.3,
-        "start": 6.62,
-        "word": " Ты"
+        "end": 7.88,
+        "start": 7.28,
+        "word": " Подожди"
        },
        {
-        "end": 7.44,
-        "start": 7.3,
-        "word": " меня"
+        "end": 7.94,
+        "start": 7.88,
+        "word": " меня,"
        },
        {
-        "end": 7.9,
-        "start": 7.44,
-        "word": " посадишь,"
-       },
+        "end": 8.24,
+        "start": 7.96,
+        "word": " мать!"
+       }
+      ]
+     },
+     {
+      "end": 9.88,
+      "start": 8.9,
+      "text": "Я не могу помочь тебя!",
+      "words": [
        {
-        "end": 8.44,
-        "start": 7.9,
-        "word": " мэйн."
-       },
-       {
-        "end": 9.1,
+        "end": 9.12,
         "start": 8.9,
         "word": " Я"
        },
        {
         "end": 9.28,
-        "start": 9.1,
+        "start": 9.12,
         "word": " не"
        },
        {
@@ -14243,51 +14245,41 @@
         "word": " могу"
        },
        {
-        "end": 9.76,
+        "end": 9.6,
         "start": 9.3,
-        "word": " тебя"
+        "word": " помочь"
        },
        {
-        "end": 9.76,
-        "start": 9.76,
-        "word": " убить."
-       },
-       {
-        "end": 10.86,
-        "start": 10.46,
-        "word": " Давай!"
+        "end": 9.88,
+        "start": 9.6,
+        "word": " тебя!"
        }
       ]
      },
      {
-      "end": 14.14,
-      "start": 11.48,
-      "text": "Донни, ты мать мать!",
+      "end": 13.68,
+      "start": 11.28,
+      "text": "Донни, ты мать!",
       "words": [
        {
         "end": 11.88,
-        "start": 11.48,
+        "start": 11.28,
         "word": " Донни,"
        },
        {
-        "end": 13.42,
-        "start": 13.42,
+        "end": 13.44,
+        "start": 13.44,
         "word": " ты"
        },
        {
-        "end": 13.7,
-        "start": 13.42,
-        "word": " мать"
-       },
-       {
-        "end": 14.14,
-        "start": 13.7,
+        "end": 13.68,
+        "start": 13.44,
         "word": " мать!"
        }
       ]
      }
     ],
-    "text": "Донни, что ты делаешь? Ты меня посадишь, мэйн. Я не могу тебя убить. Давай! Донни, ты мать мать!"
+    "text": "Донни, что ты делаешь? Подожди меня, мать! Я не могу помочь тебя! Донни, ты мать!"
    },
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "video_id": null,
@@ -28728,7 +28720,6 @@
    "rendered": [
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
