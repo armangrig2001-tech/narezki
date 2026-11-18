@@ -1274,10 +1274,6 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T14:40:07Z",
-    "run": "44323416385"
-   },
    "contest_ok": true,
    "created_at": "2026-11-18T14:04:37Z",
    "criteria": null,
@@ -1289,18 +1285,29 @@
    "id": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
    "language": "ru",
    "moment_type": "other",
+   "output": {
+    "checks": {
+     "audio": true,
+     "duration": 35.0,
+     "resolution": "1080x1920",
+     "size_mb": 14.4
+    },
+    "mp4": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8/BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8.mp4",
+    "srt": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8/BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8.srt"
+   },
    "reason": "Отбор по метаданным: рост просмотров 92-й перцентиль, 6 клипа одного момента, возраст 0.4 ч",
+   "rendered_at": "2026-11-18T14:42:19Z",
    "score": 97,
    "score_mode": "meta",
    "slug": "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-   "status": "render_queued",
+   "status": "rendered",
    "timer_box": [
     2131,
     254,
     240,
     50
    ],
-   "title": "сюжетку проходим",
+   "title": null,
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -1628,15 +1635,11 @@
    },
    "url": "https://www.twitch.tv/strogo/clip/BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
    "video_id": "2931685068",
-   "views": 223,
+   "views": 177,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      177
-    ],
-    [
-     "2026-11-18T14:41:57Z",
-     223
     ]
    ],
    "views_points": 9,
@@ -5701,7 +5704,7 @@
    "contest_ok": true,
    "created_at": "2026-11-18T13:06:01Z",
    "criteria": null,
-   "duration": 59.9,
+   "duration": 60.0,
    "evaluated_at": "2026-11-18T14:38:29Z",
    "first_seen": "2026-11-18T14:27:10Z",
    "frames_sheet": "work/pipeline/OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf/frames.jpg",
@@ -5720,7 +5723,7 @@
     242,
     50
    ],
-   "title": "strogo - Highlight 8f3085 Part 02",
+   "title": null,
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -7959,7 +7962,7 @@
    "slug": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
    "status": "rendered",
    "timer_box": null,
-   "title": "ваня",
+   "title": null,
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -8219,15 +8222,11 @@
    },
    "url": "https://www.twitch.tv/strogo/clip/SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
    "video_id": "2931685068",
-   "views": 80,
+   "views": 77,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      77
-    ],
-    [
-     "2026-11-18T14:41:57Z",
-     80
     ]
    ],
    "views_points": 10,
@@ -9720,12 +9719,17 @@
    "evaluated": 5,
    "finalized": false,
    "rendered": [
+    "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
   }
  },
  "game_id": "1867279146",
+ "manual": {
+  "force": false,
+  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+ },
  "runs": [
   {
    "at": "2026-11-18T14:06:38Z",
@@ -9827,11 +9831,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-18T14:42:06Z",
-  "last_live_at": "2026-11-18T14:42:06Z",
+  "checked_at": "2026-11-18T14:27:19Z",
+  "last_live_at": "2026-11-18T14:27:19Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T14:42:06Z",
+ "updated_at": "2026-11-18T14:27:19Z",
  "version": 1
 }
