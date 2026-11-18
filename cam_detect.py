@@ -234,6 +234,51 @@ def faces_center_in_box(src, box, n=24):
     return float(x + (left + right) / 2), float(y + cy), float(right - left)
 
 
+def detect_timer(src, box, start=0.0, end=None, n=12):
+    """Есть ли в вебке оригинальный таймер стрима (оранжево-жёлтые цифры, как у Строго).
+
+    Ищем в нижних 45 % рамки вебки насыщенные оранжево-жёлтые пиксели
+    (HSV: H 8–35, S > 120, V > 150) и проверяем, что они есть почти во всех кадрах.
+    Возвращает (найден, рамка_таймера_в_пикселях_исходника | None, доля_кадров).
+    """
+    if cv2 is None:
+        return False, None, 0.0
+    x, y, w, h = box
+    pr = json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                    "-of", "json", src], capture_output=True, text=True).stdout)
+    dur = float(pr["format"]["duration"])
+    end = dur if end is None else min(end, dur)
+    span = max(0.5, end - start)
+    by = y + int(h * 0.55)
+    bh = (h - int(h * 0.55)) // 2 * 2
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{start:.3f}", "-t", f"{span:.3f}",
+                          "-i", src, "-vf", f"fps={n}/{span:.3f},crop={w // 2 * 2}:{bh}:{x}:{by}",
+                          "-pix_fmt", "bgr24", "-f", "rawvideo", "-"], capture_output=True).stdout
+    fw = w // 2 * 2
+    k = len(raw) // (fw * bh * 3)
+    if not k:
+        return False, None, 0.0
+    fr = np.frombuffer(raw[: k * fw * bh * 3], np.uint8).reshape(k, bh, fw, 3)
+    hits, masks = 0, []
+    for f in fr:
+        hsv = cv2.cvtColor(f, cv2.COLOR_BGR2HSV)
+        m = cv2.inRange(hsv, (8, 120, 150), (35, 255, 255))
+        if m.mean() / 255 > 0.01:
+            hits += 1
+            masks.append(m > 0)
+    share = hits / k
+    if share < 0.7 or not masks:
+        return False, None, share
+    acc = np.mean(masks, axis=0) > 0.15
+    ys, xs = np.nonzero(acc)
+    tw, th = int(xs.max() - xs.min() + 1), int(ys.max() - ys.min() + 1)
+    tb = [int(x + xs.min()), int(by + ys.min()), tw, th]
+    fill = float(acc[ys.min():ys.max() + 1, xs.min():xs.max() + 1].mean())
+    # таймер — узкая горизонтальная строка цифр, а не пятно на всю вебку
+    shaped = tw / th >= 2.5 and th <= 0.3 * h and tw <= 0.85 * w and 0.08 <= fill <= 0.75
+    return bool(shaped), tb, share
+
+
 def save_debug(src, box, info, path):
     """Кадр из середины клипа с рамкой найденной вебки (для проверки)."""
     pr = json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",

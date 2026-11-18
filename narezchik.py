@@ -314,7 +314,15 @@ def render_cam(src, out, start, end, cam, timer, srt, src_w, src_h):
     finish(src, out, start, end, fc, srt, margin_v=60)
 
 
-def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None):
+# Субтитры раскладки tiktok: в зоне игры, ниже вебки/таймера (0..760) и заголовка (~746..1040),
+# выше нижних ~400 px интерфейса TikTok. Единицы libass для SRT: высота 288.
+TIKTOK_SUB_STYLE = ("FontName=Montserrat ExtraBold,FontSize=12,PrimaryColour=&H00FFFFFF,"
+                    "OutlineColour=&H00000000,BackColour=&H80000000,BorderStyle=1,Outline=2,"
+                    "Shadow=0,Alignment=2,MarginL=24,MarginR=34,MarginV=66")
+FONTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "fonts")
+
+
+def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None, srt=None):
     """Раскладка TikTok/Shorts: вебка 1080x760 сверху, игра 1080x1160 снизу, заголовок на стыке.
 
     * вебка: вся высота найденной рамки (оверлеи стримера внутри вебки, например
@@ -365,7 +373,8 @@ def render_tiktok(src, out, start, end, cam, title_png, src_w, src_h, face=None)
           f"панорама x {min(xs):.0f}..{max(xs):.0f} -> {W}x{GAME_H}; заголовок y={title_y}")
     d = end - start
     fade = f"afade=t=in:d=0.1,afade=t=out:st={max(0, d - 0.1):.3f}:d=0.1,"
-    finish(src, out, start, end, fc, None, margin_v=60, extra_inputs=inputs, afilter_pre=fade)
+    finish(src, out, start, end, fc, srt, margin_v=66, extra_inputs=inputs, afilter_pre=fade,
+           sub_style=TIKTOK_SUB_STYLE, fontsdir=FONTS_DIR)
 
 
 def render_full(src, out, start, end, timer, srt, src_w, src_h):
@@ -425,15 +434,21 @@ def loudnorm_2pass(src, start, end, pre=""):
         return f"loudnorm={target}"
 
 
-def finish(src, out, start, end, fc, srt, margin_v, extra_inputs=(), afilter_pre=""):
+def _ff_escape(path):
+    return path.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
+
+
+def finish(src, out, start, end, fc, srt, margin_v, extra_inputs=(), afilter_pre="",
+           sub_style=None, fontsdir=None):
     W, H = 1080, 1920
     last = "v0"
     if srt:
-        esc = srt.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
-        style = ("FontName=DejaVu Sans,Bold=1,FontSize=13,PrimaryColour=&H00FFFFFF,"
-                 "OutlineColour=&H00000000,BorderStyle=1,Outline=2,Shadow=0,"
-                 f"Alignment=2,MarginV={margin_v}")
-        fc += f";[v0]subtitles='{esc}':original_size={W}x{H}:force_style='{style}'[v1]"
+        esc = _ff_escape(srt)
+        style = sub_style or ("FontName=DejaVu Sans,Bold=1,FontSize=13,PrimaryColour=&H00FFFFFF,"
+                              "OutlineColour=&H00000000,BorderStyle=1,Outline=2,Shadow=0,"
+                              f"Alignment=2,MarginV={margin_v}")
+        fd = f":fontsdir='{_ff_escape(fontsdir)}'" if fontsdir else ""
+        fc += f";[v0]subtitles='{esc}':original_size={W}x{H}{fd}:force_style='{style}'[v1]"
         last = "v1"
 
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
