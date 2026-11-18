@@ -3,7 +3,8 @@
  "checked_pairs": [
   "AdorableNaiveNarwhalHotPokket-cRO2ZIFFlUHiPXeK|InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
   "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SnappyHilariousLorisBIRB-hTJ2x6PN4jhujfkA",
-  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SteamyBetterPandaBleedPurple-td8iPudTTnFOZEGM"
+  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|SteamyBetterPandaBleedPurple-td8iPudTTnFOZEGM",
+  "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M|TacitBigPepperoniDogFace-3h4Ex12kWJbCGUeX"
  ],
  "clips": {
   "AbnegateAbrasiveHedgehogNononoCat-GXQlagg461jtXji_": {
@@ -4572,16 +4573,12 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T17:03:10Z",
-    "run": "44354015993"
-   },
    "contest_ok": true,
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.6,
-   "evaluated_at": "2026-11-18T14:39:58Z",
+   "duration": 34.63,
+   "evaluated_at": "2026-11-18T17:05:22Z",
    "excluded": null,
    "first_seen": "2026-11-18T14:06:38Z",
    "force_run": "44354015993",
@@ -4601,10 +4598,10 @@
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
     "srt": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.srt"
    },
-   "reason": "Отбор по метаданным: просмотры с учётом возраста: 0-й перцентиль, реплики 26%, реакция 0.44, действие 0.75, контекст 1.00, возраст 2.5 ч",
+   "reason": "Популярность на Twitch: 9 просмотров на Twitch (95-й перцентиль среди клипов того же возраста), этот момент клипнули 3 зрителя, реплики 26%, реакция 0.44, действие 0.75, контекст 1.00, возраст 4.9 ч",
    "reject_reason": null,
    "rendered_at": "2026-11-18T14:41:53Z",
-   "score": 39,
+   "score": 75,
    "score_mode": "meta",
    "signals": {
     "action": 0.751,
@@ -4616,14 +4613,14 @@
     "speech": 0.267
    },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
-   "status": "rendered",
+   "status": "scored",
    "timer_box": [
     2131,
     254,
     258,
     50
    ],
-   "title": "драка",
+   "title": null,
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
@@ -4757,7 +4754,7 @@
      9
     ]
    ],
-   "views_points": 0,
+   "views_points": 8,
    "vod_offset": null,
    "window": [
     3.0,
@@ -9741,7 +9738,6 @@
    "rendered": [
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
   }
