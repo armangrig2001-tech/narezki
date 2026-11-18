@@ -3097,7 +3097,7 @@
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.63,
+   "duration": 34.6,
    "evaluated_at": "2026-11-18T14:39:58Z",
    "excluded": null,
    "first_seen": "2026-11-18T14:06:38Z",
@@ -3141,7 +3141,7 @@
     258,
     50
    ],
-   "title": null,
+   "title": "драка",
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
@@ -4000,7 +4000,7 @@
    "contest_ok": true,
    "created_at": "2026-11-18T13:06:01Z",
    "criteria": null,
-   "duration": 59.9,
+   "duration": 60.0,
    "evaluated_at": "2026-11-18T14:38:29Z",
    "first_seen": "2026-11-18T14:27:10Z",
    "frames_sheet": "work/pipeline/OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf/frames.jpg",
@@ -4019,7 +4019,7 @@
     242,
     50
    ],
-   "title": "strogo - Highlight 8f3085 Part 02",
+   "title": null,
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -5742,10 +5742,6 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-18T14:38:34Z",
-    "run": "44323416385"
-   },
    "contest_ok": false,
    "created_at": "2026-11-18T11:29:51Z",
    "criteria": null,
@@ -5757,11 +5753,22 @@
    "id": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
    "language": "ru",
    "moment_type": "other",
+   "output": {
+    "checks": {
+     "audio": true,
+     "duration": 30.0,
+     "resolution": "1080x1920",
+     "size_mb": 7.9
+    },
+    "mp4": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d/SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d.mp4",
+    "srt": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d/SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d.srt"
+   },
    "reason": "Отбор по метаданным: рост просмотров 99-й перцентиль, 7 клипа одного момента, возраст 3.0 ч",
+   "rendered_at": "2026-11-18T14:40:05Z",
    "score": 99,
    "score_mode": "meta",
    "slug": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
-   "status": "render_queued",
+   "status": "rendered",
    "timer_box": null,
    "title": null,
    "title_accent": null,
@@ -6840,12 +6847,14 @@
   "2026-11-18": {
    "evaluated": 5,
    "finalized": false,
-   "rendered": []
+   "rendered": [
+    "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
+   ]
   }
  },
  "game_id": "1867279146",
  "manual": {
-  "force": true,
+  "force": false,
   "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
  },
  "runs": [
@@ -6919,11 +6928,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-18T14:37:35Z",
-  "last_live_at": "2026-11-18T14:37:35Z",
+  "checked_at": "2026-11-18T14:27:19Z",
+  "last_live_at": "2026-11-18T14:27:19Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T14:37:35Z",
+ "updated_at": "2026-11-18T14:27:19Z",
  "version": 1
 }
