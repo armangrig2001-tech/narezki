@@ -10654,7 +10654,7 @@
    },
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "video_id": null,
-   "views": 9,
+   "views": 10,
    "views_history": [
     [
      "2026-11-18T14:06:38Z",
@@ -10679,6 +10679,10 @@
     [
      "2026-11-18T19:24:46Z",
      9
+    ],
+    [
+     "2026-11-18T21:32:30Z",
+     10
     ]
    ],
    "views_points": 9,
@@ -21487,6 +21491,10 @@
   }
  },
  "game_id": "1867279146",
+ "manual": {
+  "force": true,
+  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+ },
  "runs": [
   {
    "at": "2026-11-18T14:06:38Z",
@@ -21691,6 +21699,11 @@
    "phase": "work",
    "rendered": [],
    "run": "44380057238"
+  },
+  {
+   "at": "2026-11-18T21:32:30Z",
+   "phase": "plan",
+   "run": "44402323142"
   }
  ],
  "same_event": [
@@ -21704,11 +21717,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-18T19:36:24Z",
-  "last_live_at": "2026-11-18T19:36:24Z",
+  "checked_at": "2026-11-18T21:32:30Z",
+  "last_live_at": "2026-11-18T21:32:30Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T19:36:24Z",
+ "updated_at": "2026-11-18T21:32:30Z",
  "version": 1
 }
