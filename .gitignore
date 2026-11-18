@@ -2,3 +2,5 @@ work/
 __pycache__/
 state/
 out/
+node_modules/
+queue/
