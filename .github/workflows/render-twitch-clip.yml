@@ -1,0 +1,159 @@
+name: Render Twitch Clip
+
+on:
+  workflow_dispatch:
+    inputs:
+      clip_url:
+        description: "Ссылка на публичный клип Twitch"
+        required: true
+        default: "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+      layout:
+        description: "full — весь кадр + крупный план; stack — вебка сверху (нужен cam)"
+        type: choice
+        options: [full, stack]
+        default: full
+      cam:
+        description: "Регион вебки x:y:w:h в исходнике (для stack), необязательно"
+        required: false
+        default: ""
+      timer:
+        description: "Регион таймера стрима x:y:w:h — дублируется крупно, необязательно"
+        required: false
+        default: ""
+      subtitles:
+        description: "Субтитры через Whisper (если расшифровка получится)"
+        type: boolean
+        default: true
+  # Проверка на PR, который меняет рендер или этот workflow (клип по умолчанию)
+  pull_request:
+    paths:
+      - ".github/workflows/render-twitch-clip.yml"
+      - "narezchik.py"
+
+permissions:
+  contents: read
+
+env:
+  HYPERFRAMES_NO_TELEMETRY: "1"
+  CLIP_URL: ${{ inputs.clip_url || 'https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M' }}
+  LAYOUT: ${{ inputs.layout || 'full' }}
+  CAM: ${{ inputs.cam }}
+  TIMER: ${{ inputs.timer }}
+  SUBTITLES: ${{ github.event_name == 'pull_request' && 'true' || inputs.subtitles }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg and fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          ffmpeg -hide_banner -version | head -1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install yt-dlp
+        run: |
+          python -m pip install -q --upgrade pip
+          python -m pip install -q yt-dlp numpy
+          yt-dlp --version
+
+      - name: Download clip (yt-dlp, no login, no cookies)
+        id: dl
+        run: |
+          mkdir -p work out
+          set +e
+          yt-dlp --no-cookies --no-playlist --no-progress \
+            -f "best[ext=mp4]/best" --merge-output-format mp4 \
+            --write-info-json -o "work/source.%(ext)s" -- "$CLIP_URL" > work/ytdlp.log 2>&1
+          rc=$?
+          set -e
+          cat work/ytdlp.log
+          if [ $rc -ne 0 ] || [ ! -s work/source.mp4 ]; then
+            {
+              echo "## ❌ Twitch не отдал видео"
+              echo ""
+              echo "Клип: $CLIP_URL"
+              echo ""
+              echo "yt-dlp завершился с кодом **$rc** (без логина и cookies). Точный вывод:"
+              echo ""
+              echo '```'
+              sed 's/`/'"'"'/g' work/ytdlp.log | tail -n 40
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::yt-dlp не скачал клип (код $rc)"
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          d = json.load(open("work/source.info.json"))
+          print({k: d.get(k) for k in ("id", "title", "uploader", "duration", "width", "height", "fps", "format_id")})
+          PY
+
+      - name: Probe source and save frame sheet
+        run: |
+          ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate,channels -of compact work/source.mp4 | tee work/source_probe.txt
+          # 8 кадров исходника на одном листе — чтобы подобрать регионы cam/timer
+          dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 work/source.mp4)
+          ffmpeg -hide_banner -loglevel error -y -i work/source.mp4 \
+            -vf "fps=8/${dur},scale=960:-2,tile=2x4" -frames:v 1 out/source_frames.jpg
+
+      - name: Install Whisper (CPU) for subtitles
+        if: env.SUBTITLES == 'true'
+        continue-on-error: true
+        run: |
+          python -m pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -q openai-whisper
+
+      - name: Render vertical 1080x1920
+        env:
+          WHISPER_MODEL: small
+          WHISPER_LANG: ru
+        run: |
+          args=(work/source.mp4 -o out/draka_vertical.mp4 --layout "$LAYOUT" --keep-all)
+          [ -n "$CAM" ] && args+=(--cam "$CAM")
+          [ -n "$TIMER" ] && args+=(--timer "$TIMER")
+          python narezchik.py "${args[@]}"
+
+      - name: Verify with ffprobe
+        run: |
+          ffprobe -v error -show_entries format=duration,size:stream=codec_type,codec_name,width,height,sample_rate,channels \
+            -of json out/draka_vertical.mp4 > out/draka_vertical.ffprobe.json
+          python - <<'PY'
+          import json, os
+          p = json.load(open("out/draka_vertical.ffprobe.json"))
+          r = json.load(open("out/draka_vertical.json"))
+          v = next(s for s in p["streams"] if s["codec_type"] == "video")
+          a = [s for s in p["streams"] if s["codec_type"] == "audio"]
+          dur = float(p["format"]["duration"])
+          ok = (v["width"], v["height"]) == (1080, 1920) and a
+          lines = [
+            "## " + ("✅" if ok else "❌") + " draka-vertical",
+            "",
+            f"- Источник: {os.environ['CLIP_URL']}",
+            f"- Фрагмент исходника: {r['source_start']} — {r['source_end']}",
+            f"- Компоновка: `{r['layout']}`, субтитры: {'да' if r['subtitles'] else 'нет'}",
+            f"- ffprobe: **{v['width']}×{v['height']}** {v['codec_name']}, **{dur:.2f} с**, "
+            + (f"аудио {a[0]['codec_name']} {a[0]['sample_rate']} Гц, {a[0]['channels']} кан." if a else "**без аудио**"),
+            f"- Размер: {int(p['format']['size']) / 1e6:.1f} МБ",
+            "",
+            "Файл — в артефакте **draka-vertical** этого запуска.",
+          ]
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(lines) + "\n")
+          print("\n".join(lines))
+          raise SystemExit(0 if ok else 1)
+          PY
+          cp work/source.info.json work/source_probe.txt work/ytdlp.log out/ 2>/dev/null || true
+
+      - name: Upload artifact draka-vertical
+        uses: actions/upload-artifact@v4
+        with:
+          name: draka-vertical
+          path: out/
+          if-no-files-found: error
