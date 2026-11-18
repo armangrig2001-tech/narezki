@@ -24,6 +24,10 @@
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 56048
@@ -46,9 +50,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 52290
+  },
+  "AbstemiousAnnoyingLegMrDestructoid-vQARlNrHvxk0wYRn": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:27:04Z",
+   "creator": "tikhon2008",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AbstemiousAnnoyingLegMrDestructoid-vQARlNrHvxk0wYRn",
+   "slug": "AbstemiousAnnoyingLegMrDestructoid-vQARlNrHvxk0wYRn",
+   "status": "new",
+   "title": "65",
+   "url": "https://www.twitch.tv/strogo/clip/AbstemiousAnnoyingLegMrDestructoid-vQARlNrHvxk0wYRn",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68334
   },
   "AbstemiousBlazingHerringRalpherZ-IkoHtBDSM2TziQVb": {
    "attempts": 0,
@@ -111,6 +142,10 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 56320
@@ -171,11 +206,15 @@
    "title": "str",
    "url": "https://www.twitch.tv/strogo/clip/AffluentSmellyHamsterCoolStoryBob-USttX3EBzo---vIG",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 2,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 60956
@@ -559,9 +598,36 @@
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 54354
+  },
+  "AlertKnottyJaguarWTRuck-kjeX3hivQBTFQDJC": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:07:04Z",
+   "creator": "thesadzzad",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AlertKnottyJaguarWTRuck-kjeX3hivQBTFQDJC",
+   "slug": "AlertKnottyJaguarWTRuck-kjeX3hivQBTFQDJC",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/AlertKnottyJaguarWTRuck-kjeX3hivQBTFQDJC",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67148
   },
   "AlluringObeseVultureTooSpicy-KIDT38_We7QIG15H": {
    "attempts": 0,
@@ -584,6 +650,29 @@
     ]
    ],
    "vod_offset": 59436
+  },
+  "AlluringShakingLemurRedCoat-UlNlP8CvbMt6PqiN": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:02:08Z",
+   "creator": "staffch1kk",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AlluringShakingLemurRedCoat-UlNlP8CvbMt6PqiN",
+   "slug": "AlluringShakingLemurRedCoat-UlNlP8CvbMt6PqiN",
+   "status": "new",
+   "title": "даже тут слабый",
+   "url": "https://www.twitch.tv/strogo/clip/AlluringShakingLemurRedCoat-UlNlP8CvbMt6PqiN",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 59624
   },
   "AlluringWealthySnoodCmonBruh-u1ecraeQi0EOGdam": {
    "attempts": 0,
@@ -622,6 +711,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -666,6 +759,10 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 62491
@@ -687,6 +784,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -710,9 +811,128 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 60586
+  },
+  "AnnoyingGiftedLaptopPermaSmug-ge9gEgvfUgscg4pG": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:03:49Z",
+   "creator": "Neikoffc",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AnnoyingGiftedLaptopPermaSmug-ge9gEgvfUgscg4pG",
+   "slug": "AnnoyingGiftedLaptopPermaSmug-ge9gEgvfUgscg4pG",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/AnnoyingGiftedLaptopPermaSmug-ge9gEgvfUgscg4pG",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63352
+  },
+  "AntediluvianAmusedLegPeteZaroll-i8wIGyiqgnN5pkwa": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:24:14Z",
+   "creator": "shurik_141",
+   "duration": 17.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AntediluvianAmusedLegPeteZaroll-i8wIGyiqgnN5pkwa",
+   "slug": "AntediluvianAmusedLegPeteZaroll-i8wIGyiqgnN5pkwa",
+   "status": "new",
+   "title": "Strogo ищет грязнульку в outlast",
+   "url": "https://www.twitch.tv/strogo/clip/AntediluvianAmusedLegPeteZaroll-i8wIGyiqgnN5pkwa",
+   "video_id": "2931685068",
+   "views": 107,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     107
+    ]
+   ],
+   "vod_offset": 68030
+  },
+  "AntsyGloriousParrotKappaPride-uEuPh-QCLmKCrf24": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:52:55Z",
+   "creator": "skif_tv_",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AntsyGloriousParrotKappaPride-uEuPh-QCLmKCrf24",
+   "slug": "AntsyGloriousParrotKappaPride-uEuPh-QCLmKCrf24",
+   "status": "new",
+   "title": "Возня",
+   "url": "https://www.twitch.tv/strogo/clip/AntsyGloriousParrotKappaPride-uEuPh-QCLmKCrf24",
+   "video_id": "2931685068",
+   "views": 14,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     14
+    ]
+   ],
+   "vod_offset": 62519
+  },
+  "ArbitraryColorfulJayStrawBeary-2dLEX0_W8bozJVPv": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:31:56Z",
+   "creator": "Kadayif75",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ArbitraryColorfulJayStrawBeary-2dLEX0_W8bozJVPv",
+   "slug": "ArbitraryColorfulJayStrawBeary-2dLEX0_W8bozJVPv",
+   "status": "new",
+   "title": "strogo - Highlight 491e1a Part 01",
+   "url": "https://www.twitch.tv/strogo/clip/ArbitraryColorfulJayStrawBeary-2dLEX0_W8bozJVPv",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65040
+  },
+  "ArbitraryGeniusPartridgePupper-sToYA3qXhLPB_GP-": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:37:52Z",
+   "creator": "wampirslayer",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ArbitraryGeniusPartridgePupper-sToYA3qXhLPB_GP-",
+   "slug": "ArbitraryGeniusPartridgePupper-sToYA3qXhLPB_GP-",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/ArbitraryGeniusPartridgePupper-sToYA3qXhLPB_GP-",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50990
   },
   "ArbitraryIntelligentNarwhalBCouch-5K8vQq7oIzQ8T1ET": {
    "attempts": 0,
@@ -731,6 +951,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -779,6 +1003,29 @@
    ],
    "vod_offset": 56795
   },
+  "AssiduousFriendlyOrcaTheTarFu-ctMyPnkQhOBDcgd0": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:23:45Z",
+   "creator": "dek0rd",
+   "duration": 39.4,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AssiduousFriendlyOrcaTheTarFu-ctMyPnkQhOBDcgd0",
+   "slug": "AssiduousFriendlyOrcaTheTarFu-ctMyPnkQhOBDcgd0",
+   "status": "new",
+   "title": ".",
+   "url": "https://www.twitch.tv/strogo/clip/AssiduousFriendlyOrcaTheTarFu-ctMyPnkQhOBDcgd0",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64395
+  },
   "AssiduousThirstyDadMoreCowbell-jsOFOn-7Swa84WTy": {
    "attempts": 0,
    "created_at": "2026-11-18T12:01:17Z",
@@ -800,6 +1047,52 @@
    ],
    "vod_offset": 55981
   },
+  "AssiduousVenomousLlamaAllenHuhu-6NkwB2audA9Xgozp": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:03:29Z",
+   "creator": "mityx21",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AssiduousVenomousLlamaAllenHuhu-6NkwB2audA9Xgozp",
+   "slug": "AssiduousVenomousLlamaAllenHuhu-6NkwB2audA9Xgozp",
+   "status": "new",
+   "title": "строго потратил последние деньги на приват",
+   "url": "https://www.twitch.tv/strogo/clip/AssiduousVenomousLlamaAllenHuhu-6NkwB2audA9Xgozp",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63310
+  },
+  "AstuteOriginalRamenRickroll-q1pbtSFsfSD_xifS": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:40:43Z",
+   "creator": "MXS_c",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AstuteOriginalRamenRickroll-q1pbtSFsfSD_xifS",
+   "slug": "AstuteOriginalRamenRickroll-q1pbtSFsfSD_xifS",
+   "status": "new",
+   "title": "строго тупой",
+   "url": "https://www.twitch.tv/strogo/clip/AstuteOriginalRamenRickroll-q1pbtSFsfSD_xifS",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69130
+  },
   "AstutePreciousRavenBlargNaut-EvP4HTLqAGcPQDhZ": {
    "attempts": 0,
    "created_at": "2026-11-18T10:59:26Z",
@@ -816,6 +1109,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      3
     ]
    ],
@@ -839,6 +1136,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -866,6 +1167,29 @@
    ],
    "vod_offset": 59948
   },
+  "AttractiveCorrectRadicchioKappa-otSjAOCx9ZrrCEeP": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:56:49Z",
+   "creator": "tgbalbes",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AttractiveCorrectRadicchioKappa-otSjAOCx9ZrrCEeP",
+   "slug": "AttractiveCorrectRadicchioKappa-otSjAOCx9ZrrCEeP",
+   "status": "new",
+   "title": "dsa",
+   "url": "https://www.twitch.tv/strogo/clip/AttractiveCorrectRadicchioKappa-otSjAOCx9ZrrCEeP",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52124
+  },
   "AttractiveFilthyKimchiBibleThump-ZF0TmtD5GA2oPujE": {
    "attempts": 0,
    "created_at": "2026-11-18T12:31:26Z",
@@ -886,6 +1210,52 @@
     ]
    ],
    "vod_offset": 57810
+  },
+  "AwkwardCreativeDogYouWHY-K9M6aIWwP-OOuSIh": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:33:06Z",
+   "creator": "entytyy",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "AwkwardCreativeDogYouWHY-K9M6aIWwP-OOuSIh",
+   "slug": "AwkwardCreativeDogYouWHY-K9M6aIWwP-OOuSIh",
+   "status": "new",
+   "title": "354к435453",
+   "url": "https://www.twitch.tv/strogo/clip/AwkwardCreativeDogYouWHY-K9M6aIWwP-OOuSIh",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68698
+  },
+  "BadAlertGarbageHotPokket-tUCMd69NOKqK61xD": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:15:20Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BadAlertGarbageHotPokket-tUCMd69NOKqK61xD",
+   "slug": "BadAlertGarbageHotPokket-tUCMd69NOKqK61xD",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BadAlertGarbageHotPokket-tUCMd69NOKqK61xD",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67644
   },
   "BadEnticingClamBudBlast-5-5CkPrF5rCfts1T": {
    "attempts": 0,
@@ -921,7 +1291,7 @@
    "title": "Дверь держи, чтобы мама не зашла",
    "url": "https://www.twitch.tv/strogo/clip/BadOutstandingDunlinHeyGirl-2671JwJ3gcHrSf3W",
    "video_id": "2931685068",
-   "views": 1104,
+   "views": 4273,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -930,6 +1300,10 @@
     [
      "2026-11-18T14:41:57Z",
      1104
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4273
     ]
    ],
    "vod_offset": 62502
@@ -946,14 +1320,41 @@
    "title": "по пивку",
    "url": "https://www.twitch.tv/strogo/clip/BeautifulBlightedArtichokeBrainSlug-N2sUD4QHExZy9kFe",
    "video_id": "2931685068",
-   "views": 3,
+   "views": 4,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4
     ]
    ],
    "vod_offset": 58461
+  },
+  "BenevolentSinglePuddingDerp-2_SYAq8B9acKj5oT": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:03:43Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BenevolentSinglePuddingDerp-2_SYAq8B9acKj5oT",
+   "slug": "BenevolentSinglePuddingDerp-2_SYAq8B9acKj5oT",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BenevolentSinglePuddingDerp-2_SYAq8B9acKj5oT",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66947
   },
   "BigCulturedBurritoTebowing-OHOOpeTTWhcBvx0p": {
    "attempts": 0,
@@ -1000,6 +1401,29 @@
    ],
    "vod_offset": 59482
   },
+  "BillowingFastCroissantStrawBeary-JXE_YzEiJ0Rqc2fj": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:16:35Z",
+   "creator": "zlodeevo",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BillowingFastCroissantStrawBeary-JXE_YzEiJ0Rqc2fj",
+   "slug": "BillowingFastCroissantStrawBeary-JXE_YzEiJ0Rqc2fj",
+   "status": "new",
+   "title": "наарр",
+   "url": "https://www.twitch.tv/strogo/clip/BillowingFastCroissantStrawBeary-JXE_YzEiJ0Rqc2fj",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67638
+  },
   "BillowingFuriousChickenSquadGoals-GQna_x6fH_3W613S": {
    "attempts": 0,
    "created_at": "2026-11-18T11:12:32Z",
@@ -1012,11 +1436,15 @@
    "title": "10 min",
    "url": "https://www.twitch.tv/strogo/clip/BillowingFuriousChickenSquadGoals-GQna_x6fH_3W613S",
    "video_id": "2931685068",
-   "views": 3,
+   "views": 4,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4
     ]
    ],
    "vod_offset": 53062
@@ -1041,6 +1469,29 @@
     ]
    ],
    "vod_offset": 60766
+  },
+  "BillowingHilariousDelicataSSSsss-GhczFD-G_LtmQZMC": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:27:57Z",
+   "creator": "fastikom0",
+   "duration": 25.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BillowingHilariousDelicataSSSsss-GhczFD-G_LtmQZMC",
+   "slug": "BillowingHilariousDelicataSSSsss-GhczFD-G_LtmQZMC",
+   "status": "new",
+   "title": "ванюша сталкерит",
+   "url": "https://www.twitch.tv/strogo/clip/BillowingHilariousDelicataSSSsss-GhczFD-G_LtmQZMC",
+   "video_id": "2931685068",
+   "views": 132,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     132
+    ]
+   ],
+   "vod_offset": 68314
   },
   "BillowingWildQuailKappaPride-rppxM8F1Ggryt2hH": {
    "attempts": 0,
@@ -1085,6 +1536,29 @@
    ],
    "vod_offset": 54078
   },
+  "BitterColdbloodedSheepNerfBlueBlaster-APPJ7ZVhvOF39Qoq": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:54:28Z",
+   "creator": "h1zumo",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BitterColdbloodedSheepNerfBlueBlaster-APPJ7ZVhvOF39Qoq",
+   "slug": "BitterColdbloodedSheepNerfBlueBlaster-APPJ7ZVhvOF39Qoq",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/BitterColdbloodedSheepNerfBlueBlaster-APPJ7ZVhvOF39Qoq",
+   "video_id": "2931685068",
+   "views": 6,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     6
+    ]
+   ],
+   "vod_offset": 66392
+  },
   "BitterLuckyPieTinyFace-B4188Jagm2Igvq4c": {
    "attempts": 0,
    "created_at": "2026-11-18T12:02:06Z",
@@ -1106,6 +1580,75 @@
    ],
    "vod_offset": 56050
   },
+  "BitterSeductiveShrewBudStar-XjKtioFXeGXX8KA5": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:47:13Z",
+   "creator": "ska4et_",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BitterSeductiveShrewBudStar-XjKtioFXeGXX8KA5",
+   "slug": "BitterSeductiveShrewBudStar-XjKtioFXeGXX8KA5",
+   "status": "new",
+   "title": "1",
+   "url": "https://www.twitch.tv/strogo/clip/BitterSeductiveShrewBudStar-XjKtioFXeGXX8KA5",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 51514
+  },
+  "BitterSullenKuduNomNom-NU7TWHzGSlWtfG3J": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:42:04Z",
+   "creator": "loltytykko",
+   "duration": 7.3,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BitterSullenKuduNomNom-NU7TWHzGSlWtfG3J",
+   "slug": "BitterSullenKuduNomNom-NU7TWHzGSlWtfG3J",
+   "status": "new",
+   "title": "рейдж года",
+   "url": "https://www.twitch.tv/strogo/clip/BitterSullenKuduNomNom-NU7TWHzGSlWtfG3J",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69125
+  },
+  "BitterViscousPuddingStinkyCheese-ir6zVL87aFO1e71f": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:49:22Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BitterViscousPuddingStinkyCheese-ir6zVL87aFO1e71f",
+   "slug": "BitterViscousPuddingStinkyCheese-ir6zVL87aFO1e71f",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BitterViscousPuddingStinkyCheese-ir6zVL87aFO1e71f",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69686
+  },
   "BlatantRespectfulPoxTriHard-XjUVqhZQrHFaKPT3": {
    "attempts": 0,
    "created_at": "2026-11-18T14:15:07Z",
@@ -1122,6 +1665,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -1166,9 +1713,82 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 50312
+  },
+  "BlightedIncredulousBaconSmoocherZ-cfqKufv_zA-K6dOG": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:28:09Z",
+   "creator": "traiderrrrr",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BlightedIncredulousBaconSmoocherZ-cfqKufv_zA-K6dOG",
+   "slug": "BlightedIncredulousBaconSmoocherZ-cfqKufv_zA-K6dOG",
+   "status": "new",
+   "title": "строго подсматривает",
+   "url": "https://www.twitch.tv/strogo/clip/BlightedIncredulousBaconSmoocherZ-cfqKufv_zA-K6dOG",
+   "video_id": "2931685068",
+   "views": 6,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     6
+    ]
+   ],
+   "vod_offset": 68392
+  },
+  "BlightedSingleClipsmomPoooound-9X4VrSsx9iK8YtIE": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:54:23Z",
+   "creator": "iairforce",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BlightedSingleClipsmomPoooound-9X4VrSsx9iK8YtIE",
+   "slug": "BlightedSingleClipsmomPoooound-9X4VrSsx9iK8YtIE",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/BlightedSingleClipsmomPoooound-9X4VrSsx9iK8YtIE",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66387
+  },
+  "BlindingIronicGuanacoWow-tQ32Omw6U9g9fxdp": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:28:10Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BlindingIronicGuanacoWow-tQ32Omw6U9g9fxdp",
+   "slug": "BlindingIronicGuanacoWow-tQ32Omw6U9g9fxdp",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BlindingIronicGuanacoWow-tQ32Omw6U9g9fxdp",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68414
   },
   "BlindingObedientDolphinJKanStyle-8SN2NSnj8H9_FPO5": {
    "attempts": 0,
@@ -1236,6 +1856,29 @@
    ],
    "vod_offset": 60012
   },
+  "BlushingBashfulOxDerp-ma74mIPzSPzsQr_L": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:17:22Z",
+   "creator": "iairforce",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BlushingBashfulOxDerp-ma74mIPzSPzsQr_L",
+   "slug": "BlushingBashfulOxDerp-ma74mIPzSPzsQr_L",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BlushingBashfulOxDerp-ma74mIPzSPzsQr_L",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71366
+  },
   "BoringColdNoodlePJSalt-wgz5AlQFpCrayJq2": {
    "attempts": 0,
    "created_at": "2026-11-18T12:45:23Z",
@@ -1278,6 +1921,29 @@
    ],
    "vod_offset": 59120
   },
+  "BoringSingleCrocodileSoBayed-hWepDxlf7U-he2S_": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:47:32Z",
+   "creator": "redser0",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BoringSingleCrocodileSoBayed-hWepDxlf7U-he2S_",
+   "slug": "BoringSingleCrocodileSoBayed-hWepDxlf7U-he2S_",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BoringSingleCrocodileSoBayed-hWepDxlf7U-he2S_",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69576
+  },
   "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8": {
    "attempts": 0,
    "cam": [
@@ -1319,7 +1985,7 @@
     240,
     50
    ],
-   "title": null,
+   "title": "сюжетку проходим",
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -1647,11 +2313,15 @@
    },
    "url": "https://www.twitch.tv/strogo/clip/BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
    "video_id": "2931685068",
-   "views": 177,
+   "views": 839,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      177
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     839
     ]
    ],
    "views_points": 9,
@@ -1660,6 +2330,52 @@
     18.0,
     53.0
    ]
+  },
+  "BovineGiantDootTTours-Sj5EV-cgoqBgM6as": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:19:17Z",
+   "creator": "sand1o_on",
+   "duration": 30.6,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BovineGiantDootTTours-Sj5EV-cgoqBgM6as",
+   "slug": "BovineGiantDootTTours-Sj5EV-cgoqBgM6as",
+   "status": "new",
+   "title": "Неожиданно",
+   "url": "https://www.twitch.tv/strogo/clip/BovineGiantDootTTours-Sj5EV-cgoqBgM6as",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67816
+  },
+  "BovinePhilanthropicSkirretANELE-bOjVwXuoC4q04ofX": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:10:32Z",
+   "creator": "redser0",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BovinePhilanthropicSkirretANELE-bOjVwXuoC4q04ofX",
+   "slug": "BovinePhilanthropicSkirretANELE-bOjVwXuoC4q04ofX",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/BovinePhilanthropicSkirretANELE-bOjVwXuoC4q04ofX",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 70956
   },
   "BovineScrumptiousQuailBIRB-AlW5CoNVlxgohjKx": {
    "attempts": 0,
@@ -1742,9 +2458,36 @@
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 52390
+  },
+  "BrainySourLorisThisIsSparta-yvx1kISjAygrOi8F": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:15:13Z",
+   "creator": "strelkezla",
+   "duration": 29.7,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BrainySourLorisThisIsSparta-yvx1kISjAygrOi8F",
+   "slug": "BrainySourLorisThisIsSparta-yvx1kISjAygrOi8F",
+   "status": "new",
+   "title": "пнпрап",
+   "url": "https://www.twitch.tv/strogo/clip/BrainySourLorisThisIsSparta-yvx1kISjAygrOi8F",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 49608
   },
   "BraveElatedNarwhalPeoplesChamp-sb4iO8p6_Z87drX3": {
    "attempts": 0,
@@ -1802,11 +2545,15 @@
    "title": "мда",
    "url": "https://www.twitch.tv/strogo/clip/BreakableEnthusiasticGerbilBatChest-N_xznWcSsp890eJw",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 5,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     5
     ]
    ],
    "vod_offset": 61896
@@ -1827,6 +2574,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -1866,7 +2617,7 @@
    "title": "окак",
    "url": "https://www.twitch.tv/strogo/clip/BumblingTentativeLatteDoritosChip-VAkIGqWRCyuxDC3q",
    "video_id": "2931685068",
-   "views": 244,
+   "views": 980,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -1875,6 +2626,10 @@
     [
      "2026-11-18T14:41:57Z",
      244
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     980
     ]
    ],
    "vod_offset": 62557
@@ -1913,14 +2668,64 @@
    "title": "строго отшили",
    "url": "https://www.twitch.tv/strogo/clip/BusyPlumpCrabBrainSlug-ziktKA3wV0BJECWZ",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 5,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     5
     ]
    ],
    "vod_offset": 58651
+  },
+  "BusySpotlessNightingaleHeyGuys-5rzuTBt7GQQ4VkIW": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:45:25Z",
+   "creator": "pablo25111",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "BusySpotlessNightingaleHeyGuys-5rzuTBt7GQQ4VkIW",
+   "slug": "BusySpotlessNightingaleHeyGuys-5rzuTBt7GQQ4VkIW",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/BusySpotlessNightingaleHeyGuys-5rzuTBt7GQQ4VkIW",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 51449
+  },
+  "CallousEphemeralAlligatorTBTacoLeft-beB7eUYjELohCiSm": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:13:55Z",
+   "creator": "nabil5435jf",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CallousEphemeralAlligatorTBTacoLeft-beB7eUYjELohCiSm",
+   "slug": "CallousEphemeralAlligatorTBTacoLeft-beB7eUYjELohCiSm",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/CallousEphemeralAlligatorTBTacoLeft-beB7eUYjELohCiSm",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67559
   },
   "CallousFreezingLatteWoofer-lwSD5tfecEXAWNuv": {
    "attempts": 0,
@@ -1935,11 +2740,15 @@
    "title": "себалась",
    "url": "https://www.twitch.tv/strogo/clip/CallousFreezingLatteWoofer-lwSD5tfecEXAWNuv",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 2,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 65108
@@ -1956,11 +2765,15 @@
    "title": "1",
    "url": "https://www.twitch.tv/strogo/clip/CalmAffluentHeronFrankerZ-IvRGOAVpGGJGdwIi",
    "video_id": "2931685068",
-   "views": 3,
+   "views": 5,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     5
     ]
    ],
    "vod_offset": 55286
@@ -1981,6 +2794,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -2024,9 +2841,59 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 61804
+  },
+  "CautiousJazzyEggnogBIRB-P-6SsPrs3Qc6ki2H": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:19:31Z",
+   "creator": "zlodeevo",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CautiousJazzyEggnogBIRB-P-6SsPrs3Qc6ki2H",
+   "slug": "CautiousJazzyEggnogBIRB-P-6SsPrs3Qc6ki2H",
+   "status": "new",
+   "title": "ррт",
+   "url": "https://www.twitch.tv/strogo/clip/CautiousJazzyEggnogBIRB-P-6SsPrs3Qc6ki2H",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67838
+  },
+  "CharmingPolitePlumPeteZarollTie-g3b62OpKg99afBC8": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:45:37Z",
+   "creator": "p3rya",
+   "duration": 31.2,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CharmingPolitePlumPeteZarollTie-g3b62OpKg99afBC8",
+   "slug": "CharmingPolitePlumPeteZarollTie-g3b62OpKg99afBC8",
+   "status": "new",
+   "title": "Первая проблема",
+   "url": "https://www.twitch.tv/strogo/clip/CharmingPolitePlumPeteZarollTie-g3b62OpKg99afBC8",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 51408
   },
   "CharmingRelatedClipzPoooound-H7BPEIRSeMTwY2Eo": {
    "attempts": 0,
@@ -2045,6 +2912,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -2089,6 +2960,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 52210
@@ -2115,6 +2990,52 @@
    ],
    "vod_offset": 57606
   },
+  "ClearPeppyYamThunBeast-qSJfg54IsuKkCQQi": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:08:44Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ClearPeppyYamThunBeast-qSJfg54IsuKkCQQi",
+   "slug": "ClearPeppyYamThunBeast-qSJfg54IsuKkCQQi",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ClearPeppyYamThunBeast-qSJfg54IsuKkCQQi",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67248
+  },
+  "CloudyMiniatureLlamaPMSTwin-tkHBq60WSZ_8yJQr": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:03:12Z",
+   "creator": "67PerucTpaTypa",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CloudyMiniatureLlamaPMSTwin-tkHBq60WSZ_8yJQr",
+   "slug": "CloudyMiniatureLlamaPMSTwin-tkHBq60WSZ_8yJQr",
+   "status": "new",
+   "title": "123123",
+   "url": "https://www.twitch.tv/strogo/clip/CloudyMiniatureLlamaPMSTwin-tkHBq60WSZ_8yJQr",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 58349
+  },
   "CloudySmallArmadilloDatSheffy-NTCnNWmWRXZpucF_": {
    "attempts": 0,
    "channel": "strogo",
@@ -2134,9 +3055,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 54076
+  },
+  "ClumsyVenomousBeePeanutButterJellyTime-MSpFZGTzMlqpUeNB": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:35:05Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ClumsyVenomousBeePeanutButterJellyTime-MSpFZGTzMlqpUeNB",
+   "slug": "ClumsyVenomousBeePeanutButterJellyTime-MSpFZGTzMlqpUeNB",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/ClumsyVenomousBeePeanutButterJellyTime-MSpFZGTzMlqpUeNB",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 61629
   },
   "ColdLittleLarkRalpherZ-ls8fAM6BCS921nWt": {
    "attempts": 0,
@@ -2178,6 +3126,10 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 60276
@@ -2201,9 +3153,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 60234
+  },
+  "ColdbloodedTriangularLatteTwitchRPG-tffrrYUDkUQfjfFh": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:16:31Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ColdbloodedTriangularLatteTwitchRPG-tffrrYUDkUQfjfFh",
+   "slug": "ColdbloodedTriangularLatteTwitchRPG-tffrrYUDkUQfjfFh",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ColdbloodedTriangularLatteTwitchRPG-tffrrYUDkUQfjfFh",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71315
   },
   "ColdbloodedVibrantAlfalfaCoolCat-nFjWnWrI2pDRXjxR": {
    "attempts": 0,
@@ -2226,6 +3205,75 @@
    ],
    "vod_offset": 57269
   },
+  "ColdbloodedVivaciousPlumberTwitchRaid-tbEDmZSV4ZBtCP75": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:15:33Z",
+   "creator": "noyvey",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ColdbloodedVivaciousPlumberTwitchRaid-tbEDmZSV4ZBtCP75",
+   "slug": "ColdbloodedVivaciousPlumberTwitchRaid-tbEDmZSV4ZBtCP75",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/ColdbloodedVivaciousPlumberTwitchRaid-tbEDmZSV4ZBtCP75",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 49650
+  },
+  "ComfortableBlatantPeanutPRChase-lyEQKN12UK2RyGix": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:54:44Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ComfortableBlatantPeanutPRChase-lyEQKN12UK2RyGix",
+   "slug": "ComfortableBlatantPeanutPRChase-lyEQKN12UK2RyGix",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ComfortableBlatantPeanutPRChase-lyEQKN12UK2RyGix",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 73608
+  },
+  "ComfortableQuaintWatermelonYee-rlY83zvlbJ57dFDW": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:28:55Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ComfortableQuaintWatermelonYee-rlY83zvlbJ57dFDW",
+   "slug": "ComfortableQuaintWatermelonYee-rlY83zvlbJ57dFDW",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ComfortableQuaintWatermelonYee-rlY83zvlbJ57dFDW",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68459
+  },
   "ComfortableShyBaboonYee-fYxryu1I-KHWmTxP": {
    "attempts": 0,
    "channel": "strogo",
@@ -2247,6 +3295,29 @@
     ]
    ],
    "vod_offset": 59674
+  },
+  "ConcernedBoringWombatOptimizePrime-Al2MTjXaUsBjPvfn": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:54:26Z",
+   "creator": "neverskyagain",
+   "duration": 46.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ConcernedBoringWombatOptimizePrime-Al2MTjXaUsBjPvfn",
+   "slug": "ConcernedBoringWombatOptimizePrime-Al2MTjXaUsBjPvfn",
+   "status": "new",
+   "title": "чаго",
+   "url": "https://www.twitch.tv/strogo/clip/ConcernedBoringWombatOptimizePrime-Al2MTjXaUsBjPvfn",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 73554
   },
   "ConcernedFancyWatermelonItsBoshyTime-hpHGBOci24cEaTeH": {
    "attempts": 0,
@@ -2325,11 +3396,15 @@
    "title": "67",
    "url": "https://www.twitch.tv/strogo/clip/ConsiderateDignifiedLampRiPepperonis-IzyPcqRaeFnc-IV_",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 4,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4
     ]
    ],
    "vod_offset": 52496
@@ -2352,6 +3427,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -2413,11 +3492,15 @@
    "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
    "url": "https://www.twitch.tv/strogo/clip/CovertAdventurousCaterpillarCharlietheUnicorn-HMhiWzcXNLqV56UQ",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 6,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     6
     ]
    ],
    "vod_offset": 59980
@@ -2562,7 +3645,7 @@
    "title": "как в жизни",
    "url": "https://www.twitch.tv/strogo/clip/CredulousAnnoyingOcelotTheTarFu-rhVDeA7Z7iWwv89K",
    "video_id": "2931685068",
-   "views": 13,
+   "views": 31,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -2571,6 +3654,10 @@
     [
      "2026-11-18T14:41:57Z",
      13
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     31
     ]
    ],
    "vod_offset": 58624
@@ -2596,6 +3683,52 @@
    ],
    "vod_offset": 57649
   },
+  "CrepuscularBrainyJamANELE-ZSx9F_55ZsH2e0rv": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:59:57Z",
+   "creator": "redser0",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CrepuscularBrainyJamANELE-ZSx9F_55ZsH2e0rv",
+   "slug": "CrepuscularBrainyJamANELE-ZSx9F_55ZsH2e0rv",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/CrepuscularBrainyJamANELE-ZSx9F_55ZsH2e0rv",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66721
+  },
+  "CrispyDifferentDadStrawBeary-BjhdHuXLj06O5cvE": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:36:52Z",
+   "creator": "entytyy",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CrispyDifferentDadStrawBeary-BjhdHuXLj06O5cvE",
+   "slug": "CrispyDifferentDadStrawBeary-BjhdHuXLj06O5cvE",
+   "status": "new",
+   "title": "4324",
+   "url": "https://www.twitch.tv/strogo/clip/CrispyDifferentDadStrawBeary-BjhdHuXLj06O5cvE",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68870
+  },
   "CrispyHorribleLeopardUWot-iqdRkIuRTttT3Vw_": {
    "attempts": 0,
    "created_at": "2026-11-18T11:32:27Z",
@@ -2608,11 +3741,15 @@
    "title": "25",
    "url": "https://www.twitch.tv/strogo/clip/CrispyHorribleLeopardUWot-iqdRkIuRTttT3Vw_",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 3,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 54250
@@ -2639,6 +3776,29 @@
    ],
    "vod_offset": 59858
   },
+  "CrispySincerePeppermintTF2John-FQOAI0Dey20-XDiz": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:00:28Z",
+   "creator": "inorchik",
+   "duration": 20.2,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CrispySincerePeppermintTF2John-FQOAI0Dey20-XDiz",
+   "slug": "CrispySincerePeppermintTF2John-FQOAI0Dey20-XDiz",
+   "status": "new",
+   "title": "ц",
+   "url": "https://www.twitch.tv/strogo/clip/CrispySincerePeppermintTF2John-FQOAI0Dey20-XDiz",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52336
+  },
   "CrowdedRacySnoodVoHiYo-1X3LcKL1jFRmT_37": {
    "attempts": 0,
    "created_at": "2026-11-18T12:29:35Z",
@@ -2659,6 +3819,29 @@
     ]
    ],
    "vod_offset": 57672
+  },
+  "CrowdedSleepyShallotDatSheffy-QhpR8_QmkTAHqWVt": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:35:52Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CrowdedSleepyShallotDatSheffy-QhpR8_QmkTAHqWVt",
+   "slug": "CrowdedSleepyShallotDatSheffy-QhpR8_QmkTAHqWVt",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/CrowdedSleepyShallotDatSheffy-QhpR8_QmkTAHqWVt",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 61676
   },
   "CrunchyCloudyFungusChefFrank-pR5eNR9E2JQd_e-M": {
    "attempts": 0,
@@ -2715,7 +3898,7 @@
    "title": "провалил первую миссию",
    "url": "https://www.twitch.tv/strogo/clip/CrunchyTemperedDovePicoMause-oubrKWP7oiApLf6X",
    "video_id": "2931685068",
-   "views": 13,
+   "views": 19,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -2724,6 +3907,10 @@
     [
      "2026-11-18T14:41:57Z",
      13
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     19
     ]
    ],
    "vod_offset": 55284
@@ -2744,6 +3931,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -2771,6 +3962,75 @@
     ]
    ],
    "vod_offset": 63316
+  },
+  "CuriousHelpfulSandpiperWholeWheat-LDfAN_97uKjpR_V_": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:06:09Z",
+   "creator": "Set1qZ77",
+   "duration": 43.6,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CuriousHelpfulSandpiperWholeWheat-LDfAN_97uKjpR_V_",
+   "slug": "CuriousHelpfulSandpiperWholeWheat-LDfAN_97uKjpR_V_",
+   "status": "new",
+   "title": ".",
+   "url": "https://www.twitch.tv/strogo/clip/CuriousHelpfulSandpiperWholeWheat-LDfAN_97uKjpR_V_",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52358
+  },
+  "CuriousSweetTitanPartyTime-V9_AZDHBoPNA-f_F": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:47:18Z",
+   "creator": "falkerclps",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CuriousSweetTitanPartyTime-V9_AZDHBoPNA-f_F",
+   "slug": "CuriousSweetTitanPartyTime-V9_AZDHBoPNA-f_F",
+   "status": "new",
+   "title": "ПОДГОТОВКА ПО ПОЛНОЙ",
+   "url": "https://www.twitch.tv/strogo/clip/CuriousSweetTitanPartyTime-V9_AZDHBoPNA-f_F",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52380
+  },
+  "CutePolishedSandpiperNononoCat-IlYjcYLy0xxQ6qHX": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:38:54Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "CutePolishedSandpiperNononoCat-IlYjcYLy0xxQ6qHX",
+   "slug": "CutePolishedSandpiperNononoCat-IlYjcYLy0xxQ6qHX",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/CutePolishedSandpiperNononoCat-IlYjcYLy0xxQ6qHX",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 69058
   },
   "CuteScaryHareRuleFive-ihy54nSOelxIetm_": {
    "attempts": 0,
@@ -2806,7 +4066,7 @@
    "title": "StRoGo — ВОЗДУХ, чат в истерике | GTA 6",
    "url": "https://www.twitch.tv/strogo/clip/DarlingSpeedyQuailKappaWealth-C2FWRdXveYuL0f7W",
    "video_id": "2931685068",
-   "views": 4,
+   "views": 6,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -2815,9 +4075,59 @@
     [
      "2026-11-18T14:41:57Z",
      4
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     6
     ]
    ],
    "vod_offset": 61916
+  },
+  "DarlingVainNeanderthalCorgiDerp-EalSoNdKaH5k47U8": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:42:00Z",
+   "creator": "ap1s1337",
+   "duration": 12.7,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "DarlingVainNeanderthalCorgiDerp-EalSoNdKaH5k47U8",
+   "slug": "DarlingVainNeanderthalCorgiDerp-EalSoNdKaH5k47U8",
+   "status": "new",
+   "title": "сори",
+   "url": "https://www.twitch.tv/strogo/clip/DarlingVainNeanderthalCorgiDerp-EalSoNdKaH5k47U8",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65592
+  },
+  "DeafLazyTeaSaltBae-U8eCbDcv5J7TpK27": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:09:35Z",
+   "creator": "naebosik",
+   "duration": 11.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "DeafLazyTeaSaltBae-U8eCbDcv5J7TpK27",
+   "slug": "DeafLazyTeaSaltBae-U8eCbDcv5J7TpK27",
+   "status": "new",
+   "title": "23213",
+   "url": "https://www.twitch.tv/strogo/clip/DeafLazyTeaSaltBae-U8eCbDcv5J7TpK27",
+   "video_id": "2931685068",
+   "views": 4,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     4
+    ]
+   ],
+   "vod_offset": 67264
   },
   "DeafTalentedYogurtBleedPurple-T5chPRF6HKwK0zi1": {
    "attempts": 0,
@@ -2883,6 +4193,29 @@
    ],
    "vod_offset": 58718
   },
+  "DepressedTenderScorpionCurseLit-UYfWGJ9h46rJn7DP": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:36:40Z",
+   "creator": "wampirslayer",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "DepressedTenderScorpionCurseLit-UYfWGJ9h46rJn7DP",
+   "slug": "DepressedTenderScorpionCurseLit-UYfWGJ9h46rJn7DP",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/DepressedTenderScorpionCurseLit-UYfWGJ9h46rJn7DP",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50918
+  },
   "DepressedYummyOkapiDoubleRainbow-22-hoVuQye5Vdan_": {
    "attempts": 0,
    "created_at": "2026-11-18T11:59:49Z",
@@ -2921,9 +4254,59 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 60880
+  },
+  "DifferentObservantPlumFutureMan-qlKZBjuaFhSKVTRI": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:56:35Z",
+   "creator": "tikhon2008",
+   "duration": 19.4,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "DifferentObservantPlumFutureMan-qlKZBjuaFhSKVTRI",
+   "slug": "DifferentObservantPlumFutureMan-qlKZBjuaFhSKVTRI",
+   "status": "new",
+   "title": "JN",
+   "url": "https://www.twitch.tv/strogo/clip/DifferentObservantPlumFutureMan-qlKZBjuaFhSKVTRI",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52051
+  },
+  "DifficultArtsyHareSeemsGood-r0PJBdatTPxrh8zG": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:42:05Z",
+   "creator": "har4puk",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "DifficultArtsyHareSeemsGood-r0PJBdatTPxrh8zG",
+   "slug": "DifficultArtsyHareSeemsGood-r0PJBdatTPxrh8zG",
+   "status": "new",
+   "title": "камера",
+   "url": "https://www.twitch.tv/strogo/clip/DifficultArtsyHareSeemsGood-r0PJBdatTPxrh8zG",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69150
   },
   "DignifiedFreezingPeafowlTBCheesePull-Ro8BiftbTlzgNuy_": {
    "attempts": 0,
@@ -2942,9 +4325,36 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 59084
+  },
+  "DiligentHelpfulWrenchOhMyDog-Xx6sJoNo9zRQXgw5": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:01:47Z",
+   "creator": "offcheatthanks",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "DiligentHelpfulWrenchOhMyDog-Xx6sJoNo9zRQXgw5",
+   "slug": "DiligentHelpfulWrenchOhMyDog-Xx6sJoNo9zRQXgw5",
+   "status": "new",
+   "title": "ereq",
+   "url": "https://www.twitch.tv/strogo/clip/DiligentHelpfulWrenchOhMyDog-Xx6sJoNo9zRQXgw5",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52362
   },
   "DistinctBelovedClipsmomOneHand-7P4wLFvC3K4v94d5": {
    "attempts": 0,
@@ -3030,6 +4440,29 @@
    ],
    "vod_offset": 59850
   },
+  "EasySingleCodTTours-1bWiu0mEhkKkzsgC": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:58:51Z",
+   "creator": "3manuelcant",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EasySingleCodTTours-1bWiu0mEhkKkzsgC",
+   "slug": "EasySingleCodTTours-1bWiu0mEhkKkzsgC",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/EasySingleCodTTours-1bWiu0mEhkKkzsgC",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52255
+  },
   "ElatedAbnegateInternNerfBlueBlaster-5763z2sOQuG7EETG": {
    "attempts": 0,
    "channel": "strogo",
@@ -3044,14 +4477,41 @@
    "title": "StRoGo — Вован в хлам, что за походка 😂 | GTA 6",
    "url": "https://www.twitch.tv/strogo/clip/ElatedAbnegateInternNerfBlueBlaster-5763z2sOQuG7EETG",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 4,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4
     ]
    ],
    "vod_offset": 63360
+  },
+  "ElatedThoughtfulOpossumDatBoi-COQXI3CVdM5txYEu": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:46:47Z",
+   "creator": "nistratov67",
+   "duration": 15.4,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ElatedThoughtfulOpossumDatBoi-COQXI3CVdM5txYEu",
+   "slug": "ElatedThoughtfulOpossumDatBoi-COQXI3CVdM5txYEu",
+   "status": "new",
+   "title": "газ",
+   "url": "https://www.twitch.tv/strogo/clip/ElatedThoughtfulOpossumDatBoi-COQXI3CVdM5txYEu",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 59845
   },
   "ElatedVenomousElephantYouDontSay-cwp7IdVBwr0DaT8m": {
    "attempts": 0,
@@ -3065,14 +4525,64 @@
    "title": "шг",
    "url": "https://www.twitch.tv/strogo/clip/ElatedVenomousElephantYouDontSay-cwp7IdVBwr0DaT8m",
    "video_id": "2931685068",
-   "views": 4,
+   "views": 5,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      4
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     5
     ]
    ],
    "vod_offset": 58346
+  },
+  "ElegantHungryMagpieMrDestructoid-O2PTTki8vmSLLr-J": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:58:27Z",
+   "creator": "whitedash999",
+   "duration": 16.2,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ElegantHungryMagpieMrDestructoid-O2PTTki8vmSLLr-J",
+   "slug": "ElegantHungryMagpieMrDestructoid-O2PTTki8vmSLLr-J",
+   "status": "new",
+   "title": "хрумки и газява",
+   "url": "https://www.twitch.tv/strogo/clip/ElegantHungryMagpieMrDestructoid-O2PTTki8vmSLLr-J",
+   "video_id": "2931685068",
+   "views": 7,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     7
+    ]
+   ],
+   "vod_offset": 66358
+  },
+  "ElegantImpossiblePlumberTheRinger-0OGWxv4LDKNGAdii": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:16:38Z",
+   "creator": "APTEMb4",
+   "duration": 58.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ElegantImpossiblePlumberTheRinger-0OGWxv4LDKNGAdii",
+   "slug": "ElegantImpossiblePlumberTheRinger-0OGWxv4LDKNGAdii",
+   "status": "new",
+   "title": "hjjkh",
+   "url": "https://www.twitch.tv/strogo/clip/ElegantImpossiblePlumberTheRinger-0OGWxv4LDKNGAdii",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67692
   },
   "ElegantSparklingRavenBigBrother-Wjzo9YZf7p-veV41": {
    "attempts": 0,
@@ -3087,7 +4597,7 @@
    "title": "ww",
    "url": "https://www.twitch.tv/strogo/clip/ElegantSparklingRavenBigBrother-Wjzo9YZf7p-veV41",
    "video_id": "2931685068",
-   "views": 1304,
+   "views": 6461,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -3096,9 +4606,36 @@
     [
      "2026-11-18T14:41:57Z",
      1304
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     6461
     ]
    ],
    "vod_offset": 63298
+  },
+  "EmpathicJoyousStorkPrimeMe-V1_D5IpVJ14JAQGJ": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:05:05Z",
+   "creator": "kamaelit",
+   "duration": 42.5,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EmpathicJoyousStorkPrimeMe-V1_D5IpVJ14JAQGJ",
+   "slug": "EmpathicJoyousStorkPrimeMe-V1_D5IpVJ14JAQGJ",
+   "status": "new",
+   "title": "люто",
+   "url": "https://www.twitch.tv/strogo/clip/EmpathicJoyousStorkPrimeMe-V1_D5IpVJ14JAQGJ",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63262
   },
   "EnchantingCulturedStingrayCclamChamp-aOiTSCbipLUhewJA": {
    "attempts": 0,
@@ -3121,6 +4658,52 @@
    ],
    "vod_offset": 62612
   },
+  "EncouragingBillowingRabbitPoooound-isgngND_1PNJbT6j": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:20:20Z",
+   "creator": "killkol777",
+   "duration": 9.1,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EncouragingBillowingRabbitPoooound-isgngND_1PNJbT6j",
+   "slug": "EncouragingBillowingRabbitPoooound-isgngND_1PNJbT6j",
+   "status": "new",
+   "title": "уфффф",
+   "url": "https://www.twitch.tv/strogo/clip/EncouragingBillowingRabbitPoooound-isgngND_1PNJbT6j",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 67879
+  },
+  "EncouragingInquisitiveRadicchioWOOP-apK2SRTzty0i7UEg": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:03:20Z",
+   "creator": "trickster_ggg",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EncouragingInquisitiveRadicchioWOOP-apK2SRTzty0i7UEg",
+   "slug": "EncouragingInquisitiveRadicchioWOOP-apK2SRTzty0i7UEg",
+   "status": "new",
+   "title": "ые",
+   "url": "https://www.twitch.tv/strogo/clip/EncouragingInquisitiveRadicchioWOOP-apK2SRTzty0i7UEg",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63300
+  },
   "EndearingBlazingMouseCurseLit-Dcx9-sW_0z5OrfF2": {
    "attempts": 0,
    "channel": "strogo",
@@ -3139,6 +4722,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 65496
@@ -3155,7 +4742,7 @@
    "title": "можно эту тачку там?",
    "url": "https://www.twitch.tv/strogo/clip/EndearingCrazyTortoiseNinjaGrumpy-nxFbuImw-Onjo9e9",
    "video_id": "2931685068",
-   "views": 32,
+   "views": 40,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -3164,9 +4751,59 @@
     [
      "2026-11-18T14:41:57Z",
      32
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     40
     ]
    ],
    "vod_offset": 49784
+  },
+  "EndearingPiliableMagpieDxAbomb-S6NVUgC48T5YQgJO": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:14:21Z",
+   "creator": "damienhegvc",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EndearingPiliableMagpieDxAbomb-S6NVUgC48T5YQgJO",
+   "slug": "EndearingPiliableMagpieDxAbomb-S6NVUgC48T5YQgJO",
+   "status": "new",
+   "title": "рп",
+   "url": "https://www.twitch.tv/strogo/clip/EndearingPiliableMagpieDxAbomb-S6NVUgC48T5YQgJO",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 49534
+  },
+  "EnergeticPerfectHamTakeNRG-2pO97OWuccIiixmi": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:13:24Z",
+   "creator": "m1rza8",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EnergeticPerfectHamTakeNRG-2pO97OWuccIiixmi",
+   "slug": "EnergeticPerfectHamTakeNRG-2pO97OWuccIiixmi",
+   "status": "new",
+   "title": "код",
+   "url": "https://www.twitch.tv/strogo/clip/EnergeticPerfectHamTakeNRG-2pO97OWuccIiixmi",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 60290
   },
   "EnergeticReliableJamSSSsss-kZlcJyFJpPl3jKG0": {
    "attempts": 0,
@@ -3190,6 +4827,29 @@
    ],
    "vod_offset": 63672
   },
+  "EnjoyableSmallPheasantVoteYea-7_XaZWvzn6050bR3": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:39:42Z",
+   "creator": "kolopoloi",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EnjoyableSmallPheasantVoteYea-7_XaZWvzn6050bR3",
+   "slug": "EnjoyableSmallPheasantVoteYea-7_XaZWvzn6050bR3",
+   "status": "new",
+   "title": "pop",
+   "url": "https://www.twitch.tv/strogo/clip/EnjoyableSmallPheasantVoteYea-7_XaZWvzn6050bR3",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 51086
+  },
   "EntertainingArtisticPuppyFutureMan--zJIubBAABZxoC15": {
    "attempts": 0,
    "created_at": "2026-11-18T12:29:43Z",
@@ -3210,6 +4870,29 @@
     ]
    ],
    "vod_offset": 57601
+  },
+  "EphemeralBreakablePizzaResidentSleeper-MGpGR90xqZO4bNtP": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:42:43Z",
+   "creator": "adiishiit",
+   "duration": 21.2,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EphemeralBreakablePizzaResidentSleeper-MGpGR90xqZO4bNtP",
+   "slug": "EphemeralBreakablePizzaResidentSleeper-MGpGR90xqZO4bNtP",
+   "status": "new",
+   "title": "он не знал",
+   "url": "https://www.twitch.tv/strogo/clip/EphemeralBreakablePizzaResidentSleeper-MGpGR90xqZO4bNtP",
+   "video_id": "2931685068",
+   "views": 6,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     6
+    ]
+   ],
+   "vod_offset": 69140
   },
   "EphemeralConfidentEchidnaDendiFace--quAuxgYypXyYuVQ": {
    "attempts": 0,
@@ -3232,6 +4915,75 @@
    ],
    "vod_offset": 54468
   },
+  "EphemeralEasyTortoiseSSSsss-ACuEzqUlsC9k6Rsx": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:18:46Z",
+   "creator": "Kadayif75",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EphemeralEasyTortoiseSSSsss-ACuEzqUlsC9k6Rsx",
+   "slug": "EphemeralEasyTortoiseSSSsss-ACuEzqUlsC9k6Rsx",
+   "status": "new",
+   "title": "strogo - Highlight 115b63 Part 01",
+   "url": "https://www.twitch.tv/strogo/clip/EphemeralEasyTortoiseSSSsss-ACuEzqUlsC9k6Rsx",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67850
+  },
+  "EsteemedGracefulRavenKreygasm-jRK0-85fyUsTd7xc": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:26:36Z",
+   "creator": "seryozhaseryozha",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "EsteemedGracefulRavenKreygasm-jRK0-85fyUsTd7xc",
+   "slug": "EsteemedGracefulRavenKreygasm-jRK0-85fyUsTd7xc",
+   "status": "new",
+   "title": "strogo prohodit",
+   "url": "https://www.twitch.tv/strogo/clip/EsteemedGracefulRavenKreygasm-jRK0-85fyUsTd7xc",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67926
+  },
+  "ExcitedBravePeafowlWutFace-FhX_DXqvmfV0gwU5": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:58:21Z",
+   "creator": "cottu02",
+   "duration": 28.7,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ExcitedBravePeafowlWutFace-FhX_DXqvmfV0gwU5",
+   "slug": "ExcitedBravePeafowlWutFace-FhX_DXqvmfV0gwU5",
+   "status": "new",
+   "title": "интерфейс",
+   "url": "https://www.twitch.tv/strogo/clip/ExcitedBravePeafowlWutFace-FhX_DXqvmfV0gwU5",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 70066
+  },
   "ExquisiteBraveAlbatrossFloof-uh4qAR0lGVU1Bmhw": {
    "attempts": 0,
    "channel": "strogo",
@@ -3250,9 +5002,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 60535
+  },
+  "ExquisiteFastLarkNerfBlueBlaster-L0ms3p8Ad0g-HWL8": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:22:45Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ExquisiteFastLarkNerfBlueBlaster-L0ms3p8Ad0g-HWL8",
+   "slug": "ExquisiteFastLarkNerfBlueBlaster-L0ms3p8Ad0g-HWL8",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ExquisiteFastLarkNerfBlueBlaster-L0ms3p8Ad0g-HWL8",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68089
   },
   "ExuberantKitschyPuffinTF2John-VQ4jVeOCSJEgzoYe": {
    "attempts": 0,
@@ -3294,6 +5073,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 64336
@@ -3318,6 +5101,52 @@
     ]
    ],
    "vod_offset": 52350
+  },
+  "FancyEphemeralDonkeyThunBeast-VwfIcFkFggcN7GVB": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:08:04Z",
+   "creator": "mahitoc",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FancyEphemeralDonkeyThunBeast-VwfIcFkFggcN7GVB",
+   "slug": "FancyEphemeralDonkeyThunBeast-VwfIcFkFggcN7GVB",
+   "status": "new",
+   "title": "цавы",
+   "url": "https://www.twitch.tv/strogo/clip/FancyEphemeralDonkeyThunBeast-VwfIcFkFggcN7GVB",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 67143
+  },
+  "FantasticSneakySharkPlanking-q-zPK3SR7hNXfXn2": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:34:09Z",
+   "creator": "g3rmansertwitch",
+   "duration": 55.4,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FantasticSneakySharkPlanking-q-zPK3SR7hNXfXn2",
+   "slug": "FantasticSneakySharkPlanking-q-zPK3SR7hNXfXn2",
+   "status": "new",
+   "title": "StroGo рылся в мусорке и поплатился",
+   "url": "https://www.twitch.tv/strogo/clip/FantasticSneakySharkPlanking-q-zPK3SR7hNXfXn2",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65010
   },
   "FilthyBenevolentSandwichMVGame-Q1DD7zY9ODtdGQZq": {
    "attempts": 0,
@@ -3362,6 +5191,29 @@
    ],
    "vod_offset": 61630
   },
+  "FineCooperativeAmazonShadyLulu-CwWPjUWYmS8s-XxQ": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:55:09Z",
+   "creator": "fastikom0",
+   "duration": 19.1,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FineCooperativeAmazonShadyLulu-CwWPjUWYmS8s-XxQ",
+   "slug": "FineCooperativeAmazonShadyLulu-CwWPjUWYmS8s-XxQ",
+   "status": "new",
+   "title": "залутано в легкую",
+   "url": "https://www.twitch.tv/strogo/clip/FineCooperativeAmazonShadyLulu-CwWPjUWYmS8s-XxQ",
+   "video_id": "2931685068",
+   "views": 32,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     32
+    ]
+   ],
+   "vod_offset": 73569
+  },
   "FitDependableAnacondaResidentSleeper-iJmbD4JjFgjJaX3_": {
    "attempts": 0,
    "created_at": "2026-11-18T11:04:04Z",
@@ -3378,6 +5230,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -3400,6 +5256,10 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 53851
@@ -3416,11 +5276,15 @@
    "title": "вась",
    "url": "https://www.twitch.tv/strogo/clip/FlaccidEasyWeaselKlappa--fJ-Vr8vvxDwanaH",
    "video_id": "2931685068",
-   "views": 4,
+   "views": 9,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      4
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     9
     ]
    ],
    "vod_offset": 62558
@@ -3446,6 +5310,52 @@
     ]
    ],
    "vod_offset": 59716
+  },
+  "FlirtyKitschyClintmullinsKreygasm-_znKD2iwSrnKksoA": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:39:02Z",
+   "creator": "TheLeonidaClips",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FlirtyKitschyClintmullinsKreygasm-_znKD2iwSrnKksoA",
+   "slug": "FlirtyKitschyClintmullinsKreygasm-_znKD2iwSrnKksoA",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/FlirtyKitschyClintmullinsKreygasm-_znKD2iwSrnKksoA",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 61866
+  },
+  "FlirtyLitigiousTofuKeepo-CeW1LVfrgkHz91VX": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:06:59Z",
+   "creator": "c007ka",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FlirtyLitigiousTofuKeepo-CeW1LVfrgkHz91VX",
+   "slug": "FlirtyLitigiousTofuKeepo-CeW1LVfrgkHz91VX",
+   "status": "new",
+   "title": "803",
+   "url": "https://www.twitch.tv/strogo/clip/FlirtyLitigiousTofuKeepo-CeW1LVfrgkHz91VX",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63532
   },
   "FragileSuccessfulSamosaWow-ywv7oYOPDpRBiwaU": {
    "attempts": 0,
@@ -3507,6 +5417,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 54268
@@ -3527,6 +5441,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -3596,6 +5514,29 @@
    ],
    "vod_offset": 61150
   },
+  "FriendlyFrigidDinosaurLitty-JsjbkhDwGiPJKAt7": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T12:18:34Z",
+   "creator": "diz1k__",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FriendlyFrigidDinosaurLitty-JsjbkhDwGiPJKAt7",
+   "slug": "FriendlyFrigidDinosaurLitty-JsjbkhDwGiPJKAt7",
+   "status": "new",
+   "title": "543534",
+   "url": "https://www.twitch.tv/strogo/clip/FriendlyFrigidDinosaurLitty-JsjbkhDwGiPJKAt7",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 57022
+  },
   "FriendlyProtectiveDiscKlappa-zzGpDfBoUvONXK_S": {
    "attempts": 0,
    "created_at": "2026-11-18T12:46:12Z",
@@ -3629,14 +5570,64 @@
    "title": "1",
    "url": "https://www.twitch.tv/strogo/clip/FrigidBovineFishKappa-Zesqi4ON_KFASzj4",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 3,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 58575
+  },
+  "FunFrailOpossumMoreCowbell-wJKfdC-tQGYzxtth": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:11:07Z",
+   "creator": "seeyoubleed",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FunFrailOpossumMoreCowbell-wJKfdC-tQGYzxtth",
+   "slug": "FunFrailOpossumMoreCowbell-wJKfdC-tQGYzxtth",
+   "status": "new",
+   "title": "s",
+   "url": "https://www.twitch.tv/strogo/clip/FunFrailOpossumMoreCowbell-wJKfdC-tQGYzxtth",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67342
+  },
+  "FunnyChillyCatMrDestructoid-eAlFSwzJY5_kw95E": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:42:50Z",
+   "creator": "thesadzzad",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "FunnyChillyCatMrDestructoid-eAlFSwzJY5_kw95E",
+   "slug": "FunnyChillyCatMrDestructoid-eAlFSwzJY5_kw95E",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/FunnyChillyCatMrDestructoid-eAlFSwzJY5_kw95E",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65694
   },
   "FurryFancyBobaPicoMause-nbkTC1cAoAYUKXEx": {
    "attempts": 0,
@@ -3671,11 +5662,15 @@
    "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
    "url": "https://www.twitch.tv/strogo/clip/FurtiveFaintBaguetteShazBotstix-TkI7z-A0gdm0syFZ",
    "video_id": "2931685068",
-   "views": 5,
+   "views": 8,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      5
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     8
     ]
    ],
    "vod_offset": 58430
@@ -3744,6 +5739,52 @@
    ],
    "vod_offset": 64962
   },
+  "GeniusCourageousPoxMau5-QaJ7Uk2N8znCnWBX": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:19:33Z",
+   "creator": "damaggg21",
+   "duration": 19.8,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "GeniusCourageousPoxMau5-QaJ7Uk2N8znCnWBX",
+   "slug": "GeniusCourageousPoxMau5-QaJ7Uk2N8znCnWBX",
+   "status": "new",
+   "title": "grgf",
+   "url": "https://www.twitch.tv/strogo/clip/GeniusCourageousPoxMau5-QaJ7Uk2N8znCnWBX",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67809
+  },
+  "GeniusCourteousTarsierMrDestructoid-1oJdKlNaOzQOXBki": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T12:02:37Z",
+   "creator": "kruzhok2009",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "GeniusCourteousTarsierMrDestructoid-1oJdKlNaOzQOXBki",
+   "slug": "GeniusCourteousTarsierMrDestructoid-1oJdKlNaOzQOXBki",
+   "status": "new",
+   "title": "3к эло",
+   "url": "https://www.twitch.tv/strogo/clip/GeniusCourteousTarsierMrDestructoid-1oJdKlNaOzQOXBki",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 56026
+  },
   "GeniusFairBatteryPlanking-2eLZ6aL94y6_pmjl": {
    "attempts": 0,
    "channel": "strogo",
@@ -3784,6 +5825,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 52261
@@ -3804,6 +5849,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -3827,9 +5876,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 64623
+  },
+  "GlamorousCogentWeaselPeoplesChamp-zEKKUJWIHSykysYe": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:03:18Z",
+   "creator": "mhyssaa",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "GlamorousCogentWeaselPeoplesChamp-zEKKUJWIHSykysYe",
+   "slug": "GlamorousCogentWeaselPeoplesChamp-zEKKUJWIHSykysYe",
+   "status": "new",
+   "title": "f",
+   "url": "https://www.twitch.tv/strogo/clip/GlamorousCogentWeaselPeoplesChamp-zEKKUJWIHSykysYe",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 64490
   },
   "GlamorousTallLEDHumbleLife-6hAj_QdI6Meva2t3": {
    "attempts": 0,
@@ -3843,14 +5919,41 @@
    "title": "strogo gg",
    "url": "https://www.twitch.tv/strogo/clip/GlamorousTallLEDHumbleLife-6hAj_QdI6Meva2t3",
    "video_id": "2931685068",
-   "views": 5,
+   "views": 8,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      5
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     8
     ]
    ],
    "vod_offset": 52518
+  },
+  "GlamorousViscousCodCmonBruh-frLHUaGSWI5-NNBK": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:39:13Z",
+   "creator": "dun9eonmaster",
+   "duration": 44.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "GlamorousViscousCodCmonBruh-frLHUaGSWI5-NNBK",
+   "slug": "GlamorousViscousCodCmonBruh-frLHUaGSWI5-NNBK",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/GlamorousViscousCodCmonBruh-frLHUaGSWI5-NNBK",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 61877
   },
   "GleamingHelpfulWheelCurseLit-_Dk4w8--nIIubcmu": {
    "attempts": 0,
@@ -3938,6 +6041,10 @@
     [
      "2026-11-18T14:41:57Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 57100
@@ -3980,6 +6087,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -4025,6 +6136,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 50090
@@ -4046,6 +6161,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -4157,6 +6276,52 @@
    ],
    "vod_offset": 55277
   },
+  "HeadstrongCrackyMinkDxCat-EU-_iWxLyF6Qobyb": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:03:24Z",
+   "creator": "bassarynoll",
+   "duration": 28.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HeadstrongCrackyMinkDxCat-EU-_iWxLyF6Qobyb",
+   "slug": "HeadstrongCrackyMinkDxCat-EU-_iWxLyF6Qobyb",
+   "status": "new",
+   "title": "F",
+   "url": "https://www.twitch.tv/strogo/clip/HeadstrongCrackyMinkDxCat-EU-_iWxLyF6Qobyb",
+   "video_id": "2931685068",
+   "views": 7,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     7
+    ]
+   ],
+   "vod_offset": 52344
+  },
+  "HeadstrongPopularRedpandaFunRun-nSxF1fRRIlXOw_W8": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:29:02Z",
+   "creator": "redser0",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HeadstrongPopularRedpandaFunRun-nSxF1fRRIlXOw_W8",
+   "slug": "HeadstrongPopularRedpandaFunRun-nSxF1fRRIlXOw_W8",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/HeadstrongPopularRedpandaFunRun-nSxF1fRRIlXOw_W8",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 72066
+  },
   "HealthyDullAlbatrossItsBoshyTime-bREa-7p64UbBK0-4": {
    "attempts": 0,
    "channel": "strogo",
@@ -4175,9 +6340,59 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 58618
+  },
+  "HealthySuaveAyeayeBloodTrail-UQ44k6o-EX_ya6gL": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:32:56Z",
+   "creator": "razedenn",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HealthySuaveAyeayeBloodTrail-UQ44k6o-EX_ya6gL",
+   "slug": "HealthySuaveAyeayeBloodTrail-UQ44k6o-EX_ya6gL",
+   "status": "new",
+   "title": "а",
+   "url": "https://www.twitch.tv/strogo/clip/HealthySuaveAyeayeBloodTrail-UQ44k6o-EX_ya6gL",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50688
+  },
+  "HedonisticAbstemiousRingBabyRage-0dCMuIo6Q8EfNyzs": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:09:32Z",
+   "creator": "13scares37",
+   "duration": 39.5,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HedonisticAbstemiousRingBabyRage-0dCMuIo6Q8EfNyzs",
+   "slug": "HedonisticAbstemiousRingBabyRage-0dCMuIo6Q8EfNyzs",
+   "status": "new",
+   "title": "разборки",
+   "url": "https://www.twitch.tv/strogo/clip/HedonisticAbstemiousRingBabyRage-0dCMuIo6Q8EfNyzs",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 60004
   },
   "HedonisticBlitheCrabOSsloth-Nwh7PQ3XvJBoLt6J": {
    "attempts": 0,
@@ -4197,9 +6412,36 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 54138
+  },
+  "HedonisticCallousPuddingDuDudu-FndxWtyh34kNLAJB": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:46:04Z",
+   "creator": "MrspiKet4",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HedonisticCallousPuddingDuDudu-FndxWtyh34kNLAJB",
+   "slug": "HedonisticCallousPuddingDuDudu-FndxWtyh34kNLAJB",
+   "status": "new",
+   "title": "ОНРО",
+   "url": "https://www.twitch.tv/strogo/clip/HedonisticCallousPuddingDuDudu-FndxWtyh34kNLAJB",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 51476
   },
   "HedonisticLightStinkbugDendiFace-yncYPvAq36GV7uBX": {
    "attempts": 0,
@@ -4213,14 +6455,41 @@
    "title": "гг",
    "url": "https://www.twitch.tv/strogo/clip/HedonisticLightStinkbugDendiFace-yncYPvAq36GV7uBX",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 4,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4
     ]
    ],
    "vod_offset": 56060
+  },
+  "HelpfulGleamingVelociraptorYouWHY-3-_fzyGtsAJzvfHn": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:26:51Z",
+   "creator": "redser0",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HelpfulGleamingVelociraptorYouWHY-3-_fzyGtsAJzvfHn",
+   "slug": "HelpfulGleamingVelociraptorYouWHY-3-_fzyGtsAJzvfHn",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/HelpfulGleamingVelociraptorYouWHY-3-_fzyGtsAJzvfHn",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64735
   },
   "HelpfulRespectfulCakeFloof-GhGGui2iSKstFRsB": {
    "attempts": 0,
@@ -4282,6 +6551,10 @@
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 54077
@@ -4306,6 +6579,29 @@
     ]
    ],
    "vod_offset": 53822
+  },
+  "HonorableHumbleMallardOMGScoots-ftjqVoQHqFjfzsNt": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:29:47Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HonorableHumbleMallardOMGScoots-ftjqVoQHqFjfzsNt",
+   "slug": "HonorableHumbleMallardOMGScoots-ftjqVoQHqFjfzsNt",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/HonorableHumbleMallardOMGScoots-ftjqVoQHqFjfzsNt",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68511
   },
   "HorribleFilthySoybeanTTours-TP5dYg7wCjW5CFh7": {
    "attempts": 0,
@@ -4341,11 +6637,15 @@
    "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
    "url": "https://www.twitch.tv/strogo/clip/HorribleIronicSwallowPeoplesChamp-l2ye2aLgYxTx2JKX",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 2,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 65006
@@ -4370,6 +6670,52 @@
     ]
    ],
    "vod_offset": 58070
+  },
+  "HungryCoweringArmadilloWoofer-e5PujctEAVZG5l-J": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:48:29Z",
+   "creator": "mrdeffolt666",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HungryCoweringArmadilloWoofer-e5PujctEAVZG5l-J",
+   "slug": "HungryCoweringArmadilloWoofer-e5PujctEAVZG5l-J",
+   "status": "new",
+   "title": "112",
+   "url": "https://www.twitch.tv/strogo/clip/HungryCoweringArmadilloWoofer-e5PujctEAVZG5l-J",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 55218
+  },
+  "HungryCrowdedRavenVoteNay-J8X7Hmw5IYTvdYf7": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:51:15Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "HungryCrowdedRavenVoteNay-J8X7Hmw5IYTvdYf7",
+   "slug": "HungryCrowdedRavenVoteNay-J8X7Hmw5IYTvdYf7",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/HungryCrowdedRavenVoteNay-J8X7Hmw5IYTvdYf7",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62599
   },
   "HyperBrainyStarlingDatBoi-8s5FMx7Ujz9MRI7T": {
    "attempts": 0,
@@ -4415,6 +6761,29 @@
    ],
    "vod_offset": 63266
   },
+  "IgnorantFamousCroissantNotLikeThis-Kq2L8whKvIPKqliW": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:32:29Z",
+   "creator": "Kadayif75",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "IgnorantFamousCroissantNotLikeThis-Kq2L8whKvIPKqliW",
+   "slug": "IgnorantFamousCroissantNotLikeThis-Kq2L8whKvIPKqliW",
+   "status": "new",
+   "title": "strogo - Highlight 491e1a Part 02",
+   "url": "https://www.twitch.tv/strogo/clip/IgnorantFamousCroissantNotLikeThis-Kq2L8whKvIPKqliW",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65073
+  },
   "ImpartialHomelySeahorseBrokeBack-NZaYsvBfRzyq1jm1": {
    "attempts": 0,
    "channel": "strogo",
@@ -4433,9 +6802,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 50142
+  },
+  "ImportantIntelligentTeaOpieOP-ay2adCBefpfTK9AE": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:02:14Z",
+   "creator": "iairforce",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ImportantIntelligentTeaOpieOP-ay2adCBefpfTK9AE",
+   "slug": "ImportantIntelligentTeaOpieOP-ay2adCBefpfTK9AE",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ImportantIntelligentTeaOpieOP-ay2adCBefpfTK9AE",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 70458
   },
   "ImportantOutstandingHabaneroChocolateRain-zGpHfTObm_9Pa4aM": {
    "attempts": 0,
@@ -4479,6 +6875,29 @@
     ]
    ],
    "vod_offset": 58610
+  },
+  "IncredulousRoughPlumageWTRuck-frWqVPydUH0rl5uU": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:58:40Z",
+   "creator": "nelzyq",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "IncredulousRoughPlumageWTRuck-frWqVPydUH0rl5uU",
+   "slug": "IncredulousRoughPlumageWTRuck-frWqVPydUH0rl5uU",
+   "status": "new",
+   "title": "ПЕРВЫЙ БАГ",
+   "url": "https://www.twitch.tv/strogo/clip/IncredulousRoughPlumageWTRuck-frWqVPydUH0rl5uU",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62078
   },
   "IncredulousSavageSangDerp-4xfO_WlUTiOUxTWe": {
    "attempts": 0,
@@ -4577,7 +6996,7 @@
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.63,
+   "duration": 34.6,
    "evaluated_at": "2026-11-18T17:05:22Z",
    "excluded": null,
    "final_title": "STROGO ДРАКА ГТА 6",
@@ -4621,7 +7040,7 @@
     258,
     50
    ],
-   "title": null,
+   "title": "драка",
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
@@ -4802,9 +7221,36 @@
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 54313
+  },
+  "InventiveClearGorillaHumbleLife-0bWaYs2gHMe0kzUz": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:13:21Z",
+   "creator": "dragon_hw",
+   "duration": 44.7,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "InventiveClearGorillaHumbleLife-0bWaYs2gHMe0kzUz",
+   "slug": "InventiveClearGorillaHumbleLife-0bWaYs2gHMe0kzUz",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/InventiveClearGorillaHumbleLife-0bWaYs2gHMe0kzUz",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 60314
   },
   "InventivePricklySnailNomNom-iDHZgmr7dl8yOw5x": {
    "attempts": 0,
@@ -4839,7 +7285,7 @@
    "title": "ПОГОТОВИЛСЯ",
    "url": "https://www.twitch.tv/strogo/clip/InventiveSmellyBatteryNotLikeThis-twVkenI5vqqM1bNj",
    "video_id": "2931685068",
-   "views": 122,
+   "views": 170,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -4848,6 +7294,10 @@
     [
      "2026-11-18T14:41:57Z",
      122
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     170
     ]
    ],
    "vod_offset": 52380
@@ -4936,6 +7386,29 @@
    ],
    "vod_offset": 58393
   },
+  "KawaiiCheerfulScorpionSquadGoals-i0AzzfV3kUrBO30L": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:29:37Z",
+   "creator": "dun9eonmaster",
+   "duration": 44.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "KawaiiCheerfulScorpionSquadGoals-i0AzzfV3kUrBO30L",
+   "slug": "KawaiiCheerfulScorpionSquadGoals-i0AzzfV3kUrBO30L",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/KawaiiCheerfulScorpionSquadGoals-i0AzzfV3kUrBO30L",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68501
+  },
   "KawaiiFairDelicataPoooound-rFJ97nBosKZP0lLL": {
    "attempts": 0,
    "channel": "strogo",
@@ -4958,6 +7431,29 @@
    ],
    "vod_offset": 59169
   },
+  "KawaiiFrigidCrocodileTF2John-QGezjL__qoUZ4fOw": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:39:36Z",
+   "creator": "lattoxsad",
+   "duration": 9.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "KawaiiFrigidCrocodileTF2John-QGezjL__qoUZ4fOw",
+   "slug": "KawaiiFrigidCrocodileTF2John-QGezjL__qoUZ4fOw",
+   "status": "new",
+   "title": "лагает у тебя вань? не, все летает!",
+   "url": "https://www.twitch.tv/strogo/clip/KawaiiFrigidCrocodileTF2John-QGezjL__qoUZ4fOw",
+   "video_id": "2931685068",
+   "views": 23,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     23
+    ]
+   ],
+   "vod_offset": 69020
+  },
   "KitschyAnimatedCattleANELE-LbKeSL8QHBMrP5bF": {
    "attempts": 0,
    "channel": "strogo",
@@ -4975,6 +7471,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -5129,6 +7629,52 @@
    ],
    "vod_offset": 61868
   },
+  "LitigiousAlluringChimpanzeeNomNom-ZwBGXO0pNqpcD4F4": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:23:54Z",
+   "creator": "seeyoubleed",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "LitigiousAlluringChimpanzeeNomNom-ZwBGXO0pNqpcD4F4",
+   "slug": "LitigiousAlluringChimpanzeeNomNom-ZwBGXO0pNqpcD4F4",
+   "status": "new",
+   "title": "s",
+   "url": "https://www.twitch.tv/strogo/clip/LitigiousAlluringChimpanzeeNomNom-ZwBGXO0pNqpcD4F4",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 56048
+  },
+  "LitigiousVivaciousGrasshopperHotPokket-w20Cmn_Xxe7bPXpW": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:41:19Z",
+   "creator": "statka95",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "LitigiousVivaciousGrasshopperHotPokket-w20Cmn_Xxe7bPXpW",
+   "slug": "LitigiousVivaciousGrasshopperHotPokket-w20Cmn_Xxe7bPXpW",
+   "status": "new",
+   "title": "мда",
+   "url": "https://www.twitch.tv/strogo/clip/LitigiousVivaciousGrasshopperHotPokket-w20Cmn_Xxe7bPXpW",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69168
+  },
   "LittleKathishBubbleteaBuddhaBar-daLcinzxY29OOJSL": {
    "attempts": 0,
    "created_at": "2026-11-18T12:25:07Z",
@@ -5149,6 +7695,29 @@
     ]
    ],
    "vod_offset": 57390
+  },
+  "LivelyClumsyMinkThisIsSparta-FingR6c5WN0GVaht": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:43:08Z",
+   "creator": "kgs_g59",
+   "duration": 47.5,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "LivelyClumsyMinkThisIsSparta-FingR6c5WN0GVaht",
+   "slug": "LivelyClumsyMinkThisIsSparta-FingR6c5WN0GVaht",
+   "status": "new",
+   "title": "Встреча с фургоном — GTA VI",
+   "url": "https://www.twitch.tv/strogo/clip/LivelyClumsyMinkThisIsSparta-FingR6c5WN0GVaht",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69289
   },
   "LivelyPluckyWerewolfMcaT-tuemhhpcUr9Hdg_y": {
    "attempts": 0,
@@ -5192,6 +7761,52 @@
    ],
    "vod_offset": 57338
   },
+  "LovelySweetPelicanPicoMause-S4su_TD_B2W61vP6": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:06:29Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "LovelySweetPelicanPicoMause-S4su_TD_B2W61vP6",
+   "slug": "LovelySweetPelicanPicoMause-S4su_TD_B2W61vP6",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/LovelySweetPelicanPicoMause-S4su_TD_B2W61vP6",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67113
+  },
+  "LuckyEnchantingThymeCclamChamp-QjeZYnKeWOQvslxw": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:06:48Z",
+   "creator": "pablo25111",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "LuckyEnchantingThymeCclamChamp-QjeZYnKeWOQvslxw",
+   "slug": "LuckyEnchantingThymeCclamChamp-QjeZYnKeWOQvslxw",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/LuckyEnchantingThymeCclamChamp-QjeZYnKeWOQvslxw",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67132
+  },
   "MagnificentInterestingCiderBIRB-TC3JpI7JvZUML8mS": {
    "attempts": 0,
    "created_at": "2026-11-18T12:40:28Z",
@@ -5212,6 +7827,29 @@
     ]
    ],
    "vod_offset": 58336
+  },
+  "MagnificentSuaveSparrowHassaanChop-jZd58FDBrCEZejwH": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:00:32Z",
+   "creator": "pd_karrttel",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "MagnificentSuaveSparrowHassaanChop-jZd58FDBrCEZejwH",
+   "slug": "MagnificentSuaveSparrowHassaanChop-jZd58FDBrCEZejwH",
+   "status": "new",
+   "title": "Выход гта",
+   "url": "https://www.twitch.tv/strogo/clip/MagnificentSuaveSparrowHassaanChop-jZd58FDBrCEZejwH",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52342
   },
   "MildFlirtyIguanaKappaRoss-3Ujp09SOMnbd2xIK": {
    "attempts": 0,
@@ -5234,6 +7872,29 @@
    ],
    "vod_offset": 51292
   },
+  "MildObesePotGrammarKing-TqqPQY21f2x4Y0jH": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:27:22Z",
+   "creator": "bebrick10",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "MildObesePotGrammarKing-TqqPQY21f2x4Y0jH",
+   "slug": "MildObesePotGrammarKing-TqqPQY21f2x4Y0jH",
+   "status": "new",
+   "title": "подглядывает",
+   "url": "https://www.twitch.tv/strogo/clip/MildObesePotGrammarKing-TqqPQY21f2x4Y0jH",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 68318
+  },
   "MistyRefinedGerbilStrawBeary-99ilZ3Qgcnq7xgoI": {
    "attempts": 0,
    "created_at": "2026-11-18T13:59:20Z",
@@ -5246,7 +7907,7 @@
    "title": "жжжжжж",
    "url": "https://www.twitch.tv/strogo/clip/MistyRefinedGerbilStrawBeary-99ilZ3Qgcnq7xgoI",
    "video_id": "2931685068",
-   "views": 8,
+   "views": 43,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -5255,6 +7916,10 @@
     [
      "2026-11-18T14:41:57Z",
      8
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     43
     ]
    ],
    "vod_offset": 62956
@@ -5335,11 +8000,15 @@
    "title": "31",
    "url": "https://www.twitch.tv/strogo/clip/MoralThirstyStingrayVoteNay-zHuogrQkn9oBx5ad",
    "video_id": "2931685068",
-   "views": 7,
+   "views": 10,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      7
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     10
     ]
    ],
    "vod_offset": 58536
@@ -5361,9 +8030,59 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 54025
+  },
+  "MotionlessFamousLatteFunRun-9k6UyiF6EBGPmme3": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:40:37Z",
+   "creator": "k1ngche_",
+   "duration": 26.3,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "MotionlessFamousLatteFunRun-9k6UyiF6EBGPmme3",
+   "slug": "MotionlessFamousLatteFunRun-9k6UyiF6EBGPmme3",
+   "status": "new",
+   "title": "1",
+   "url": "https://www.twitch.tv/strogo/clip/MotionlessFamousLatteFunRun-9k6UyiF6EBGPmme3",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65528
+  },
+  "MotionlessManlyOilWholeWheat-GfHUPOX0_xLlXKPm": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:15:16Z",
+   "creator": "pisulka000",
+   "duration": 5.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "MotionlessManlyOilWholeWheat-GfHUPOX0_xLlXKPm",
+   "slug": "MotionlessManlyOilWholeWheat-GfHUPOX0_xLlXKPm",
+   "status": "new",
+   "title": "признался",
+   "url": "https://www.twitch.tv/strogo/clip/MotionlessManlyOilWholeWheat-GfHUPOX0_xLlXKPm",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71065
   },
   "NaiveAmorphousGnatArgieB8-8vwuXQcYp1b8FNLy": {
    "attempts": 0,
@@ -5429,6 +8148,29 @@
    ],
    "vod_offset": 59374
   },
+  "NastyInnocentAmazonAMPTropPunch-qrJ9WbBSykVkzTNO": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:08:16Z",
+   "creator": "deqw_ezz",
+   "duration": 15.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "NastyInnocentAmazonAMPTropPunch-qrJ9WbBSykVkzTNO",
+   "slug": "NastyInnocentAmazonAMPTropPunch-qrJ9WbBSykVkzTNO",
+   "status": "new",
+   "title": "браконьер",
+   "url": "https://www.twitch.tv/strogo/clip/NastyInnocentAmazonAMPTropPunch-qrJ9WbBSykVkzTNO",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 70749
+  },
   "NeighborlySweetBaboonGrammarKing-fnVMOc1J0omPaN2S": {
    "attempts": 0,
    "created_at": "2026-11-18T11:10:24Z",
@@ -5445,6 +8187,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -5494,6 +8240,10 @@
     [
      "2026-11-18T14:41:57Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 59712
@@ -5515,9 +8265,36 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 59222
+  },
+  "ObedientMistyCurryPipeHype-BeEBp_e2UqQCOnwA": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:55:34Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ObedientMistyCurryPipeHype-BeEBp_e2UqQCOnwA",
+   "slug": "ObedientMistyCurryPipeHype-BeEBp_e2UqQCOnwA",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/ObedientMistyCurryPipeHype-BeEBp_e2UqQCOnwA",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66458
   },
   "ObedientMuddyChinchillaLeeroyJenkins-YOAmFXZGg7fTSNVE": {
    "attempts": 0,
@@ -5531,14 +8308,41 @@
    "title": "ахмхмхммх",
    "url": "https://www.twitch.tv/strogo/clip/ObedientMuddyChinchillaLeeroyJenkins-YOAmFXZGg7fTSNVE",
    "video_id": "2931685068",
-   "views": 4,
+   "views": 6,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      4
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     6
     ]
    ],
    "vod_offset": 59098
+  },
+  "ObeseApatheticBulgogiGrammarKing-vDmYsarQaDKj6yhY": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:16:06Z",
+   "creator": "pablo25111",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ObeseApatheticBulgogiGrammarKing-vDmYsarQaDKj6yhY",
+   "slug": "ObeseApatheticBulgogiGrammarKing-vDmYsarQaDKj6yhY",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/ObeseApatheticBulgogiGrammarKing-vDmYsarQaDKj6yhY",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 49690
   },
   "ObliqueColorfulChoughTebowing-lbiN6xoOvcEismOW": {
    "attempts": 0,
@@ -5574,11 +8378,15 @@
    "title": "sdfsd",
    "url": "https://www.twitch.tv/strogo/clip/ObliqueNaiveGuanacoTheTarFu-sxe9kQkpYDfxJdcZ",
    "video_id": "2931685068",
-   "views": 11,
+   "views": 44,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      11
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     44
     ]
    ],
    "vod_offset": 57665
@@ -5605,6 +8413,98 @@
    ],
    "vod_offset": 59846
   },
+  "ObliviousTenderTitanThisIsSparta-CaLwU8Oms__piMTU": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:43:27Z",
+   "creator": "eto_jeka",
+   "duration": 16.5,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ObliviousTenderTitanThisIsSparta-CaLwU8Oms__piMTU",
+   "slug": "ObliviousTenderTitanThisIsSparta-CaLwU8Oms__piMTU",
+   "status": "new",
+   "title": "Понял управление",
+   "url": "https://www.twitch.tv/strogo/clip/ObliviousTenderTitanThisIsSparta-CaLwU8Oms__piMTU",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69271
+  },
+  "ObservantBlatantNostrilRiPepperonis-lKmuNFc4qE4AT1q2": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:41:21Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ObservantBlatantNostrilRiPepperonis-lKmuNFc4qE4AT1q2",
+   "slug": "ObservantBlatantNostrilRiPepperonis-lKmuNFc4qE4AT1q2",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/ObservantBlatantNostrilRiPepperonis-lKmuNFc4qE4AT1q2",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65605
+  },
+  "ObservantRoughWombatKappaRoss-2RJdrX5o7xW5pc_f": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:09:11Z",
+   "creator": "tooka_gt",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ObservantRoughWombatKappaRoss-2RJdrX5o7xW5pc_f",
+   "slug": "ObservantRoughWombatKappaRoss-2RJdrX5o7xW5pc_f",
+   "status": "new",
+   "title": "GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/ObservantRoughWombatKappaRoss-2RJdrX5o7xW5pc_f",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63660
+  },
+  "OddGleamingAlpacaWholeWheat-KuLMy0D315uIOIJr": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:21:31Z",
+   "creator": "xanveins",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "OddGleamingAlpacaWholeWheat-KuLMy0D315uIOIJr",
+   "slug": "OddGleamingAlpacaWholeWheat-KuLMy0D315uIOIJr",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/OddGleamingAlpacaWholeWheat-KuLMy0D315uIOIJr",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50008
+  },
   "OddHealthySnoodVoteYea-L7lyiaDoMjAWUqoW": {
    "attempts": 0,
    "created_at": "2026-11-18T12:31:02Z",
@@ -5622,9 +8522,36 @@
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 57786
+  },
+  "OddStormyAuberginePJSugar-BntV3jFhNKhq9jDB": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:29:42Z",
+   "creator": "redser0",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "OddStormyAuberginePJSugar-BntV3jFhNKhq9jDB",
+   "slug": "OddStormyAuberginePJSugar-BntV3jFhNKhq9jDB",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/OddStormyAuberginePJSugar-BntV3jFhNKhq9jDB",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64906
   },
   "OnerousAmericanMelonDxAbomb-vuVebmD7fUsnxfcD": {
    "attempts": 0,
@@ -5706,6 +8633,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -6570,9 +9501,36 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 53706
+  },
+  "OptimisticMotionlessDuckWholeWheat-L8gwGiiaSkv8KYtE": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:21:56Z",
+   "creator": "thesadzzad",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "OptimisticMotionlessDuckWholeWheat-L8gwGiiaSkv8KYtE",
+   "slug": "OptimisticMotionlessDuckWholeWheat-L8gwGiiaSkv8KYtE",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/OptimisticMotionlessDuckWholeWheat-L8gwGiiaSkv8KYtE",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68040
   },
   "OptimisticShinyHorseBudBlast-c1YKQwNoStFtLO4O": {
    "attempts": 0,
@@ -6637,6 +9595,29 @@
    ],
    "vod_offset": 58328
   },
+  "OutstandingGlutenFreeFerretPlanking-q2SspJYbCfqkGD_X": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:41:00Z",
+   "creator": "pumpk1innn",
+   "duration": 34.3,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "OutstandingGlutenFreeFerretPlanking-q2SspJYbCfqkGD_X",
+   "slug": "OutstandingGlutenFreeFerretPlanking-q2SspJYbCfqkGD_X",
+   "status": "new",
+   "title": "на руле",
+   "url": "https://www.twitch.tv/strogo/clip/OutstandingGlutenFreeFerretPlanking-q2SspJYbCfqkGD_X",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 69140
+  },
   "OutstandingObliqueTigerDBstyle-gq_s3Gun1Q8F0E_F": {
    "attempts": 0,
    "created_at": "2026-11-18T12:43:57Z",
@@ -6676,6 +9657,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 61568
@@ -6701,6 +9686,29 @@
    ],
    "vod_offset": 58686
   },
+  "PeacefulAcceptableMarrowTheThing-OJKnebVAg-Tzl6iy": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:51:26Z",
+   "creator": "shei1b21",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PeacefulAcceptableMarrowTheThing-OJKnebVAg-Tzl6iy",
+   "slug": "PeacefulAcceptableMarrowTheThing-OJKnebVAg-Tzl6iy",
+   "status": "new",
+   "title": "ОБУВНОЙ МАГАЗ ГТА 6",
+   "url": "https://www.twitch.tv/strogo/clip/PeacefulAcceptableMarrowTheThing-OJKnebVAg-Tzl6iy",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62578
+  },
   "PeacefulZanyQueleaBibleThump-TDw1dgE3heJG9-nY": {
    "attempts": 0,
    "created_at": "2026-11-18T12:10:12Z",
@@ -6721,6 +9729,29 @@
     ]
    ],
    "vod_offset": 56536
+  },
+  "PeppyRepleteTortoiseHotPokket-Eik_Ry1HFD4hA9ik": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:37:36Z",
+   "creator": "redser0",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PeppyRepleteTortoiseHotPokket-Eik_Ry1HFD4hA9ik",
+   "slug": "PeppyRepleteTortoiseHotPokket-Eik_Ry1HFD4hA9ik",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/PeppyRepleteTortoiseHotPokket-Eik_Ry1HFD4hA9ik",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65380
   },
   "PeppyTiredSalmonTinyFace-jCKo7o7xS44DOJ2V": {
    "attempts": 0,
@@ -6765,6 +9796,52 @@
     ]
    ],
    "vod_offset": 59430
+  },
+  "PiliableFlirtySalmonPJSalt-jjlX8cUU-lQd6f63": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:06:13Z",
+   "creator": "fastikom0",
+   "duration": 12.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PiliableFlirtySalmonPJSalt-jjlX8cUU-lQd6f63",
+   "slug": "PiliableFlirtySalmonPJSalt-jjlX8cUU-lQd6f63",
+   "status": "new",
+   "title": "самокритика",
+   "url": "https://www.twitch.tv/strogo/clip/PiliableFlirtySalmonPJSalt-jjlX8cUU-lQd6f63",
+   "video_id": "2931685068",
+   "views": 28,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     28
+    ]
+   ],
+   "vod_offset": 66867
+  },
+  "PiliableHeadstrongHorseCoolCat-s-CRXToLJ95tN_C_": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:33:22Z",
+   "creator": "des3uct0r_twitch",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PiliableHeadstrongHorseCoolCat-s-CRXToLJ95tN_C_",
+   "slug": "PiliableHeadstrongHorseCoolCat-s-CRXToLJ95tN_C_",
+   "status": "new",
+   "title": "у строго сдохла пс-ка на стириме",
+   "url": "https://www.twitch.tv/strogo/clip/PiliableHeadstrongHorseCoolCat-s-CRXToLJ95tN_C_",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 54268
   },
   "PiliableOutstandingHippoMoreCowbell-3U8cQxYil-2EHImf": {
    "attempts": 0,
@@ -6876,6 +9953,29 @@
    ],
    "vod_offset": 59612
   },
+  "PluckyVivaciousTermiteNomNom-uZE1cLNFD-ooPc-e": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:52:43Z",
+   "creator": "petric_2222",
+   "duration": 44.5,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PluckyVivaciousTermiteNomNom-uZE1cLNFD-ooPc-e",
+   "slug": "PluckyVivaciousTermiteNomNom-uZE1cLNFD-ooPc-e",
+   "status": "new",
+   "title": "кислота",
+   "url": "https://www.twitch.tv/strogo/clip/PluckyVivaciousTermiteNomNom-uZE1cLNFD-ooPc-e",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66152
+  },
   "PlumpHomelyMoonKevinTurtle-DHWBohhuBNue3I_D": {
    "attempts": 0,
    "created_at": "2026-11-18T12:16:03Z",
@@ -6892,6 +9992,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      3
     ]
    ],
@@ -6910,11 +10014,15 @@
    "title": "y",
    "url": "https://www.twitch.tv/strogo/clip/PlumpPhilanthropicTildeMVGame-99_3M0LHtnpFA7EJ",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 2,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 64894
@@ -6932,11 +10040,15 @@
    "title": "м",
    "url": "https://www.twitch.tv/strogo/clip/PoliteAlertNikudonCharlietheUnicorn-_fC5uHul0ysC3IkG",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 3,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 54112
@@ -6985,6 +10097,29 @@
    ],
    "vod_offset": 58538
   },
+  "PowerfulQuaintClintmullinsDuDudu-f10nvtgNpueQTRc4": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:11:43Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PowerfulQuaintClintmullinsDuDudu-f10nvtgNpueQTRc4",
+   "slug": "PowerfulQuaintClintmullinsDuDudu-f10nvtgNpueQTRc4",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/PowerfulQuaintClintmullinsDuDudu-f10nvtgNpueQTRc4",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71027
+  },
   "PrettiestAlluringStork4Head-c6cJ8-53v8BqSrnp": {
    "attempts": 0,
    "channel": "strogo",
@@ -7003,9 +10138,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 62088
+  },
+  "PrettiestCrypticPassionfruitBrokeBack-QalEyA1mxbIO7vXm": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:03:39Z",
+   "creator": "tikhon2008",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PrettiestCrypticPassionfruitBrokeBack-QalEyA1mxbIO7vXm",
+   "slug": "PrettiestCrypticPassionfruitBrokeBack-QalEyA1mxbIO7vXm",
+   "status": "new",
+   "title": "И",
+   "url": "https://www.twitch.tv/strogo/clip/PrettiestCrypticPassionfruitBrokeBack-QalEyA1mxbIO7vXm",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 52466
   },
   "PrettiestFaintCurlewKlappa-qgEPr0TSlrA7xdRY": {
    "attempts": 0,
@@ -7020,11 +10182,15 @@
    "title": "12",
    "url": "https://www.twitch.tv/strogo/clip/PrettiestFaintCurlewKlappa-qgEPr0TSlrA7xdRY",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 10,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     10
     ]
    ],
    "vod_offset": 63366
@@ -7050,6 +10216,29 @@
     ]
    ],
    "vod_offset": 57273
+  },
+  "PrettyAuspiciousWasabiOSsloth-TJj_wajA6X7cwHBn": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:17:17Z",
+   "creator": "genriktw",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PrettyAuspiciousWasabiOSsloth-TJj_wajA6X7cwHBn",
+   "slug": "PrettyAuspiciousWasabiOSsloth-TJj_wajA6X7cwHBn",
+   "status": "new",
+   "title": "/",
+   "url": "https://www.twitch.tv/strogo/clip/PrettyAuspiciousWasabiOSsloth-TJj_wajA6X7cwHBn",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71350
   },
   "PrettyCrispyCobblerPeoplesChamp-3WwI68_XWernZ4I5": {
    "attempts": 0,
@@ -7084,14 +10273,41 @@
    "title": "Строго: момент со стрима GTA VI #1",
    "url": "https://www.twitch.tv/strogo/clip/PricklyAliveNightingaleYee-TPjU_wVn36LUxaJX",
    "video_id": "2931685068",
-   "views": 4,
+   "views": 5,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      4
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     5
     ]
    ],
    "vod_offset": 55592
+  },
+  "PricklyCovertAnacondaTwitchRPG-C-_FVhspWTGIa7VH": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:59:47Z",
+   "creator": "redser0",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "PricklyCovertAnacondaTwitchRPG-C-_FVhspWTGIa7VH",
+   "slug": "PricklyCovertAnacondaTwitchRPG-C-_FVhspWTGIa7VH",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/PricklyCovertAnacondaTwitchRPG-C-_FVhspWTGIa7VH",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 70311
   },
   "PricklyGoodMosquitoPastaThat-eRKKgM5qQKGVbNN9": {
    "attempts": 0,
@@ -7135,6 +10351,10 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 52474
@@ -7155,6 +10375,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      2
     ]
    ],
@@ -7193,7 +10417,7 @@
    "title": "ЛЮТЕЙШИЙ ВРЫВ В ГТА 6",
    "url": "https://www.twitch.tv/strogo/clip/PuzzledHappyPastaTheThing-7Z_HhCbkxgFMiU8Z",
    "video_id": "2931685068",
-   "views": 9,
+   "views": 10,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -7202,6 +10426,10 @@
     [
      "2026-11-18T14:41:57Z",
      9
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     10
     ]
    ],
    "vod_offset": 52367
@@ -7245,9 +10473,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 63646
+  },
+  "RacyAliveHeronDuDudu-EnVXS3jLEuTIl1Gb": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:25:13Z",
+   "creator": "busk0",
+   "duration": 10.6,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "RacyAliveHeronDuDudu-EnVXS3jLEuTIl1Gb",
+   "slug": "RacyAliveHeronDuDudu-EnVXS3jLEuTIl1Gb",
+   "status": "new",
+   "title": "привет",
+   "url": "https://www.twitch.tv/strogo/clip/RacyAliveHeronDuDudu-EnVXS3jLEuTIl1Gb",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71787
   },
   "RacyPlausibleSaladPJSalt-yZv9w-unCZ5nCCpe": {
    "attempts": 0,
@@ -7261,11 +10516,15 @@
    "title": "строго бот",
    "url": "https://www.twitch.tv/strogo/clip/RacyPlausibleSaladPJSalt-yZv9w-unCZ5nCCpe",
    "video_id": "2931685068",
-   "views": 8,
+   "views": 9,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      8
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     9
     ]
    ],
    "vod_offset": 52434
@@ -7292,6 +10551,29 @@
    ],
    "vod_offset": 63251
   },
+  "RamshackleScrumptiousFalconTTours-9lYkGyq-GVy_AsJq": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:33:23Z",
+   "creator": "thatswissclipper",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "RamshackleScrumptiousFalconTTours-9lYkGyq-GVy_AsJq",
+   "slug": "RamshackleScrumptiousFalconTTours-9lYkGyq-GVy_AsJq",
+   "status": "new",
+   "title": "strogo GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/RamshackleScrumptiousFalconTTours-9lYkGyq-GVy_AsJq",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50727
+  },
   "RefinedSucculentSamosaKlappa-wDvCis9XEkg26K9T": {
    "attempts": 0,
    "created_at": "2026-11-18T11:00:37Z",
@@ -7309,9 +10591,36 @@
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 52352
+  },
+  "RelatedTenaciousPeppermintPanicBasket-L72cjT1bZfCeQxvN": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:10:31Z",
+   "creator": "8zerkow",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "RelatedTenaciousPeppermintPanicBasket-L72cjT1bZfCeQxvN",
+   "slug": "RelatedTenaciousPeppermintPanicBasket-L72cjT1bZfCeQxvN",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/RelatedTenaciousPeppermintPanicBasket-L72cjT1bZfCeQxvN",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 60155
   },
   "ReliableAliveAlmondDancingBaby-U9XlIHEX9J14yiJY": {
    "attempts": 0,
@@ -7333,6 +10642,52 @@
     ]
    ],
    "vod_offset": 52438
+  },
+  "ReliablePricklyOcelotItsBoshyTime-2GyOEJcRVYlYLaDw": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:37:09Z",
+   "creator": "wampirslayer",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ReliablePricklyOcelotItsBoshyTime-2GyOEJcRVYlYLaDw",
+   "slug": "ReliablePricklyOcelotItsBoshyTime-2GyOEJcRVYlYLaDw",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/ReliablePricklyOcelotItsBoshyTime-2GyOEJcRVYlYLaDw",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50946
+  },
+  "ReliableUgliestCookieMVGame-dmw4KWN-TrKnZVWr": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:26:51Z",
+   "creator": "traiderrrrr",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ReliableUgliestCookieMVGame-dmw4KWN-TrKnZVWr",
+   "slug": "ReliableUgliestCookieMVGame-dmw4KWN-TrKnZVWr",
+   "status": "new",
+   "title": "строго подсматривает",
+   "url": "https://www.twitch.tv/strogo/clip/ReliableUgliestCookieMVGame-dmw4KWN-TrKnZVWr",
+   "video_id": "2931685068",
+   "views": 4,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     4
+    ]
+   ],
+   "vod_offset": 68312
   },
   "RenownedStylishLasagnaPicoMause-W6DmtOJ0-KAfDGfP": {
    "attempts": 0,
@@ -7359,6 +10714,52 @@
    ],
    "vod_offset": 62549
   },
+  "RepleteThirstyPineappleFailFish-Kh01znPzOjw8QS9v": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:06:09Z",
+   "creator": "dkdkkddk738329",
+   "duration": 47.6,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "RepleteThirstyPineappleFailFish-Kh01znPzOjw8QS9v",
+   "slug": "RepleteThirstyPineappleFailFish-Kh01znPzOjw8QS9v",
+   "status": "new",
+   "title": "kzkksks",
+   "url": "https://www.twitch.tv/strogo/clip/RepleteThirstyPineappleFailFish-Kh01znPzOjw8QS9v",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 58710
+  },
+  "ResilientBenevolentLobsterFUNgineer-shtYcXqKsmbPG886": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:21:56Z",
+   "creator": "damaggg21",
+   "duration": 15.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ResilientBenevolentLobsterFUNgineer-shtYcXqKsmbPG886",
+   "slug": "ResilientBenevolentLobsterFUNgineer-shtYcXqKsmbPG886",
+   "status": "new",
+   "title": "строго",
+   "url": "https://www.twitch.tv/strogo/clip/ResilientBenevolentLobsterFUNgineer-shtYcXqKsmbPG886",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64380
+  },
   "ResilientExquisiteSoybeanRaccAttack-aMT6DKvBEs0qI_pb": {
    "attempts": 0,
    "channel": "strogo",
@@ -7376,6 +10777,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      2
     ]
    ],
@@ -7468,6 +10873,29 @@
    ],
    "vod_offset": 56212
   },
+  "RoundBumblingCatCoolStoryBro-dconq6qiN96kMCR6": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:28:27Z",
+   "creator": "redser0",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "RoundBumblingCatCoolStoryBro-dconq6qiN96kMCR6",
+   "slug": "RoundBumblingCatCoolStoryBro-dconq6qiN96kMCR6",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/RoundBumblingCatCoolStoryBro-dconq6qiN96kMCR6",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64831
+  },
   "RudeAmazingDootRuleFive-uPdB1jS9HkOQxSkw": {
    "attempts": 0,
    "created_at": "2026-11-18T13:33:28Z",
@@ -7489,6 +10917,75 @@
    ],
    "vod_offset": 61484
   },
+  "RudeFrigidDootCmonBruh-qcY56qqyE1wPMVun": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:50:48Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "RudeFrigidDootCmonBruh-qcY56qqyE1wPMVun",
+   "slug": "RudeFrigidDootCmonBruh-qcY56qqyE1wPMVun",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/RudeFrigidDootCmonBruh-qcY56qqyE1wPMVun",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66172
+  },
+  "SaltyDeafLampYee-YZfnLOmtqYrge8Kq": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:48:59Z",
+   "creator": "user_qwerty_1",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SaltyDeafLampYee-YZfnLOmtqYrge8Kq",
+   "slug": "SaltyDeafLampYee-YZfnLOmtqYrge8Kq",
+   "status": "new",
+   "title": "strogo GTA VI — момент 14:48",
+   "url": "https://www.twitch.tv/strogo/clip/SaltyDeafLampYee-YZfnLOmtqYrge8Kq",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 61954
+  },
+  "SaltyDignifiedYogurtUncleNox-v89xLVGZXeAhl0Xz": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:05:31Z",
+   "creator": "nabil5435jf",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SaltyDignifiedYogurtUncleNox-v89xLVGZXeAhl0Xz",
+   "slug": "SaltyDignifiedYogurtUncleNox-v89xLVGZXeAhl0Xz",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/SaltyDignifiedYogurtUncleNox-v89xLVGZXeAhl0Xz",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 59854
+  },
   "SarcasticJoyousPonyANELE-XBOP8waIlJe-UG6H": {
    "attempts": 0,
    "channel": "strogo",
@@ -7506,6 +11003,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -7532,6 +11033,29 @@
    ],
    "vod_offset": 58410
   },
+  "SassyColorfulWolfNomNom-DzK56Vrp7kKM_mEA": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:15:41Z",
+   "creator": "fastikom0",
+   "duration": 17.5,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SassyColorfulWolfNomNom-DzK56Vrp7kKM_mEA",
+   "slug": "SassyColorfulWolfNomNom-DzK56Vrp7kKM_mEA",
+   "status": "new",
+   "title": "поехали в стрипуху",
+   "url": "https://www.twitch.tv/strogo/clip/SassyColorfulWolfNomNom-DzK56Vrp7kKM_mEA",
+   "video_id": "2931685068",
+   "views": 88,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     88
+    ]
+   ],
+   "vod_offset": 67545
+  },
   "SavageCuriousAlligatorBIRB-A6piCZA_IgR6yx7S": {
    "attempts": 0,
    "channel": "strogo",
@@ -7554,6 +11078,29 @@
    ],
    "vod_offset": 60530
   },
+  "SavageRockyPancakeKAPOW-LW8E52RCrmHB2MRW": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:30:21Z",
+   "creator": "tikhon2008",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SavageRockyPancakeKAPOW-LW8E52RCrmHB2MRW",
+   "slug": "SavageRockyPancakeKAPOW-LW8E52RCrmHB2MRW",
+   "status": "new",
+   "title": "4",
+   "url": "https://www.twitch.tv/strogo/clip/SavageRockyPancakeKAPOW-LW8E52RCrmHB2MRW",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68524
+  },
   "SavoryJoyousTarsierRlyTho-zO3uDDKxNBJouddj": {
    "attempts": 0,
    "channel": "strogo",
@@ -7571,6 +11118,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      2
     ]
    ],
@@ -7596,6 +11147,29 @@
     ]
    ],
    "vod_offset": 57750
+  },
+  "ScrumptiousAuspiciousQuailPrimeMe-satJMiKbcEt_lZAB": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:50:24Z",
+   "creator": "nachezzzzi",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ScrumptiousAuspiciousQuailPrimeMe-satJMiKbcEt_lZAB",
+   "slug": "ScrumptiousAuspiciousQuailPrimeMe-satJMiKbcEt_lZAB",
+   "status": "new",
+   "title": "строгий потерял дом",
+   "url": "https://www.twitch.tv/strogo/clip/ScrumptiousAuspiciousQuailPrimeMe-satJMiKbcEt_lZAB",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 69696
   },
   "ScrumptiousCrispyCobraUncleNox-gSKSMoZewkZrfI3V": {
    "attempts": 0,
@@ -7630,11 +11204,15 @@
    "title": "качалка",
    "url": "https://www.twitch.tv/strogo/clip/SeductiveGoodMarjoramOptimizePrime-mw_vOARNI90iqByi",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 5,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     5
     ]
    ],
    "vod_offset": 59370
@@ -7660,6 +11238,52 @@
    ],
    "vod_offset": 56626
   },
+  "ShortWildIcecreamKappaRoss-ztsWSrFFx9NyToAT": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:05:36Z",
+   "creator": "redser0",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ShortWildIcecreamKappaRoss-ztsWSrFFx9NyToAT",
+   "slug": "ShortWildIcecreamKappaRoss-ztsWSrFFx9NyToAT",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/ShortWildIcecreamKappaRoss-ztsWSrFFx9NyToAT",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 70660
+  },
+  "ShyCourteousBearDuDudu-TMTvt2SFXRwrKKJR": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:34:59Z",
+   "creator": "8zerkow",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ShyCourteousBearDuDudu-TMTvt2SFXRwrKKJR",
+   "slug": "ShyCourteousBearDuDudu-TMTvt2SFXRwrKKJR",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/ShyCourteousBearDuDudu-TMTvt2SFXRwrKKJR",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50823
+  },
   "SillyGenerousTurnipAsianGlow-afi0Utff4xuylDm8": {
    "attempts": 0,
    "channel": "strogo",
@@ -7681,6 +11305,29 @@
     ]
    ],
    "vod_offset": 59667
+  },
+  "SillyPunchySpiderPeteZaroll-sQDqKfU0NpjW4MXy": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:11:13Z",
+   "creator": "des3uct0r_twitch",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SillyPunchySpiderPeteZaroll-sQDqKfU0NpjW4MXy",
+   "slug": "SillyPunchySpiderPeteZaroll-sQDqKfU0NpjW4MXy",
+   "status": "new",
+   "title": "Что он делает?",
+   "url": "https://www.twitch.tv/strogo/clip/SillyPunchySpiderPeteZaroll-sQDqKfU0NpjW4MXy",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 60186
   },
   "SillySilkyClipsmomNotLikeThis-Okeq6bS-9GaL7-U3": {
    "attempts": 0,
@@ -7704,6 +11351,52 @@
    ],
    "vod_offset": 58968
   },
+  "SillyTolerantWormSSSsss-iToaTKJwZSInbs0l": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:10:30Z",
+   "creator": "cdryjb",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SillyTolerantWormSSSsss-iToaTKJwZSInbs0l",
+   "slug": "SillyTolerantWormSSSsss-iToaTKJwZSInbs0l",
+   "status": "new",
+   "title": "г",
+   "url": "https://www.twitch.tv/strogo/clip/SillyTolerantWormSSSsss-iToaTKJwZSInbs0l",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 70862
+  },
+  "SlickFrailEggplantOMGScoots-SrXwcmjmuEuwepyD": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:41:52Z",
+   "creator": "Kadayif75",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SlickFrailEggplantOMGScoots-SrXwcmjmuEuwepyD",
+   "slug": "SlickFrailEggplantOMGScoots-SrXwcmjmuEuwepyD",
+   "status": "new",
+   "title": "strogo - Highlight 121360 Part 08",
+   "url": "https://www.twitch.tv/strogo/clip/SlickFrailEggplantOMGScoots-SrXwcmjmuEuwepyD",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62036
+  },
   "SlickSnappyRatFloof-Px1opybYzkgnoqjS": {
    "attempts": 0,
    "created_at": "2026-11-18T12:58:36Z",
@@ -7724,6 +11417,29 @@
     ]
    ],
    "vod_offset": 59440
+  },
+  "SlipperyRacySkirretResidentSleeper-gXq-Ybh8wwcPvCKS": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:59:29Z",
+   "creator": "samilgadzibalaev19",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SlipperyRacySkirretResidentSleeper-gXq-Ybh8wwcPvCKS",
+   "slug": "SlipperyRacySkirretResidentSleeper-gXq-Ybh8wwcPvCKS",
+   "status": "new",
+   "title": "рр",
+   "url": "https://www.twitch.tv/strogo/clip/SlipperyRacySkirretResidentSleeper-gXq-Ybh8wwcPvCKS",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 70282
   },
   "SmallBoldPicklesHeyGuys-hPMGVZ-eXnGfc1Ss": {
    "attempts": 0,
@@ -7746,6 +11462,29 @@
     ]
    ],
    "vod_offset": 60918
+  },
+  "SmallGorgeousChamoisSwiftRage-AXOwWRjEF4Fg9JH0": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:54:48Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SmallGorgeousChamoisSwiftRage-AXOwWRjEF4Fg9JH0",
+   "slug": "SmallGorgeousChamoisSwiftRage-AXOwWRjEF4Fg9JH0",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/SmallGorgeousChamoisSwiftRage-AXOwWRjEF4Fg9JH0",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66412
   },
   "SmallStupidCamelHeyGuys-5EvUG9FXYrQNdW4R": {
    "attempts": 0,
@@ -7829,6 +11568,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 63326
@@ -7851,9 +11594,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 61586
+  },
+  "SnappyClumsyUdonNerfBlueBlaster-56y-sdfzKKtAHnnY": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:09:07Z",
+   "creator": "Qwerty26372527",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SnappyClumsyUdonNerfBlueBlaster-56y-sdfzKKtAHnnY",
+   "slug": "SnappyClumsyUdonNerfBlueBlaster-56y-sdfzKKtAHnnY",
+   "status": "new",
+   "title": "драка",
+   "url": "https://www.twitch.tv/strogo/clip/SnappyClumsyUdonNerfBlueBlaster-56y-sdfzKKtAHnnY",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 63664
   },
   "SnappyHilariousLorisBIRB-hTJ2x6PN4jhujfkA": {
    "attempts": 0,
@@ -7894,9 +11664,36 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 51714
+  },
+  "SolidLitigiousPeafowlDoggo-thRUhFcgFhZBHuNV": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:14:17Z",
+   "creator": "Kadayif75",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SolidLitigiousPeafowlDoggo-thRUhFcgFhZBHuNV",
+   "slug": "SolidLitigiousPeafowlDoggo-thRUhFcgFhZBHuNV",
+   "status": "new",
+   "title": "strogo - Highlight d5fa59 Part 01",
+   "url": "https://www.twitch.tv/strogo/clip/SolidLitigiousPeafowlDoggo-thRUhFcgFhZBHuNV",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67581
   },
   "SolidTentativeAntelopeMingLee-EpNHuVTFHTHH1RiP": {
    "attempts": 0,
@@ -7907,10 +11704,10 @@
    "id": "SolidTentativeAntelopeMingLee-EpNHuVTFHTHH1RiP",
    "slug": "SolidTentativeAntelopeMingLee-EpNHuVTFHTHH1RiP",
    "status": "new",
-   "title": "Когда после выхода GTA 6, ты первым делал поехал к красавицам",
+   "title": "Когда после выхода GTA 6, ты первым делом поехал к красавицам",
    "url": "https://www.twitch.tv/strogo/clip/SolidTentativeAntelopeMingLee-EpNHuVTFHTHH1RiP",
    "video_id": "2931685068",
-   "views": 79,
+   "views": 107,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -7919,9 +11716,13 @@
     [
      "2026-11-18T14:41:57Z",
      79
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     107
     ]
    ],
-   "vod_offset": 61610
+   "vod_offset": 61606
   },
   "SparklingSuspiciousSalmonCurseLit-65BuML0kSzEeNSYw": {
    "attempts": 0,
@@ -7980,7 +11781,7 @@
    "slug": "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
    "status": "rendered",
    "timer_box": null,
-   "title": null,
+   "title": "ваня",
    "title_accent": null,
    "transcript": {
     "language": "ru",
@@ -8240,11 +12041,15 @@
    },
    "url": "https://www.twitch.tv/strogo/clip/SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d",
    "video_id": "2931685068",
-   "views": 77,
+   "views": 96,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      77
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     96
     ]
    ],
    "views_points": 10,
@@ -8253,6 +12058,29 @@
     0.0,
     30.0
    ]
+  },
+  "SparklyPoisedBurritoMrDestructoid-NzHgzKhr0sMR3XOq": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:18:12Z",
+   "creator": "baf_ww",
+   "duration": 59.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SparklyPoisedBurritoMrDestructoid-NzHgzKhr0sMR3XOq",
+   "slug": "SparklyPoisedBurritoMrDestructoid-NzHgzKhr0sMR3XOq",
+   "status": "new",
+   "title": "газява",
+   "url": "https://www.twitch.tv/strogo/clip/SparklyPoisedBurritoMrDestructoid-NzHgzKhr0sMR3XOq",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 49726
   },
   "SpeedyAmorphousWalletGingerPower-tSXhh2eDRFiC571j": {
    "attempts": 0,
@@ -8272,6 +12100,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -8299,6 +12131,52 @@
     ]
    ],
    "vod_offset": 60240
+  },
+  "SpikyFrailElkDendiFace-66McbRfzSRfNxB_7": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:21:06Z",
+   "creator": "3manuelcant",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SpikyFrailElkDendiFace-66McbRfzSRfNxB_7",
+   "slug": "SpikyFrailElkDendiFace-66McbRfzSRfNxB_7",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/SpikyFrailElkDendiFace-66McbRfzSRfNxB_7",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 49990
+  },
+  "SpinelessBoredRaisinAMPTropPunch--LWf-USV8Nv4bN-d": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:33:05Z",
+   "creator": "clips8432",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SpinelessBoredRaisinAMPTropPunch--LWf-USV8Nv4bN-d",
+   "slug": "SpinelessBoredRaisinAMPTropPunch--LWf-USV8Nv4bN-d",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/SpinelessBoredRaisinAMPTropPunch--LWf-USV8Nv4bN-d",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 54309
   },
   "SpinelessZealousPlumberHeyGirl-e2irX3om_kQwq5jH": {
    "attempts": 0,
@@ -8343,6 +12221,29 @@
    ],
    "vod_offset": 58336
   },
+  "SpineyProudDragonAMPEnergy-MhrAhgRXIPAJNg2Z": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:49:37Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SpineyProudDragonAMPEnergy-MhrAhgRXIPAJNg2Z",
+   "slug": "SpineyProudDragonAMPEnergy-MhrAhgRXIPAJNg2Z",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/SpineyProudDragonAMPEnergy-MhrAhgRXIPAJNg2Z",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66101
+  },
   "SpookyAdorableJayPoooound-vhhi-jNWiTRl0iFt": {
    "attempts": 0,
    "created_at": "2026-11-18T11:02:30Z",
@@ -8355,7 +12256,7 @@
    "title": "КАК ВСЕГДА",
    "url": "https://www.twitch.tv/strogo/clip/SpookyAdorableJayPoooound-vhhi-jNWiTRl0iFt",
    "video_id": "2931685068",
-   "views": 70,
+   "views": 81,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
@@ -8364,6 +12265,10 @@
     [
      "2026-11-18T14:41:57Z",
      70
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     81
     ]
    ],
    "vod_offset": 52354
@@ -8385,6 +12290,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -8430,9 +12339,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 51264
+  },
+  "SpookySarcasticGiraffeBrainSlug-SpL25nNG9Dg6uC5J": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:31:37Z",
+   "creator": "itsSwyne",
+   "duration": 20.4,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SpookySarcasticGiraffeBrainSlug-SpL25nNG9Dg6uC5J",
+   "slug": "SpookySarcasticGiraffeBrainSlug-SpL25nNG9Dg6uC5J",
+   "status": "new",
+   "title": "тренировка к турниру по кс",
+   "url": "https://www.twitch.tv/strogo/clip/SpookySarcasticGiraffeBrainSlug-SpL25nNG9Dg6uC5J",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64998
   },
   "SpoopyBrightCardTriHard-eXJXOXWgz_nuBdt9": {
    "attempts": 0,
@@ -8451,9 +12387,36 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 58550
+  },
+  "SpoopyClumsyRamenOSsloth-UzfbC4qe_YPwYVQZ": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:42:47Z",
+   "creator": "c007ka",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SpoopyClumsyRamenOSsloth-UzfbC4qe_YPwYVQZ",
+   "slug": "SpoopyClumsyRamenOSsloth-UzfbC4qe_YPwYVQZ",
+   "status": "new",
+   "title": "скалик",
+   "url": "https://www.twitch.tv/strogo/clip/SpoopyClumsyRamenOSsloth-UzfbC4qe_YPwYVQZ",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62082
   },
   "SpoopyExcitedKumquatMikeHogu-59gyKCRl5VA9cbyq": {
    "attempts": 0,
@@ -8468,11 +12431,15 @@
    "title": "str",
    "url": "https://www.twitch.tv/strogo/clip/SpoopyExcitedKumquatMikeHogu-59gyKCRl5VA9cbyq",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 2,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 60940
@@ -8493,6 +12460,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -8552,11 +12523,15 @@
    "title": "3",
    "url": "https://www.twitch.tv/strogo/clip/SquareGiantBisonSoBayed-1Lg7MOf9uOsoi5ph",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 3,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 52108
@@ -8573,11 +12548,15 @@
    "title": "5",
    "url": "https://www.twitch.tv/strogo/clip/SquareTastyReindeerGingerPower-Yl21o0NMBT7329U3",
    "video_id": "2931685068",
-   "views": 8,
+   "views": 11,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      8
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     11
     ]
    ],
    "vod_offset": 57628
@@ -8599,9 +12578,36 @@
     [
      "2026-11-18T14:27:10Z",
      9
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     9
     ]
    ],
    "vod_offset": 56048
+  },
+  "SteamyChillySashimiPeoplesChamp-XpU3ZLNwGDYx0LrN": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:16:55Z",
+   "creator": "inorchik",
+   "duration": 33.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SteamyChillySashimiPeoplesChamp-XpU3ZLNwGDYx0LrN",
+   "slug": "SteamyChillySashimiPeoplesChamp-XpU3ZLNwGDYx0LrN",
+   "status": "new",
+   "title": "ц",
+   "url": "https://www.twitch.tv/strogo/clip/SteamyChillySashimiPeoplesChamp-XpU3ZLNwGDYx0LrN",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 53328
   },
   "StormyPreciousLocustTooSpicy-ukb3oRqS1Ru4aCpR": {
    "attempts": 0,
@@ -8645,6 +12651,29 @@
    ],
    "vod_offset": 52375
   },
+  "StrangeSoftShingleVoteNay-5ImjFr4_O4dXWZCR": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:42:20Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "StrangeSoftShingleVoteNay-5ImjFr4_O4dXWZCR",
+   "slug": "StrangeSoftShingleVoteNay-5ImjFr4_O4dXWZCR",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/StrangeSoftShingleVoteNay-5ImjFr4_O4dXWZCR",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65664
+  },
   "StupidAbstemiousTrufflePeanutButterJellyTime-QOm8-33_CHLl4h4q": {
    "attempts": 0,
    "channel": "strogo",
@@ -8663,9 +12692,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 51284
+  },
+  "StupidRoughHorseradishWow-YfhqDkd28Dy_EHpp": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T11:49:17Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "StupidRoughHorseradishWow-YfhqDkd28Dy_EHpp",
+   "slug": "StupidRoughHorseradishWow-YfhqDkd28Dy_EHpp",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/StupidRoughHorseradishWow-YfhqDkd28Dy_EHpp",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 55281
   },
   "StylishAnimatedBeefM4xHeh-UzlGUSRVTlhxIJ0l": {
    "attempts": 0,
@@ -8687,6 +12743,75 @@
     ]
    ],
    "vod_offset": 55865
+  },
+  "SuccessfulTardyDaikonLitty-twjOrrbDotdfe7Yo": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:10:37Z",
+   "creator": "iairforce",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SuccessfulTardyDaikonLitty-twjOrrbDotdfe7Yo",
+   "slug": "SuccessfulTardyDaikonLitty-twjOrrbDotdfe7Yo",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/SuccessfulTardyDaikonLitty-twjOrrbDotdfe7Yo",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 70961
+  },
+  "SucculentVenomousGerbilBudStar-3TcQM0wzxUEL7jxB": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:20:21Z",
+   "creator": "kluy_27",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SucculentVenomousGerbilBudStar-3TcQM0wzxUEL7jxB",
+   "slug": "SucculentVenomousGerbilBudStar-3TcQM0wzxUEL7jxB",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/SucculentVenomousGerbilBudStar-3TcQM0wzxUEL7jxB",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 71545
+  },
+  "SuperFrozenGiraffeAsianGlow-O33yzRwfs93E2R_x": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T16:17:54Z",
+   "creator": "kgs_g59",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SuperFrozenGiraffeAsianGlow-O33yzRwfs93E2R_x",
+   "slug": "SuperFrozenGiraffeAsianGlow-O33yzRwfs93E2R_x",
+   "status": "new",
+   "title": "Урок самообороны — GTA VI",
+   "url": "https://www.twitch.tv/strogo/clip/SuperFrozenGiraffeAsianGlow-O33yzRwfs93E2R_x",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 71364
   },
   "SuspiciousCooperativeBorkWutFace-53X2Hk02JwEGBbtK": {
    "attempts": 0,
@@ -8712,6 +12837,52 @@
     ]
    ],
    "vod_offset": 62515
+  },
+  "SweetNaiveSoymilkANELE-m3S8VMELjE3z17bg": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:40:02Z",
+   "creator": "redser0",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SweetNaiveSoymilkANELE-m3S8VMELjE3z17bg",
+   "slug": "SweetNaiveSoymilkANELE-m3S8VMELjE3z17bg",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/SweetNaiveSoymilkANELE-m3S8VMELjE3z17bg",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 65526
+  },
+  "SweetStrangeAardvarkKappa-OALWJ0-ZsWRZJwoi": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:23:06Z",
+   "creator": "FenomeNzy",
+   "duration": 10.7,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "SweetStrangeAardvarkKappa-OALWJ0-ZsWRZJwoi",
+   "slug": "SweetStrangeAardvarkKappa-OALWJ0-ZsWRZJwoi",
+   "status": "new",
+   "title": "пвы",
+   "url": "https://www.twitch.tv/strogo/clip/SweetStrangeAardvarkKappa-OALWJ0-ZsWRZJwoi",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64442
   },
   "TacitBigPepperoniDogFace-3h4Ex12kWJbCGUeX": {
    "attempts": 0,
@@ -8751,6 +12922,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -8861,6 +13036,10 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 51300
@@ -8877,11 +13056,15 @@
    "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
    "url": "https://www.twitch.tv/strogo/clip/TastyInnocentPeafowlPanicVis-Ezg6BLrTceW0_kzD",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 3,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 62584
@@ -8925,9 +13108,36 @@
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 61152
+  },
+  "TawdryVastOctopusTooSpicy-gn11iQiPbYh6jpVx": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T13:50:03Z",
+   "creator": "bluw0k",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TawdryVastOctopusTooSpicy-gn11iQiPbYh6jpVx",
+   "slug": "TawdryVastOctopusTooSpicy-gn11iQiPbYh6jpVx",
+   "status": "new",
+   "title": "строго шалит",
+   "url": "https://www.twitch.tv/strogo/clip/TawdryVastOctopusTooSpicy-gn11iQiPbYh6jpVx",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62510
   },
   "TemperedAmazingSandpiperUnSane-9OSZN75md7taRorv": {
    "attempts": 0,
@@ -8946,6 +13156,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -8969,9 +13183,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 50337
+  },
+  "TentativeCourageousKalePanicBasket-fWJDIChQIaLmDQhi": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:09:32Z",
+   "creator": "k1ngche_",
+   "duration": 50.1,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TentativeCourageousKalePanicBasket-fWJDIChQIaLmDQhi",
+   "slug": "TentativeCourageousKalePanicBasket-fWJDIChQIaLmDQhi",
+   "status": "new",
+   "title": "1",
+   "url": "https://www.twitch.tv/strogo/clip/TentativeCourageousKalePanicBasket-fWJDIChQIaLmDQhi",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 58540
   },
   "TenuousCarefulOkapiKippa-Xf6sco_8cYIfz41m": {
    "attempts": 0,
@@ -8994,6 +13235,29 @@
     ]
    ],
    "vod_offset": 60428
+  },
+  "TenuousSnappyPresidentDoubleRainbow-apCLGPaqbvZ_OWsZ": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:29:43Z",
+   "creator": "Qnode_Y",
+   "duration": 29.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TenuousSnappyPresidentDoubleRainbow-apCLGPaqbvZ_OWsZ",
+   "slug": "TenuousSnappyPresidentDoubleRainbow-apCLGPaqbvZ_OWsZ",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/TenuousSnappyPresidentDoubleRainbow-apCLGPaqbvZ_OWsZ",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64906
   },
   "TenuousTrustworthySwallowPJSugar-XHAJDdLbXr2wuBdz": {
    "attempts": 0,
@@ -9035,9 +13299,36 @@
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 59351
+  },
+  "TolerantBoredChipmunkRuleFive-S4qRwCmu5-Tvaglc": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:33:24Z",
+   "creator": "entytyy",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TolerantBoredChipmunkRuleFive-S4qRwCmu5-Tvaglc",
+   "slug": "TolerantBoredChipmunkRuleFive-S4qRwCmu5-Tvaglc",
+   "status": "new",
+   "title": "3545435",
+   "url": "https://www.twitch.tv/strogo/clip/TolerantBoredChipmunkRuleFive-S4qRwCmu5-Tvaglc",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 68714
   },
   "TolerantEnjoyableCheeseRedCoat-3huPn71Gy3Pg-5QN": {
    "attempts": 0,
@@ -9056,6 +13347,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -9122,6 +13417,10 @@
     [
      "2026-11-18T14:41:57Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 52348
@@ -9150,6 +13449,29 @@
     ]
    ],
    "vod_offset": 59388
+  },
+  "TriangularBitterAirGuitarResidentSleeper-cXjJeW1jRdyUUv6I": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:38:46Z",
+   "creator": "dragon_hw",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TriangularBitterAirGuitarResidentSleeper-cXjJeW1jRdyUUv6I",
+   "slug": "TriangularBitterAirGuitarResidentSleeper-cXjJeW1jRdyUUv6I",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/TriangularBitterAirGuitarResidentSleeper-cXjJeW1jRdyUUv6I",
+   "video_id": "2931685068",
+   "views": 2,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     2
+    ]
+   ],
+   "vod_offset": 69036
   },
   "TriumphantAliveKaleDoritosChip-FJV3RXv73QpT8N6A": {
    "attempts": 0,
@@ -9191,6 +13513,10 @@
     [
      "2026-11-18T14:41:57Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 60150
@@ -9207,14 +13533,41 @@
    "title": "strogo - Highlight ead524 Part 06",
    "url": "https://www.twitch.tv/strogo/clip/TrustworthyResilientLocustUWot-sy86d1oNrhOaNal7",
    "video_id": "2931685068",
-   "views": 2,
+   "views": 4,
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
      2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     4
     ]
    ],
    "vod_offset": 62519
+  },
+  "TsundereAffluentClamPeteZarollTie-y9LrCoInm1fEaFf2": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:03:33Z",
+   "creator": "paubani9",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TsundereAffluentClamPeteZarollTie-y9LrCoInm1fEaFf2",
+   "slug": "TsundereAffluentClamPeteZarollTie-y9LrCoInm1fEaFf2",
+   "status": "new",
+   "title": "оп",
+   "url": "https://www.twitch.tv/strogo/clip/TsundereAffluentClamPeteZarollTie-y9LrCoInm1fEaFf2",
+   "video_id": "2931685068",
+   "views": 3,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     3
+    ]
+   ],
+   "vod_offset": 63316
   },
   "TsundereCaringArtichokeTBCheesePull-qrjTOSdRnpoDMpXw": {
    "attempts": 0,
@@ -9232,6 +13585,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -9281,6 +13638,29 @@
    ],
    "vod_offset": 59602
   },
+  "TubularTolerantMochaBigBrother-j74pYEZENSxjwgJ4": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:52:46Z",
+   "creator": "adaalin",
+   "duration": 42.7,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "TubularTolerantMochaBigBrother-j74pYEZENSxjwgJ4",
+   "slug": "TubularTolerantMochaBigBrother-j74pYEZENSxjwgJ4",
+   "status": "new",
+   "title": "1",
+   "url": "https://www.twitch.tv/strogo/clip/TubularTolerantMochaBigBrother-j74pYEZENSxjwgJ4",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 69458
+  },
   "UgliestAstuteClintmullinsChefFrank-ioWPIzzwoPAmyDOh": {
    "attempts": 0,
    "created_at": "2026-11-18T13:07:52Z",
@@ -9301,6 +13681,29 @@
     ]
    ],
    "vod_offset": 59996
+  },
+  "UninterestedBlightedYakVoHiYo-DoGfdX7FMPbxNFBI": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:59:21Z",
+   "creator": "Kadayif75",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "UninterestedBlightedYakVoHiYo-DoGfdX7FMPbxNFBI",
+   "slug": "UninterestedBlightedYakVoHiYo-DoGfdX7FMPbxNFBI",
+   "status": "new",
+   "title": "strogo - Highlight 6a98bd Part 02",
+   "url": "https://www.twitch.tv/strogo/clip/UninterestedBlightedYakVoHiYo-DoGfdX7FMPbxNFBI",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66685
   },
   "UninterestedBraveMangetoutNotLikeThis-mj6BCjk0bwtRa8Dh": {
    "attempts": 0,
@@ -9366,6 +13769,75 @@
    ],
    "vod_offset": 63657
   },
+  "VastResourcefulDragonfruitDxAbomb-3dhX0IQgVchocCl_": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:04:14Z",
+   "creator": "rosita_rain",
+   "duration": 60.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "VastResourcefulDragonfruitDxAbomb-3dhX0IQgVchocCl_",
+   "slug": "VastResourcefulDragonfruitDxAbomb-3dhX0IQgVchocCl_",
+   "status": "new",
+   "title": "Дверь закрыл?)",
+   "url": "https://www.twitch.tv/strogo/clip/VastResourcefulDragonfruitDxAbomb-3dhX0IQgVchocCl_",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 62492
+  },
+  "VenomousNastyGorillaAMPTropPunch-OhvCwdOSGKgwc_li": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:54:03Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "VenomousNastyGorillaAMPTropPunch-OhvCwdOSGKgwc_li",
+   "slug": "VenomousNastyGorillaAMPTropPunch-OhvCwdOSGKgwc_li",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/VenomousNastyGorillaAMPTropPunch-OhvCwdOSGKgwc_li",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66367
+  },
+  "VibrantGorgeousMushroomStrawBeary-hrCb7ktKBpAJ1Hob": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:22:31Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "VibrantGorgeousMushroomStrawBeary-hrCb7ktKBpAJ1Hob",
+   "slug": "VibrantGorgeousMushroomStrawBeary-hrCb7ktKBpAJ1Hob",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/VibrantGorgeousMushroomStrawBeary-hrCb7ktKBpAJ1Hob",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 64475
+  },
   "VictoriousColdSangBrokeBack-o3Bcxxch87o5t1Jw": {
    "attempts": 0,
    "channel": "strogo",
@@ -9383,6 +13855,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -9428,9 +13904,59 @@
     [
      "2026-11-18T14:27:10Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     1
     ]
    ],
    "vod_offset": 54165
+  },
+  "VivaciousShyArtichokeSwiftRage-1keISSXi9aymiDCj": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:17:27Z",
+   "creator": "Qnode_Y",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "VivaciousShyArtichokeSwiftRage-1keISSXi9aymiDCj",
+   "slug": "VivaciousShyArtichokeSwiftRage-1keISSXi9aymiDCj",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps",
+   "url": "https://www.twitch.tv/strogo/clip/VivaciousShyArtichokeSwiftRage-1keISSXi9aymiDCj",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 67771
+  },
+  "WanderingStormyIcecreamPraiseIt-YOh9u1jepHhBz4yq": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:23:07Z",
+   "creator": "3manuelcant",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "WanderingStormyIcecreamPraiseIt-YOh9u1jepHhBz4yq",
+   "slug": "WanderingStormyIcecreamPraiseIt-YOh9u1jepHhBz4yq",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/WanderingStormyIcecreamPraiseIt-YOh9u1jepHhBz4yq",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50111
   },
   "WealthyPrettiestCougarBCWarrior-09m-Jx68-X4N-nAR": {
    "attempts": 0,
@@ -9448,6 +13974,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      2
     ]
    ],
@@ -9487,14 +14017,41 @@
    "title": "я в истории",
    "url": "https://www.twitch.tv/strogo/clip/WiseVivaciousPlumWholeWheat-hD4f6g_5lSKSqW37",
    "video_id": "2931685068",
-   "views": 1,
+   "views": 2,
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
      1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     2
     ]
    ],
    "vod_offset": 53578
+  },
+  "WittyEagerVanillaHeyGuys-9hDhPNgbACi7T9QY": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:37:19Z",
+   "creator": "wampirslayer",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "WittyEagerVanillaHeyGuys-9hDhPNgbACi7T9QY",
+   "slug": "WittyEagerVanillaHeyGuys-9hDhPNgbACi7T9QY",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/WittyEagerVanillaHeyGuys-9hDhPNgbACi7T9QY",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 50956
   },
   "WittyInquisitiveClintM4xHeh-C-WoxtxPtXmUw070": {
    "attempts": 0,
@@ -9535,6 +14092,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -9625,6 +14186,29 @@
    ],
    "vod_offset": 59178
   },
+  "WrongInterestingKimchiMau5-7azpUqNfOTNlHMrt": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T14:56:06Z",
+   "creator": "redser0",
+   "duration": 59.9,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "WrongInterestingKimchiMau5-7azpUqNfOTNlHMrt",
+   "slug": "WrongInterestingKimchiMau5-7azpUqNfOTNlHMrt",
+   "status": "new",
+   "title": "🔴 ПРОХОДИМ GTA 6 | 60 fps | @m3wsu",
+   "url": "https://www.twitch.tv/strogo/clip/WrongInterestingKimchiMau5-7azpUqNfOTNlHMrt",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 66490
+  },
   "YawningEsteemedGoshawkKeyboardCat-J53cHHKDLCD652rt": {
    "attempts": 0,
    "created_at": "2026-11-18T11:58:50Z",
@@ -9646,6 +14230,52 @@
    ],
    "vod_offset": 55792
   },
+  "YawningSpikyEggBigBrother-oN0eOESMCW4qJzrN": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T10:46:56Z",
+   "creator": "lzianko",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "YawningSpikyEggBigBrother-oN0eOESMCW4qJzrN",
+   "slug": "YawningSpikyEggBigBrother-oN0eOESMCW4qJzrN",
+   "status": "new",
+   "title": "🔴 ЖДЕМ ВЫХОДА GTA 6",
+   "url": "https://www.twitch.tv/strogo/clip/YawningSpikyEggBigBrother-oN0eOESMCW4qJzrN",
+   "video_id": "2931685068",
+   "views": 1,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     1
+    ]
+   ],
+   "vod_offset": 51540
+  },
+  "ZanyDeadDelicataChocolateRain-9BkTo5NhQx4B6IH-": {
+   "attempts": 0,
+   "channel": "strogo",
+   "created_at": "2026-11-18T15:19:33Z",
+   "creator": "petric_2222",
+   "duration": 30.0,
+   "first_seen": "2026-11-18T17:08:25Z",
+   "game_id": "1867279146",
+   "id": "ZanyDeadDelicataChocolateRain-9BkTo5NhQx4B6IH-",
+   "slug": "ZanyDeadDelicataChocolateRain-9BkTo5NhQx4B6IH-",
+   "status": "new",
+   "title": "))",
+   "url": "https://www.twitch.tv/strogo/clip/ZanyDeadDelicataChocolateRain-9BkTo5NhQx4B6IH-",
+   "video_id": "2931685068",
+   "views": 5,
+   "views_history": [
+    [
+     "2026-11-18T17:08:25Z",
+     5
+    ]
+   ],
+   "vod_offset": 67845
+  },
   "ZanyGeniusTildeJonCarnage-ObbU_bZbPrLIxpuK": {
    "attempts": 0,
    "channel": "strogo",
@@ -9663,6 +14293,10 @@
    "views_history": [
     [
      "2026-11-18T14:41:57Z",
+     1
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      1
     ]
    ],
@@ -9685,6 +14319,10 @@
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 51652
@@ -9706,6 +14344,10 @@
     [
      "2026-11-18T14:27:10Z",
      3
+    ],
+    [
+     "2026-11-18T17:08:25Z",
+     3
     ]
    ],
    "vod_offset": 58536
@@ -9726,6 +14368,10 @@
    "views_history": [
     [
      "2026-11-18T14:27:10Z",
+     2
+    ],
+    [
+     "2026-11-18T17:08:25Z",
      2
     ]
    ],
@@ -9856,6 +14502,11 @@
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
    ],
    "run": "44354015993"
+  },
+  {
+   "at": "2026-11-18T17:08:25Z",
+   "phase": "plan",
+   "run": "44354015993"
   }
  ],
  "same_event": [
@@ -9869,11 +14520,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-18T17:03:02Z",
-  "last_live_at": "2026-11-18T17:03:02Z",
+  "checked_at": "2026-11-18T17:08:25Z",
+  "last_live_at": "2026-11-18T17:08:25Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-18T17:03:02Z",
+ "updated_at": "2026-11-18T17:08:25Z",
  "version": 1
 }
