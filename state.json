@@ -17703,17 +17703,13 @@
     628,
     314
    ],
-   "claim": {
-    "at": "2026-11-19T00:50:21Z",
-    "run": "44432102549"
-   },
    "clip_duration": 34.6,
    "contest_ok": true,
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.6,
-   "evaluated_at": "2026-11-19T00:22:26Z",
+   "duration": 34.63,
+   "evaluated_at": "2026-11-19T00:52:14Z",
    "excluded": null,
    "final_title": "STROGO ДРАКА ГТА 6",
    "first_seen": "2026-11-18T14:06:38Z",
@@ -17735,95 +17731,95 @@
     "mp4": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M.mp4",
     "srt": null
    },
-   "reason": "Популярность на Twitch: 10 просмотров на Twitch (96-й перцентиль среди клипов того же возраста), этот момент клипнули 4 зрителя, реплики 68%, реакция 0.84, действие 0.74, контекст 1.00, возраст 12.2 ч",
+   "reason": "Популярность на Twitch: 10 просмотров на Twitch (95-й перцентиль среди клипов того же возраста), этот момент клипнули 4 зрителя, реплики 33%, реакция 0.44, действие 0.75, контекст 1.00, возраст 12.7 ч",
    "reject_reason": null,
    "rendered_at": "2026-11-19T00:24:43Z",
-   "score": 85,
+   "score": 80,
    "score_mode": "meta",
    "signals": {
-    "action": 0.737,
+    "action": 0.751,
     "complete": true,
     "context": 1.0,
     "hook": 1.0,
-    "length": 32,
-    "reaction": 0.838,
-    "speech": 0.688
+    "length": 30,
+    "reaction": 0.444,
+    "speech": 0.333
    },
    "slug": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "source": {
     "kind": "clip"
    },
-   "status": "rendered",
+   "status": "scored",
    "timer_box": [
     2131,
     254,
     258,
     50
    ],
-   "title": "драка",
+   "title": null,
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
     "language": "ru",
-    "probability": 0.766,
+    "probability": 0.785,
     "segments": [
      {
-      "end": 5.7,
+      "end": 6.12,
       "start": 3.76,
-      "text": "Донни, как ты?",
+      "text": "Донни! Что за хуйня?",
       "words": [
        {
         "end": 4.48,
         "start": 3.76,
-        "word": " Донни,"
+        "word": " Донни!"
        },
        {
-        "end": 5.62,
-        "start": 4.82,
-        "word": " как"
+        "end": 5.6,
+        "start": 4.9,
+        "word": " Что"
        },
        {
-        "end": 5.7,
-        "start": 5.62,
-        "word": " ты?"
+        "end": 5.78,
+        "start": 5.6,
+        "word": " за"
+       },
+       {
+        "end": 6.12,
+        "start": 5.78,
+        "word": " хуйня?"
        }
       ]
      },
      {
-      "end": 8.24,
-      "start": 6.6,
-      "text": "Ты меня выгодишь, мать!",
+      "end": 7.96,
+      "start": 7.14,
+      "text": "Давай, смотри меня!",
       "words": [
        {
-        "end": 7.28,
-        "start": 6.6,
-        "word": " Ты"
-       },
-       {
-        "end": 7.44,
-        "start": 7.28,
-        "word": " меня"
+        "end": 7.34,
+        "start": 7.14,
+        "word": " Давай,"
        },
        {
         "end": 7.78,
-        "start": 7.44,
-        "word": " выгодишь,"
+        "start": 7.56,
+        "word": " смотри"
        },
        {
-        "end": 8.24,
+        "end": 7.96,
         "start": 7.78,
-        "word": " мать!"
+        "word": " меня!"
        }
       ]
      },
      {
-      "end": 9.84,
-      "start": 8.9,
-      "text": "Я не могу тебя помогать!",
+      "end": 9.74,
+      "start": 8.4,
+      "text": "Я не могу тебя покинуть!",
       "words": [
        {
         "end": 9.1,
-        "start": 8.9,
+        "start": 8.4,
         "word": " Я"
        },
        {
@@ -17837,37 +17833,37 @@
         "word": " могу"
        },
        {
-        "end": 9.56,
+        "end": 9.74,
         "start": 9.3,
         "word": " тебя"
        },
        {
-        "end": 9.84,
-        "start": 9.56,
-        "word": " помогать!"
+        "end": 9.74,
+        "start": 9.74,
+        "word": " покинуть!"
        }
       ]
      },
      {
       "end": 10.88,
       "start": 10.56,
-      "text": "Иди!",
+      "text": "Давай!",
       "words": [
        {
         "end": 10.88,
         "start": 10.56,
-        "word": " Иди!"
+        "word": " Давай!"
        }
       ]
      },
      {
-      "end": 13.7,
-      "start": 11.56,
-      "text": "Донни, ты мать!",
+      "end": 13.82,
+      "start": 11.52,
+      "text": "Донни, ты хуйня!",
       "words": [
        {
         "end": 11.88,
-        "start": 11.56,
+        "start": 11.52,
         "word": " Донни,"
        },
        {
@@ -17876,151 +17872,14 @@
         "word": " ты"
        },
        {
-        "end": 13.7,
+        "end": 13.82,
         "start": 13.42,
-        "word": " мать!"
-       }
-      ]
-     },
-     {
-      "end": 15.86,
-      "start": 15.18,
-      "text": "Аааа!",
-      "words": [
-       {
-        "end": 15.86,
-        "start": 15.18,
-        "word": " Аааа!"
-       }
-      ]
-     },
-     {
-      "end": 18.28,
-      "start": 16.7,
-      "text": "Не, мать, что ты делаешь?",
-      "words": [
-       {
-        "end": 17.38,
-        "start": 16.7,
-        "word": " Не,"
-       },
-       {
-        "end": 17.8,
-        "start": 17.6,
-        "word": " мать,"
-       },
-       {
-        "end": 18.12,
-        "start": 18.0,
-        "word": " что"
-       },
-       {
-        "end": 18.28,
-        "start": 18.12,
-        "word": " ты"
-       },
-       {
-        "end": 18.28,
-        "start": 18.28,
-        "word": " делаешь?"
-       }
-      ]
-     },
-     {
-      "end": 26.95,
-      "start": 25.01,
-      "text": "Ни в коем случае я не могу!",
-      "words": [
-       {
-        "end": 25.69,
-        "start": 25.01,
-        "word": " Ни"
-       },
-       {
-        "end": 25.69,
-        "start": 25.69,
-        "word": " в"
-       },
-       {
-        "end": 25.71,
-        "start": 25.69,
-        "word": " коем"
-       },
-       {
-        "end": 25.71,
-        "start": 25.71,
-        "word": " случае"
-       },
-       {
-        "end": 26.49,
-        "start": 25.71,
-        "word": " я"
-       },
-       {
-        "end": 26.63,
-        "start": 26.49,
-        "word": " не"
-       },
-       {
-        "end": 26.95,
-        "start": 26.63,
-        "word": " могу!"
-       }
-      ]
-     },
-     {
-      "end": 29.21,
-      "start": 28.17,
-      "text": "Я не могу!",
-      "words": [
-       {
-        "end": 28.85,
-        "start": 28.17,
-        "word": " Я"
-       },
-       {
-        "end": 29.21,
-        "start": 28.85,
-        "word": " не"
-       },
-       {
-        "end": 29.21,
-        "start": 29.21,
-        "word": " могу!"
-       }
-      ]
-     },
-     {
-      "end": 33.46,
-      "start": 29.77,
-      "text": "Мать-мать!",
-      "words": [
-       {
-        "end": 30.05,
-        "start": 29.77,
-        "word": " Мать"
-       },
-       {
-        "end": 33.46,
-        "start": 32.48,
-        "word": "-мать!"
-       }
-      ]
-     },
-     {
-      "end": 34.44,
-      "start": 34.24,
-      "text": "Ге!",
-      "words": [
-       {
-        "end": 34.44,
-        "start": 34.24,
-        "word": " Ге!"
+        "word": " хуйня!"
        }
       ]
      }
     ],
-    "text": "Донни, как ты? Ты меня выгодишь, мать! Я не могу тебя помогать! Иди! Донни, ты мать! Аааа! Не, мать, что ты делаешь? Ни в коем случае я не могу! Я не могу! Мать-мать! Ге!"
+    "text": "Донни! Что за хуйня? Давай, смотри меня! Я не могу тебя покинуть! Давай! Донни, ты хуйня!"
    },
    "url": "https://www.twitch.tv/strogo/clip/InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "video_id": null,
@@ -18075,7 +17934,7 @@
    "vod_offset": null,
    "window": [
     3.0,
-    34.633
+    33.0
    ],
    "zoom_at": null
   },
@@ -36598,7 +36457,6 @@
    "rendered": [
     "AggressiveBetterMageDancingBaby-I2t0ObV62wt5qipQ",
     "BoringWimpyKleeItsBoshyTime-hL8MjYyweIzttJt8",
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
     "OpenFitWheelGingerPower-yq8ABIZy0SeNNnrf",
     "SparklyGoldenStarAliens-Q_P6ykSEzqYK8y8d"
    ]
