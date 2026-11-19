@@ -17708,7 +17708,7 @@
    "context_ok": true,
    "created_at": "2026-11-18T12:07:27Z",
    "criteria": null,
-   "duration": 34.63,
+   "duration": 34.6,
    "evaluated_at": "2026-11-19T00:52:14Z",
    "excluded": null,
    "final_title": "STROGO ДРАКА ГТА 6",
@@ -17755,7 +17755,7 @@
     258,
     50
    ],
-   "title": null,
+   "title": "драка",
    "title_accent": null,
    "title_fallback": "ДРАКА",
    "transcript": {
@@ -36470,14 +36470,6 @@
  "game_id": "1867279146",
  "runs": [
   {
-   "at": "2026-11-18T14:37:39Z",
-   "phase": "work",
-   "rendered": [
-    "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
-   ],
-   "run": "44326161265"
-  },
-  {
    "at": "2026-11-18T14:41:57Z",
    "phase": "plan",
    "run": "44326161265"
@@ -36767,6 +36759,11 @@
     "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
    ],
    "run": "44432102549"
+  },
+  {
+   "at": "2026-11-19T00:54:24Z",
+   "phase": "plan",
+   "run": "44432102549"
   }
  ],
  "same_event": [
@@ -36780,11 +36777,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-19T00:50:16Z",
-  "last_live_at": "2026-11-19T00:50:16Z",
+  "checked_at": "2026-11-19T00:54:24Z",
+  "last_live_at": "2026-11-19T00:54:24Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-19T00:50:16Z",
+ "updated_at": "2026-11-19T00:54:24Z",
  "version": 1
 }
