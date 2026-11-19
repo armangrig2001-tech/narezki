@@ -50,28 +50,90 @@ def list_vods(tw, user_id, first=5):
              "title": v.get("title", ""), "viewable": v.get("viewable", "public")} for v in data]
 
 
+def _playlist_url(video_id, audio_only):
+    """Ссылка на HLS-плейлист записи нужного качества (yt-dlp -g, без скачивания)."""
+    fmt = "bestaudio/worst" if audio_only else "best[height<=1080]/best"
+    try:
+        r = subprocess.run(["yt-dlp", "--no-cookies", "--no-playlist", "-f", fmt, "-g", "--", vod_url(video_id)],
+                           capture_output=True, text=True, timeout=120)
+    except (OSError, subprocess.TimeoutExpired) as e:
+        raise MediaError(f"yt-dlp (запись) не запустился: {type(e).__name__}: {e}") from None
+    url = (r.stdout or "").strip().splitlines()[-1:] if r.returncode == 0 else []
+    if not url:
+        tail = (r.stderr or r.stdout or "").strip().splitlines()[-3:]
+        raise MediaError("запись недоступна: " + " | ".join(tail))
+    return url[0]
+
+
+def _segments(playlist_url):
+    import urllib.request
+    from urllib.parse import urljoin
+    with urllib.request.urlopen(playlist_url, timeout=60) as resp:
+        text = resp.read().decode("utf-8", "replace")
+    segs, t, dur = [], 0.0, None
+    for line in text.splitlines():
+        line = line.strip()
+        if line.startswith("#EXTINF:"):
+            dur = float(line[8:].split(",")[0])
+        elif line and not line.startswith("#") and dur is not None:
+            segs.append((t, dur, urljoin(playlist_url, line)))
+            t += dur
+            dur = None
+    return segs
+
+
 def download_section(video_id, start, end, out_path, audio_only=False):
-    """Отрезок записи [start, end] с. Начало может сместиться на ≤2 с назад (ключевой кадр)."""
+    """Точный отрезок записи [start, end] с: скачиваются только нужные HLS-сегменты.
+
+    (yt-dlp --download-sections на длинных записях Twitch ищет место очень медленно.)
+    """
+    import urllib.request
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     if os.path.exists(out_path) and os.path.getsize(out_path) > 0:
         return out_path
-    base = os.path.splitext(out_path)[0]
-    fmt = "bestaudio/worst" if audio_only else "best[height<=1440]/best"
+    start, end = max(0.0, float(start)), float(end)
     try:
-        r = subprocess.run(["yt-dlp", "--no-cookies", "--no-playlist", "--no-progress", "-f", fmt,
-                            "--download-sections", f"*{max(0, int(start))}-{int(end)}",
-                            "-o", base + ".%(ext)s", "--", vod_url(video_id)],
-                           capture_output=True, text=True, timeout=1200)
-    except (OSError, subprocess.TimeoutExpired) as e:
-        raise MediaError(f"yt-dlp (запись) не запустился: {type(e).__name__}: {e}") from None
-    got = [f for f in os.listdir(os.path.dirname(out_path) or ".")
-           if f.startswith(os.path.basename(base) + ".") and not f.endswith(".part")]
-    if r.returncode != 0 or not got:
-        tail = (r.stderr or r.stdout or "").strip().splitlines()[-3:]
-        raise MediaError("запись недоступна: " + " | ".join(tail))
-    src = os.path.join(os.path.dirname(out_path) or ".", got[0])
-    if src != out_path:
-        os.replace(src, out_path)
+        segs = _segments(_playlist_url(video_id, audio_only))
+    except MediaError:
+        raise
+    except Exception as e:
+        raise MediaError(f"плейлист записи не прочитан: {type(e).__name__}: {e}") from None
+    need = [sg for sg in segs if sg[0] + sg[1] > start and sg[0] < end]
+    if not need:
+        raise MediaError(f"в записи нет отрезка {int(start)}–{int(end)} с (длина {int(segs[-1][0] + segs[-1][1]) if segs else 0} с)")
+    tmp = out_path + ".parts"
+    os.makedirs(tmp, exist_ok=True)
+    files = []
+    for i, (_, _, url) in enumerate(need):
+        fp = os.path.join(tmp, f"{i:04d}.ts")
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(url, timeout=60) as resp, open(fp, "wb") as fh:
+                    fh.write(resp.read())
+                break
+            except Exception as e:
+                if attempt == 2:
+                    raise MediaError(f"сегмент записи не скачан: {type(e).__name__}: {e}") from None
+        files.append(fp)
+    lst = os.path.join(tmp, "list.txt")
+    with open(lst, "w") as fh:
+        fh.writelines(f"file '{os.path.abspath(f)}'\n" for f in files)
+    delta = start - need[0][0]
+    length = min(end, need[-1][0] + need[-1][1]) - start
+    if audio_only:
+        codec = ["-vn", "-c:a", "aac", "-b:a", "128k"]
+    else:
+        codec = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-c:a", "aac", "-b:a", "192k"]
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst,
+                        "-ss", f"{delta:.3f}", "-t", f"{length:.3f}", *codec, out_path],
+                       capture_output=True, text=True)
+    for f in files + [lst]:
+        try:
+            os.remove(f)
+        except OSError:
+            pass
+    if r.returncode != 0 or not os.path.exists(out_path):
+        raise MediaError(f"склейка отрезка записи не удалась: {(r.stderr or '')[-200:]}")
     return out_path
 
 
