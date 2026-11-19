@@ -15891,6 +15891,7 @@
    "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M",
    "language": "ru",
    "leads": null,
+   "manual": true,
    "moment_type": "other",
    "output": {
     "checks": {
@@ -15921,7 +15922,7 @@
    "source": {
     "kind": "clip"
    },
-   "status": "scored",
+   "status": "render_queued",
    "timer_box": [
     2131,
     254,
