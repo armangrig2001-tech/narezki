@@ -1,0 +1,418 @@
+"""Отбор: группировка клипов одного события, оценка по метаданным, бюджет, дневная подборка.
+
+Только стандартная библиотека — модуль покрыт тестами (tests/test_select.py).
+"""
+import math
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
+
+from . import config as C
+from .state import RENDER_ACTIVE
+
+YEREVAN = ZoneInfo(C.TZ)
+
+
+# ---------- время ----------
+
+def parse_ts(s):
+    return datetime.fromisoformat(s.replace("Z", "+00:00"))
+
+
+def iso(dt):
+    return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def local_day(ts):
+    dt = parse_ts(ts) if isinstance(ts, str) else ts
+    return dt.astimezone(YEREVAN).strftime("%Y-%m-%d")
+
+
+def local_hour(now):
+    return now.astimezone(YEREVAN).hour + now.astimezone(YEREVAN).minute / 60
+
+
+# ---------- просмотры ----------
+
+def record_views(rec, views, now, keep=60):
+    hist = rec.setdefault("views_history", [])
+    if not hist or hist[-1][1] != views or (now - parse_ts(hist[-1][0])) > timedelta(minutes=30):
+        hist.append([iso(now), int(views)])
+    del hist[:-keep]
+    rec["views"] = int(views)
+
+
+def velocity(rec, now):
+    """Просмотров в час: по истории (≥20 мин между точками), иначе среднее с момента создания."""
+    hist = rec.get("views_history") or []
+    if len(hist) >= 2:
+        t0, v0 = parse_ts(hist[0][0]), hist[0][1]
+        t1, v1 = parse_ts(hist[-1][0]), hist[-1][1]
+        if (t1 - t0) >= timedelta(minutes=20):
+            return max(0.0, (v1 - v0) / ((t1 - t0).total_seconds() / 3600))
+    age_h = max(0.25, (now - parse_ts(rec["created_at"])).total_seconds() / 3600)
+    return rec.get("views", 0) / age_h
+
+
+def age_bucket(age_h):
+    for i, lim in enumerate((1, 3, 6, 12, 24)):
+        if age_h < lim:
+            return i
+    return 5
+
+
+# ---------- группировка «один момент» ----------
+
+class _DSU:
+    def __init__(self, items):
+        self.p = {i: i for i in items}
+
+    def find(self, x):
+        while self.p[x] != x:
+            self.p[x] = self.p[self.p[x]]
+            x = self.p[x]
+        return x
+
+    def union(self, a, b):
+        ra, rb = self.find(a), self.find(b)
+        if ra != rb:
+            self.p[max(ra, rb)] = min(ra, rb)
+
+
+def _vod_interval(r):
+    if r.get("video_id") and r.get("vod_offset") is not None:
+        s = float(r["vod_offset"])
+        return r["video_id"], s, s + float(r.get("duration") or 0)
+    return None
+
+
+def group_clips(clips, same_event=()):
+    """clip_id -> group_id. Пересечение таймкодов VOD + подтверждённые пары."""
+    ids = sorted(clips)
+    dsu = _DSU(ids)
+    by_video = {}
+    for cid in ids:
+        iv = _vod_interval(clips[cid])
+        if iv:
+            by_video.setdefault(iv[0], []).append((iv[1], iv[2], cid))
+    for items in by_video.values():
+        items.sort()
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                if items[j][0] > items[i][1] + C.VOD_TOLERANCE:
+                    break
+                dsu.union(items[i][2], items[j][2])
+    for a, b in same_event:
+        if a in dsu.p and b in dsu.p:
+            dsu.union(a, b)
+    return {cid: dsu.find(cid) for cid in ids}
+
+
+def proximity_pairs(clips, checked=()):
+    """Пары без таймкодов VOD с близким временем создания — их надо сравнить по звуку/репликам."""
+    checked = set(checked)
+    items = sorted(((parse_ts(r["created_at"]), cid) for cid, r in clips.items()))
+    out = []
+    for i in range(len(items)):
+        for j in range(i + 1, len(items)):
+            if (items[j][0] - items[i][0]).total_seconds() > C.PROXIMITY_SECONDS:
+                break
+            a, b = items[i][1], items[j][1]
+            ia, ib = _vod_interval(clips[a]), _vod_interval(clips[b])
+            if ia and ib and ia[0] == ib[0]:
+                continue  # есть таймкоды одного VOD — сравнение по ним уже сделано
+            key = "|".join(sorted((a, b)))
+            if key not in checked:
+                out.append((a, b))
+    return out
+
+
+def representative(member_ids, clips):
+    """Версия с наиболее полным событием и реакцией: длиннее, затем позже кончается, затем больше просмотров."""
+    def key(cid):
+        r = clips[cid]
+        iv = _vod_interval(r)
+        end = iv[2] if iv else float(r.get("duration") or 0)
+        # клип зрителей важнее найденного по записи момента (популярность известна, контекст
+        # всё равно добавится из записи)
+        return (r.get("kind") != "vod", float(r.get("duration") or 0), end, r.get("views", 0), cid)
+    return max(member_ids, key=key)
+
+
+# ---------- оценка по метаданным ----------
+
+def prelim_scores(clips, groups, now):
+    """Предварительная оценка всех клипов окна.
+
+    vel   — перцентиль скорости роста просмотров среди клипов сопоставимого возраста
+            (нейтрально 0.5, если у всех ≤1 просмотра);
+    cluster — число независимых клипов одного момента (2+ → выше);
+    fresh — свежесть (до 2 ч — максимум, к 24 ч — 0).
+    """
+    ids = list(clips)
+    if not ids:
+        return {}
+    vel = {cid: velocity(clips[cid], now) for cid in ids}
+    ages = {cid: (now - parse_ts(clips[cid]["created_at"])).total_seconds() / 3600 for cid in ids}
+    neutral = max(clips[cid].get("views", 0) for cid in ids) <= 1
+    buckets = {}
+    for cid in ids:
+        buckets.setdefault(age_bucket(ages[cid]), []).append(cid)
+    # реакции зрителей Twitch: сколько РАЗНЫХ зрителей сделали клип этого момента
+    creators = {}
+    for cid, g in groups.items():
+        who = (clips.get(cid) or {}).get("creator") or cid
+        creators.setdefault(g, set()).add(who)
+    sizes = {g: len(v) for g, v in creators.items()}
+    all_views = sorted(clips[c].get("views", 0) for c in ids)
+    out = {}
+    vod_scores = sorted(clips[c].get("vod_score", 0) for c in ids if clips[c].get("kind") == "vod")
+    for cid in ids:
+        if clips[cid].get("kind") == "vod":   # момент из записи: сила сигнала среди других моментов
+            sc = clips[cid].get("vod_score", 0)
+            vp = (sum(1 for x in vod_scores if x < sc) + 0.5 * sum(1 for x in vod_scores if x == sc)) / max(1, len(vod_scores))
+        elif neutral:
+            vp = 0.5
+        else:
+            peers = buckets[age_bucket(ages[cid])]
+            if len(peers) < 3:
+                peers = ids
+            vals = sorted(vel[p] for p in peers)
+            below = sum(1 for v in vals if v < vel[cid])
+            equal = sum(1 for v in vals if v == vel[cid])
+            vp = (below + 0.5 * equal) / len(vals)
+        n = sizes.get(groups.get(cid, cid), 1)
+        cluster = min(1.0, (n - 1) / 4)
+        vv = clips[cid].get("views", 0)
+        abs_pct = 0.5 if neutral else (sum(1 for x in all_views if x < vv) + 0.5 * sum(1 for x in all_views if x == vv)) / len(all_views)
+        if clips[cid].get("kind") == "vod":
+            abs_pct = vp
+        fresh = 1.0 if ages[cid] <= 2 else max(0.0, 1 - (ages[cid] - 2) / 22)
+        out[cid] = {
+            "vel_pct": round(vp, 3), "cluster": round(cluster, 3), "cluster_size": n,
+            "fresh": round(fresh, 3), "age_h": round(ages[cid], 2),
+            "abs_pct": round(abs_pct, 3), "views": vv,
+            # популярность на Twitch: просмотры с учётом возраста + абсолютные просмотры + реакции
+            "popularity": round(0.45 * vp + 0.2 * abs_pct + 0.35 * cluster, 4),
+            "prelim": round(0.9 * (0.45 * vp + 0.2 * abs_pct + 0.35 * cluster) + 0.1 * fresh, 4),
+            "views_points": int(round(10 * (0.7 * vp + 0.3 * cluster))),
+            "neutral_views": neutral,
+        }
+    return out
+
+
+def meta_total(p, sig):
+    """Отбор без Claude, 0..100 — прежде всего популярность на Twitch.
+
+    Популярность 75: просмотры с учётом возраста 34, абсолютные просмотры 15, реакции зрителей
+    (сколько разных зрителей клипнули этот момент) 26. Свежесть 5. Содержание 20: реплики 6,
+    реакция стримера 6, действие 4, контекст 4. Громкость не участвует.
+    """
+    if not isinstance(sig, dict):  # совместимость: старая сигнатура с пригодностью отрезка
+        sig = {"speech": sig, "reaction": 0.5, "action": 0.5, "context": sig}
+    abs_pct = p.get("abs_pct", p["vel_pct"])
+    return int(round(34 * p["vel_pct"] + 15 * abs_pct + 26 * p["cluster"] + 5 * p["fresh"]
+                     + 6 * sig["speech"] + 6 * sig["reaction"] + 4 * sig["action"] + 4 * sig["context"]))
+
+
+def choose_window(speech, cam_a, game_a, dur, lo=C.CLIP_MIN_SEC, hi=C.CLIP_MAX_SEC):
+    """Окно монтажа без Claude: завязка → событие → реакция.
+
+    Посекундный балл = реплики 0.45 + реакция в вебке 0.35 + действие 0.2 (без громкости).
+    Начало — на реплике или действии; пустой хвост срезается. Законченный момент короче 30 с
+    остаётся коротким.
+    """
+    n = len(speech)
+    score = [0.45 * speech[i] + 0.35 * cam_a[i] + 0.2 * game_a[i] for i in range(n)]
+    live = [score[i] > 0.15 for i in range(n)]
+    if dur <= lo:
+        s, e = 0, n
+    else:
+        best = None
+        for L in range(int(lo), int(min(hi, dur)) + 1):
+            for i in range(0, n - L + 1):
+                v = sum(score[i:i + L]) / L
+                # бонус за реакцию в конце окна
+                tail = score[i + int(L * 0.7):i + L]
+                v += 0.15 * (sum(tail) / max(1, len(tail)))
+                if best is None or v > best[0] + 1e-9:
+                    best = (v, i, i + L)
+        _, s, e = best
+        # начало — ближайшая реплика/действие (±2 с)
+        for k in range(s, max(-1, s - 3), -1):
+            if 0 <= k < n and k > 0 and live[k] and not live[k - 1]:
+                s = k
+                break
+    # пустой хвост (до 4 с)
+    cut = 0
+    while e - s > 3 and cut < 4 and not live[min(n - 1, e - 1)]:
+        e -= 1
+        cut += 1
+    e = min(float(dur), float(e))
+    if dur > lo and e - s < lo:
+        return fit_window(s, e, dur, lo, hi)
+    return float(s), round(e, 3)
+
+
+def reaction_peak(cam_a, window, min_ratio=2.0):
+    """Секунда сильной реакции в вебке внутри окна (для кратковременного увеличения вебки)."""
+    s, e = int(window[0]), int(window[1])
+    seg = list(cam_a[s:e])
+    if len(seg) < 4:
+        return None
+    srt = sorted(seg)
+    med = srt[len(srt) // 2]
+    i = max(range(len(seg)), key=lambda k: seg[k])
+    if seg[i] >= 0.6 and seg[i] >= min_ratio * max(med, 0.05):
+        return float(s + i)
+    return None
+
+
+def render_pace(now, target=C.TARGET_PER_DAY):
+    """Сколько роликов канала может быть готово к этому часу (лимит распределяется по дню)."""
+    h = local_hour(now)
+    return max(1, min(target, 1 + math.floor((target - 1) * h / 20)))
+
+
+# ---------- бюджет подробной оценки ----------
+
+def eval_allowance(used_today, now):
+    """Сколько подробных оценок можно сделать к этому часу (часть бюджета — на поздние часы)."""
+    h = local_hour(now)
+    allowed = min(C.DAILY_EVAL_BUDGET,
+                  C.EVAL_BUDGET_START + math.floor((C.DAILY_EVAL_BUDGET - C.EVAL_BUDGET_START) * h / 24))
+    return max(0, allowed - used_today)
+
+
+def pick_for_eval(cands, prelim, n):
+    """Топ по предварительной оценке; часть мест — свежим клипам."""
+    if n <= 0 or not cands:
+        return []
+    ranked = sorted(cands, key=lambda c: (-prelim[c]["prelim"], c))
+    fresh = [c for c in ranked if prelim[c]["age_h"] * 60 <= C.FRESH_MINUTES]
+    k_fresh = min(len(fresh), max(1, int(round(n * C.FRESH_SHARE)))) if fresh else 0
+    chosen = fresh[:k_fresh]
+    for c in ranked:
+        if len(chosen) >= n:
+            break
+        if c not in chosen:
+            chosen.append(c)
+    return chosen[:n]
+
+
+# ---------- дневная подборка ----------
+
+def _pick_diverse(pool, k, used_types):
+    """По убыванию балла; при близких баллах (±3) предпочитаем ещё не взятый тип события."""
+    pool = list(pool)
+    out = []
+    while pool and len(out) < k:
+        best = pool[0]
+        if best["moment_type"] in used_types:
+            for alt in pool[1:]:
+                if best["rank"] - alt["rank"] > C.DIVERSITY_WINDOW:
+                    break
+                if alt["moment_type"] not in used_types:
+                    best = alt
+                    break
+        pool.remove(best)
+        out.append(best)
+        used_types.add(best["moment_type"])
+    return out
+
+
+def decide_day(day_clips, finalize, max_per_day=C.MAX_PER_DAY, pace=None):
+    """Решения по клипам одних суток.
+
+    day_clips: список {id, status, score, score_mode, moment_type}. Учитываются только
+    представители групп (дубли отсеяны раньше). Возвращает dict id -> новый статус
+    ('render_queued' | 'reserve' | 'rejected') только для изменившихся клипов.
+    """
+    active = [c for c in day_clips if c["status"] in RENDER_ACTIVE]
+    used_types = {c.get("moment_type") or "other" for c in active}
+    n_active = len(active)
+    open_ = [c for c in day_clips if c["status"] in ("scored", "reserve") and c.get("score") is not None]
+    for c in open_:
+        c.setdefault("moment_type", "other")
+        # шкалы Claude и метаданных не смешиваем: Claude-оценённые идут первыми
+        c["rank"] = c["score"] + (1000 if c["score_mode"] == "claude" else 0)
+    open_.sort(key=lambda c: (-c["rank"], c["id"]))
+    out = {}
+
+    def claude(c, lo, hi=101):
+        return c["score_mode"] == "claude" and lo <= c["score"] < hi
+
+    def meta(c, lo):
+        return c["score_mode"] == "meta" and c["score"] >= lo
+
+    if not finalize:
+        cap = C.TARGET_PER_DAY - C.LATE_SLOTS
+        if pace is not None:
+            cap = min(cap, pace)  # распределение по ходу дня: первый запуск не забирает весь лимит
+        slots = max(0, cap - n_active)
+        pool = [c for c in open_ if claude(c, C.SCORE_IMMEDIATE) or meta(c, C.META_IMMEDIATE)]
+        for c in _pick_diverse(pool, slots, used_types):
+            out[c["id"]] = "render_queued"
+        for c in open_:
+            if c["id"] in out:
+                continue
+            if c["score_mode"] == "claude" and c["score"] < C.SCORE_RESERVE:
+                out[c["id"]] = "rejected"
+            elif c["status"] != "reserve":
+                out[c["id"]] = "reserve"
+        return out
+
+    # после эфира (или ближе к концу суток во время марафона): добор до цели из резерва
+    need = max(0, C.TARGET_PER_DAY - n_active)
+    pool = [c for c in open_ if claude(c, C.SCORE_RESERVE) or meta(c, C.META_FLOOR)]
+    picked = _pick_diverse(pool, need, used_types)
+    for c in picked:
+        out[c["id"]] = "render_queued"
+    total = n_active + len(picked)
+    # седьмой — только отдельный сильный момент 85+ по оценке Claude
+    if total == C.TARGET_PER_DAY and max_per_day > C.TARGET_PER_DAY:
+        extra = [c for c in pool if c not in picked and claude(c, C.SCORE_IMMEDIATE)]
+        if extra:
+            out[extra[0]["id"]] = "render_queued"
+    for c in open_:
+        if c["id"] in out:
+            continue
+        if c["score_mode"] == "claude" and c["score"] < C.SCORE_RESERVE:
+            out[c["id"]] = "rejected"
+        elif c["status"] != "reserve":
+            out[c["id"]] = "reserve"
+    return out
+
+
+def should_finalize(stream, now):
+    """Эфир завершён (офлайн ≥30 мин) или марафон и уже поздно по Еревану."""
+    live = stream.get("live", False)
+    if live:
+        return local_hour(now) >= C.MARATHON_SUMMARY_HOUR
+    last = stream.get("last_live_at")
+    if not last:
+        return True
+    return (now - parse_ts(last)) >= timedelta(minutes=C.STREAM_END_GRACE_MIN)
+
+
+def fit_window(start, end, dur, lo=C.CLIP_MIN_SEC, hi=C.CLIP_MAX_SEC):
+    """Окно монтажа 30–40 с внутри клипа; короче 30 с — весь клип.
+
+    Удлиняем в обе стороны (начало — понять, что происходит; конец — развязка),
+    длинное окно режем с начала, сохраняя финал с реакцией.
+    """
+    start, end = max(0.0, float(start)), min(float(dur), float(end))
+    if end <= start:
+        start, end = 0.0, float(dur)
+    if dur <= lo:
+        return 0.0, float(dur)
+    length = end - start
+    if length < lo:
+        grow = lo - length
+        s_room, e_room = start, dur - end
+        add_s = min(s_room, grow * 0.6)
+        add_e = min(e_room, grow - add_s)
+        add_s = min(s_room, grow - add_e)
+        start, end = start - add_s, end + add_e
+    elif length > hi:
+        start = end - hi
+    return round(start, 3), round(end, 3)

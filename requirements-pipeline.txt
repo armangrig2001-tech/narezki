@@ -1,0 +1,8 @@
+# Конвейер нарезок (GitHub Actions, workflow «Clip Pipeline»)
+yt-dlp
+numpy
+opencv-python-headless==4.10.0.84
+pillow
+faster-whisper
+anthropic
+nudenet
