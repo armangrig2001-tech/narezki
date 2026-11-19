@@ -71,15 +71,20 @@ def _segments(playlist_url):
     with urllib.request.urlopen(playlist_url, timeout=60) as resp:
         text = resp.read().decode("utf-8", "replace")
     segs, t, dur = [], 0.0, None
+    init = None
     for line in text.splitlines():
         line = line.strip()
-        if line.startswith("#EXTINF:"):
+        if line.startswith("#EXT-X-MAP:"):   # fMP4: заголовочный сегмент (init) обязателен
+            m = re.search(r'URI="([^"]+)"', line)
+            if m:
+                init = urljoin(playlist_url, m.group(1))
+        elif line.startswith("#EXTINF:"):
             dur = float(line[8:].split(",")[0])
         elif line and not line.startswith("#") and dur is not None:
             segs.append((t, dur, urljoin(playlist_url, line)))
             t += dur
             dur = None
-    return segs
+    return segs, init
 
 
 def download_section(video_id, start, end, out_path, audio_only=False):
@@ -93,7 +98,7 @@ def download_section(video_id, start, end, out_path, audio_only=False):
         return out_path
     start, end = max(0.0, float(start)), float(end)
     try:
-        segs = _segments(_playlist_url(video_id, audio_only))
+        segs, init = _segments(_playlist_url(video_id, audio_only))
     except MediaError:
         raise
     except Exception as e:
@@ -101,37 +106,34 @@ def download_section(video_id, start, end, out_path, audio_only=False):
     need = [sg for sg in segs if sg[0] + sg[1] > start and sg[0] < end]
     if not need:
         raise MediaError(f"в записи нет отрезка {int(start)}–{int(end)} с (длина {int(segs[-1][0] + segs[-1][1]) if segs else 0} с)")
-    tmp = out_path + ".parts"
-    os.makedirs(tmp, exist_ok=True)
-    files = []
-    for i, (_, _, url) in enumerate(need):
-        fp = os.path.join(tmp, f"{i:04d}.ts")
+    def fetch(url):
         for attempt in range(3):
             try:
-                with urllib.request.urlopen(url, timeout=60) as resp, open(fp, "wb") as fh:
-                    fh.write(resp.read())
-                break
+                with urllib.request.urlopen(url, timeout=60) as resp:
+                    return resp.read()
             except Exception as e:
                 if attempt == 2:
                     raise MediaError(f"сегмент записи не скачан: {type(e).__name__}: {e}") from None
-        files.append(fp)
-    lst = os.path.join(tmp, "list.txt")
-    with open(lst, "w") as fh:
-        fh.writelines(f"file '{os.path.abspath(f)}'\n" for f in files)
+
+    # TS склеиваются как есть; fMP4 — init + фрагменты подряд в один файл
+    joined = out_path + (".joined.mp4" if init else ".joined.ts")
+    with open(joined, "wb") as fh:
+        if init:
+            fh.write(fetch(init))
+        for _, _, url in need:
+            fh.write(fetch(url))
     delta = start - need[0][0]
     length = min(end, need[-1][0] + need[-1][1]) - start
     if audio_only:
         codec = ["-vn", "-c:a", "aac", "-b:a", "128k"]
     else:
         codec = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-c:a", "aac", "-b:a", "192k"]
-    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst,
-                        "-ss", f"{delta:.3f}", "-t", f"{length:.3f}", *codec, out_path],
-                       capture_output=True, text=True)
-    for f in files + [lst]:
-        try:
-            os.remove(f)
-        except OSError:
-            pass
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", joined, "-ss", f"{delta:.3f}", "-t", f"{length:.3f}",
+                        *codec, out_path], capture_output=True, text=True)
+    try:
+        os.remove(joined)
+    except OSError:
+        pass
     if r.returncode != 0 or not os.path.exists(out_path):
         raise MediaError(f"склейка отрезка записи не удалась: {(r.stderr or '')[-200:]}")
     return out_path

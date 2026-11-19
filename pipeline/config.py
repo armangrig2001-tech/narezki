@@ -75,7 +75,7 @@ PROFILES = {
     "zloyn": {
         "login": "zloyn", "name": "Злой", "state_file": "zloyn.json", "title_name": "ZLOYn",
         "discovery_hours": 24, "max_per_day": 6, "contest_timer": False,
-        "cam_zoom": False, "no_cam": "full_if_lead",
+        "cam_zoom": False, "no_cam": "full",            # без вебки — «весь кадр + крупный план»
         "claude_notes": (
             "Стример — Злой (Артур, ZLOYn). Выбирай эпизоды, где Артур в центре действия; если клип "
             "держится на его реакции, в кадре должен быть геймплей, который объясняет, на что он "
