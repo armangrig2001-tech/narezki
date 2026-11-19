@@ -15875,6 +15875,10 @@
     628,
     314
    ],
+   "claim": {
+    "at": "2026-11-19T00:22:30Z",
+    "run": "44428066242"
+   },
    "clip_duration": 34.6,
    "contest_ok": true,
    "context_ok": true,
