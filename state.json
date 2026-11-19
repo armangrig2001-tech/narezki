@@ -36601,12 +36601,11 @@
   }
  },
  "game_id": "1867279146",
+ "manual": {
+  "force": false,
+  "id": "InquisitivePluckyZebraM4xHeh-hkkuI5RTMqe5aS8M"
+ },
  "runs": [
-  {
-   "at": "2026-11-18T14:27:10Z",
-   "phase": "plan",
-   "run": "44323416385"
-  },
   {
    "at": "2026-11-18T14:27:15Z",
    "phase": "work",
@@ -36897,6 +36896,11 @@
    "phase": "work",
    "rendered": [],
    "run": "44428066242"
+  },
+  {
+   "at": "2026-11-19T00:24:56Z",
+   "phase": "plan",
+   "run": "44428066242"
   }
  ],
  "same_event": [
@@ -36910,11 +36914,11 @@
   ]
  ],
  "stream": {
-  "checked_at": "2026-11-19T00:24:46Z",
-  "last_live_at": "2026-11-19T00:24:46Z",
+  "checked_at": "2026-11-19T00:24:56Z",
+  "last_live_at": "2026-11-19T00:24:56Z",
   "live": true,
   "started_at": "2026-11-17T20:27:56Z"
  },
- "updated_at": "2026-11-19T00:24:46Z",
+ "updated_at": "2026-11-19T00:24:56Z",
  "version": 1
 }
