@@ -20,15 +20,46 @@
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AUTH_URL = os.environ.get("TWITCH_AUTH_URL", "https://id.twitch.tv/oauth2/token")
 API_BASE = os.environ.get("TWITCH_API_BASE", "https://api.twitch.tv/helix")
 IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
+
+
+def load_dotenv(path):
+    """Load simple KEY=VALUE pairs without overriding the process environment."""
+    if not path.exists():
+        return
+    for line_number, raw_line in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), 1):
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[7:].lstrip()
+        key, separator, value = line.partition("=")
+        if not separator or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", key.strip()):
+            raise ValueError(f"{path}:{line_number}: expected KEY=VALUE")
+        key = key.strip()
+        value = value.strip()
+        if value[:1] in ("'", '"'):
+            quote = value[0]
+            if len(value) < 2 or value[-1] != quote:
+                raise ValueError(f"{path}:{line_number}: unmatched quote")
+            value = value[1:-1]
+        else:
+            value = value.split("#", 1)[0].strip()
+        os.environ.setdefault(key, value)
+
+
+load_dotenv(PROJECT_ROOT / ".env")
 
 
 class TwitchError(Exception):

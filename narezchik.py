@@ -16,12 +16,14 @@
 установлен openai-whisper и SRT нет — делается расшифровка.
 """
 import argparse
+from functools import lru_cache
 import json
 import os
 import re
 import shutil
 import subprocess
 import sys
+import tempfile
 
 import numpy as np
 
@@ -36,10 +38,11 @@ def probe(path):
     return json.loads(out)
 
 
-def audio_rms_per_sec(src, dur):
+def audio_rms_per_sec(src, dur, start=0):
     """RMS (дБ) по окнам 1 с через astats + ametadata."""
     r = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-nostats", "-i", src, "-vn", "-ac", "1",
+        ["ffmpeg", "-hide_banner", "-nostats", "-ss", f"{start:.3f}",
+         "-t", f"{dur:.3f}", "-i", src, "-vn", "-ac", "1",
          "-af", "asetnsamples=n=48000:p=0,aresample=48000,"
                 "astats=metadata=1:reset=1,"
                 "ametadata=print:key=lavfi.astats.Overall.RMS_level:file=-",
@@ -55,10 +58,11 @@ def audio_rms_per_sec(src, dur):
     return arr
 
 
-def motion_per_sec(src, dur):
+def motion_per_sec(src, dur, start=0):
     """Средний scene score кадров за каждую секунду (анализ на 320px)."""
     r = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-nostats", "-i", src, "-an",
+        ["ffmpeg", "-hide_banner", "-nostats", "-ss", f"{start:.3f}",
+         "-t", f"{dur:.3f}", "-i", src, "-an",
          "-vf", "scale=320:-2,scdet=threshold=0,"
                 "metadata=print:key=lavfi.scd.score:file=-",
          "-f", "null", "-"], text=True, capture_output=True, check=True)
@@ -143,19 +147,53 @@ def shift_srt(srt_in, srt_out, start, end):
     return k
 
 
-def try_whisper(src, srt_out):
-    try:
-        import whisper  # noqa
-    except ImportError:
-        return False
-    model = whisper.load_model(os.environ.get("WHISPER_MODEL", "small"))
-    res = model.transcribe(src, language="ru")
+@lru_cache(maxsize=2)
+def load_whisper_model(name):
+    import whisper
+
+    return whisper.load_model(name)
+
+
+def transcribe_window(src, start, end):
+    with tempfile.TemporaryDirectory(prefix="narezchik-") as temp_dir:
+        audio = os.path.join(temp_dir, "selected-audio.wav")
+        subprocess.run(
+            ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+             "-ss", f"{start:.3f}", "-t", f"{end - start:.3f}", "-i", src,
+             "-vn", "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le", audio],
+            check=True,
+        )
+        model = load_whisper_model(os.environ.get("WHISPER_MODEL", "small"))
+        result = model.transcribe(audio, language="ru")
+    return [
+        {
+            "start": float(segment["start"]) + start,
+            "end": float(segment["end"]) + start,
+            "text": segment["text"].strip(),
+        }
+        for segment in result["segments"]
+    ]
+
+
+def write_srt(segments, srt_out):
     with open(srt_out, "w", encoding="utf-8") as fh:
-        for i, sgm in enumerate(res["segments"], 1):
+        for i, segment in enumerate(segments, 1):
             def f(t):
                 ms = int(t * 1000)
                 return f"{ms//3600000:02d}:{ms//60000%60:02d}:{ms//1000%60:02d},{ms%1000:03d}"
-            fh.write(f"{i}\n{f(sgm['start'])} --> {f(sgm['end'])}\n{sgm['text'].strip()}\n\n")
+
+            fh.write(
+                f"{i}\n{f(segment['start'])} --> {f(segment['end'])}\n"
+                f"{segment['text']}\n\n"
+            )
+
+
+def try_whisper(src, srt_out, start, end):
+    try:
+        segments = transcribe_window(src, start, end)
+    except ImportError:
+        return False
+    write_srt(segments, srt_out)
     return True
 
 
@@ -164,34 +202,88 @@ def parse_box(s):
     return x, y, w, h
 
 
-def render(src, out, start, end, cam, timer, srt, src_w, src_h):
+def render(src, out, start, end, cam, timer, srt, src_w, src_h, layout, variant):
     W, H = 1080, 1920
     CAM_H = 608                      # вебка 16:9 на всю ширину
     GAME_H = H - CAM_H               # 1312
-    # центральный кроп геймплея под 1080x1312
-    gw = int(round(src_h * W / GAME_H)) // 2 * 2
-    gx = (src_w - gw) // 2
-    cx, cy, cw, ch = cam
-    tx, ty, tw, th = timer
-    t_scale = 1.6
-    tw_o, th_o = int(tw * t_scale) // 2 * 2, int(th * t_scale) // 2 * 2
-
-    fc = (
-        f"[0:v]split=3[a][b][c];"
-        f"[a]crop={gw}:{src_h}:{gx}:0,scale={W}:{GAME_H}:flags=lanczos,setsar=1[game];"
-        f"[b]crop={cw}:{ch}:{cx}:{cy},scale={W}:{CAM_H}:flags=lanczos,setsar=1[cam];"
-        f"[c]crop={tw}:{th}:{tx}:{ty},scale={tw_o}:{th_o}:flags=lanczos[tmr];"
-        f"[cam][game]vstack=inputs=2[st];"
-        f"[st]drawbox=x=0:y={CAM_H - 3}:w={W}:h=6:color=white@0.9:t=fill[st2];"
-        f"[st2][tmr]overlay=x={W - tw_o - 30}:y={CAM_H + 30}[v0]"
+    if layout == "full":
+        if variant == "classic":
+            fx = (f"[0:v]split=2[bg][fg];"
+                  f"[bg]scale={W}:{H}:force_original_aspect_ratio=increase,"
+                  f"crop={W}:{H},boxblur=24:12,eq=brightness=-0.3[bg2];"
+                  f"[fg]scale={W}:-2:force_original_aspect_ratio=decrease[fg2];"
+                  "[bg2][fg2]overlay=(W-w)/2:(H-h)/2[v0]")
+            caption_style = (
+                "FontName=DejaVu Sans,Bold=1,FontSize=15,PrimaryColour=&H00FFFFFF,"
+                "OutlineColour=&H00000000,BorderStyle=1,Outline=3,Shadow=1,"
+                "Alignment=2,MarginV=70"
+            )
+            audio_filter = "loudnorm=I=-14:TP=-1.5:LRA=11"
+        elif variant == "framed":
+            fx = (f"[0:v]split=2[bg][fg];"
+                  f"[bg]scale={W}:{H}:force_original_aspect_ratio=increase,"
+                  f"crop={W}:{H},boxblur=32:16,eq=brightness=-0.18:saturation=1.2[bg2];"
+                  f"[fg]scale={W - 96}:-2:force_original_aspect_ratio=decrease[fg2];"
+                  "[bg2][fg2]overlay=(W-w)/2:(H-h)/2,"
+                  f"drawbox=x=42:y=650:w={W - 84}:h=620:color=0x42E8C4:t=8[v0]")
+            caption_style = (
+                "FontName=DejaVu Sans,Bold=1,FontSize=17,PrimaryColour=&H0000FFFF,"
+                "OutlineColour=&H00101010,BorderStyle=3,BackColour=&H99000000,"
+                "Outline=2,Shadow=0,Alignment=2,MarginV=100"
+            )
+            audio_filter = "loudnorm=I=-12:TP=-1.0:LRA=9"
+        else:
+            fx = (f"[0:v]split=2[bg][fg];"
+                  f"[bg]scale={W}:{H}:force_original_aspect_ratio=increase,"
+                  f"crop={W}:{H},boxblur=18:9,eq=brightness=-0.4:saturation=0.85[bg2];"
+                  f"[fg]scale={W}:-2:force_original_aspect_ratio=decrease[fg2];"
+                  "[bg2][fg2]overlay=(W-w)/2:(H-h)/2,"
+                  f"drawbox=x=0:y=330:w={W}:h=18:color=0xFF654F:t=fill,"
+                  f"drawbox=x=0:y=1570:w={W}:h=18:color=0xFF654F:t=fill[v0]")
+            caption_style = (
+                "FontName=DejaVu Sans,Bold=1,FontSize=14,PrimaryColour=&H00FFFFFF,"
+                "OutlineColour=&H00FF654F,BorderStyle=1,Outline=4,Shadow=0,"
+                "Alignment=2,MarginV=130"
+            )
+            audio_filter = "loudnorm=I=-16:TP=-2.0:LRA=13"
+        fc = fx
+    else:
+        caption_style = (
+            "FontName=DejaVu Sans,Bold=1,FontSize=13,PrimaryColour=&H00FFFFFF,"
+            "OutlineColour=&H00000000,BorderStyle=1,Outline=2,Shadow=0,"
+            "Alignment=2,MarginV=60"
+        )
+        audio_filter = "loudnorm=I=-14:TP=-1.5:LRA=11"
+        # Central gameplay crop with the webcam stacked above it.
+        gw = int(round(src_h * W / GAME_H)) // 2 * 2
+        gx = (src_w - gw) // 2
+        cx, cy, cw, ch = cam
+        tx, ty, tw, th = timer
+        t_scale = 1.6
+        tw_o, th_o = int(tw * t_scale) // 2 * 2, int(th * t_scale) // 2 * 2
+        fc = (
+            f"[0:v]split=3[a][b][c];"
+            f"[a]crop={gw}:{src_h}:{gx}:0,scale={W}:{GAME_H}:flags=lanczos,setsar=1[game];"
+            f"[b]crop={cw}:{ch}:{cx}:{cy},scale={W}:{CAM_H}:flags=lanczos,setsar=1[cam];"
+            f"[c]crop={tw}:{th}:{tx}:{ty},scale={tw_o}:{th_o}:flags=lanczos[tmr];"
+            f"[cam][game]vstack=inputs=2[st];"
+            f"[st]drawbox=x=0:y={CAM_H - 3}:w={W}:h=6:color=white@0.9:t=fill[st2];"
+            f"[st2][tmr]overlay=x={W - tw_o - 30}:y={CAM_H + 30}[v0]"
+        )
+    clip_duration = end - start
+    fc += (
+        ";[v0]drawbox=x=52:y=108:w=510:h=72:color=0x080D17@0.78:t=fill,"
+        "drawbox=x=52:y=108:w=12:h=72:color=0x42E8C4:t=fill,"
+        "drawtext=font='Sans':text='GTA VI / HIGHLIGHT':x=82:y=125:"
+        "fontsize=34:fontcolor=white,"
+        f"drawbox=x=56:y=1820:w=968:h=8:color=white@0.35:t=fill,"
+        f"drawbox=x=56:y=1820:w='968*t/{clip_duration:.3f}':h=8:"
+        "color=0x42E8C4:t=fill[vgraphic]"
     )
-    last = "v0"
+    last = "vgraphic"
     if srt:
         esc = srt.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
-        style = ("FontName=DejaVu Sans,Bold=1,FontSize=13,PrimaryColour=&H00FFFFFF,"
-                 "OutlineColour=&H00000000,BorderStyle=1,Outline=2,Shadow=0,"
-                 "Alignment=2,MarginV=60")
-        fc += f";[v0]subtitles='{esc}':original_size={W}x{H}:force_style='{style}'[v1]"
+        fc += f";[{last}]subtitles='{esc}':original_size={W}x{H}:force_style='{caption_style}'[v1]"
         last = "v1"
 
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
@@ -200,7 +292,7 @@ def render(src, out, start, end, cam, timer, srt, src_w, src_h):
            "-c:v", "libx264", "-preset", "medium", "-crf", "21", "-maxrate", "8M", "-bufsize", "16M",
            "-pix_fmt", "yuv420p", "-r", "30", "-movflags", "+faststart",
            "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
-           "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", out]
+           "-af", audio_filter, out]
     subprocess.run(cmd, check=True)
 
 
@@ -214,6 +306,18 @@ def main():
     ap.add_argument("--srt", help="SRT с таймкодами исходника")
     ap.add_argument("--min", type=int, default=30)
     ap.add_argument("--max", type=int, default=40)
+    ap.add_argument("--layout", choices=("stacked", "full"), default="stacked",
+                    help="stacked: вебка + геймплей; full: исходное видео на размытой подложке")
+    ap.add_argument("--variant", choices=("classic", "framed", "cinematic"), default="classic")
+    ap.add_argument("--duration", type=int, choices=(30, 35, 40),
+                    help="длительность монтажной версии; момент активности остаётся по центру")
+    ap.add_argument("--start-sec", type=float,
+                    help="начало заданного фрагмента в секундах исходного видео")
+    ap.add_argument("--end-sec", type=float,
+                    help="конец заданного фрагмента в секундах исходного видео")
+    ap.add_argument("--reuse-report", help="переиспользовать выбор момента из JSON другого рендера")
+    ap.add_argument("--no-whisper", action="store_true",
+                    help="не запускать Whisper, если SRT отсутствует")
     a = ap.parse_args()
 
     for tool in ("ffmpeg", "ffprobe"):
@@ -227,21 +331,63 @@ def main():
     src_w, src_h = int(vs["width"]), int(vs["height"])
     print(f"[1/4] Исходник: {a.src} {src_w}x{src_h}, {dur:.2f} с")
 
-    rms = audio_rms_per_sec(a.src, dur)
-    mot = motion_per_sec(a.src, dur)
-    s, e, score = pick_window(rms, mot, a.min, a.max)
-    start, end = float(s), float(min(e, dur))
+    if (a.start_sec is None) != (a.end_sec is None):
+        ap.error("--start-sec and --end-sec must be used together")
+    if a.start_sec is not None and a.reuse_report:
+        ap.error("--reuse-report cannot be combined with an explicit time range")
+
+    if a.start_sec is not None:
+        if a.start_sec < 0 or a.end_sec <= a.start_sec or a.end_sec > dur:
+            ap.error("the explicit time range must be within the source video")
+        center = (a.start_sec + a.end_sec) / 2
+        rms = mot = score = np.array([], dtype=float)
+        print(f"[1/4] Использую найденный момент: "
+              f"{fmt_tc(a.start_sec)} — {fmt_tc(a.end_sec)}")
+    elif a.reuse_report:
+        with open(a.reuse_report, encoding="utf-8") as fh:
+            previous = json.load(fh)
+        if os.path.abspath(previous["source"]) != os.path.abspath(a.src):
+            ap.error("--reuse-report points to a different source video")
+        rms = np.asarray(previous["per_second"]["rms_db"])
+        mot = np.asarray(previous["per_second"]["motion"])
+        score = np.asarray(previous["per_second"]["score"])
+        center = (previous["source_start_sec"] + previous["source_end_sec"]) / 2
+        print("[1/4] Использую анализ момента из предыдущего рендера")
+    else:
+        rms = audio_rms_per_sec(a.src, dur)
+        mot = motion_per_sec(a.src, dur)
+        s, e, score = pick_window(rms, mot, a.min, a.max)
+        center = (s + e) / 2
+        print(f"[1/4] Найден активный фрагмент: {fmt_tc(s)} — {fmt_tc(e)}")
+
+    duration = min(float(a.duration or min(a.max, max(a.min, dur))), dur)
+    start = max(0.0, center - duration / 2)
+    end = min(dur, start + duration)
+    start = max(0.0, end - duration)
+    if score.size:
+        s, e = int(start), min(int(np.ceil(end)), len(score))
+        activity = (
+            f", ср. активность {score[s:e].mean():.2f} "
+            f"vs {score.mean():.2f} по всему видео"
+        )
+    else:
+        activity = ""
     print(f"[2/4] Выбран момент: {fmt_tc(start)} — {fmt_tc(end)} "
-          f"({end - start:.1f} с), ср. активность {score[s:e].mean():.2f} "
-          f"vs {score.mean():.2f} по всему видео")
+          f"({end - start:.1f} с){activity}")
 
     base = os.path.splitext(a.out)[0]
     srt_src = a.srt or (os.path.splitext(a.src)[0] + ".srt")
+    if not os.path.exists(srt_src) and a.reuse_report:
+        previous_srt = os.path.splitext(a.reuse_report)[0] + ".full.srt"
+        if os.path.exists(previous_srt):
+            srt_src = previous_srt
     clip_srt = None
-    if not os.path.exists(srt_src):
+    if not os.path.exists(srt_src) and not a.no_whisper:
         srt_src = base + ".full.srt"
-        if not try_whisper(a.src, srt_src):
+        if not try_whisper(a.src, srt_src, start, end):
             srt_src = None
+    elif a.no_whisper and not os.path.exists(srt_src):
+        srt_src = None
     if srt_src:
         clip_srt = base + ".srt"
         k = shift_srt(srt_src, clip_srt, start, end)
@@ -249,10 +395,13 @@ def main():
         if k == 0:
             clip_srt = None
     else:
-        print("[3/4] Субтитры: расшифровки нет (whisper не установлен, SRT не найден) — без субтитров")
+        if a.no_whisper:
+            print("[3/4] Субтитры: распознавание отключено — без субтитров")
+        else:
+            print("[3/4] Субтитры: расшифровки нет (whisper не установлен, SRT не найден) — без субтитров")
 
     render(a.src, a.out, start, end, parse_box(a.cam), parse_box(a.timer),
-           clip_srt, src_w, src_h)
+           clip_srt, src_w, src_h, a.layout, a.variant)
 
     o = probe(a.out)
     ov = next(x for x in o["streams"] if x["codec_type"] == "video")
@@ -263,6 +412,7 @@ def main():
         "source_start": fmt_tc(start), "source_end": fmt_tc(end),
         "source_start_sec": start, "source_end_sec": end,
         "output": a.out, "duration_sec": round(od, 3),
+        "variant": a.variant,
         "resolution": f"{ov['width']}x{ov['height']}",
         "video_codec": ov["codec_name"],
         "audio": [{"codec": x["codec_name"], "sample_rate": x["sample_rate"],
@@ -274,7 +424,10 @@ def main():
     }
     json.dump(report, open(base + ".json", "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    ok = (ov["width"], ov["height"]) == (1080, 1920) and oa and 30 <= od <= 40.5
+    expected_min = min(a.min, dur)
+    expected_max = min(a.max, dur)
+    ok = ((ov["width"], ov["height"]) == (1080, 1920) and oa
+          and expected_min <= od <= expected_max + 0.5)
     print(f"[4/4] ffprobe: {ov['width']}x{ov['height']} {ov['codec_name']}, "
           f"{od:.2f} с, аудио: {len(oa)} дорожк. -> {'OK' if ok else 'FAIL'}")
     sys.exit(0 if ok else 1)

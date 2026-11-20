@@ -1,0 +1,4 @@
+numpy>=1.24
+yt-dlp>=2024.1.0
+openai-whisper>=20240930
+ijson>=3.3
